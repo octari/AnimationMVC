@@ -17,6 +17,8 @@ import cs5004.view.ViewFactory;
 
 /**
  * Great Project
+ *
+ * @author Yuchen Ji
  */
 public class Main  {
 
