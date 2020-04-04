@@ -15,7 +15,9 @@ import cs5004.view.IView;
 import cs5004.view.JFrameView;
 import cs5004.view.ViewFactory;
 
-
+/**
+ * Great Project
+ */
 public class Main  {
 
   public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
