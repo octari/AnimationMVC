@@ -1,5 +1,8 @@
 package cs5004.view;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+
 import cs5004.model.ReadOnlyModel;
 
 /**
@@ -14,15 +17,16 @@ public class ViewFactory {
    * @return a view
    * @throws IllegalArgumentException if type invalid.
    */
-  public static IView makeView (String type, ReadOnlyModel am, String out) throws IllegalArgumentException {
+  public static IView makeView (String type, ReadOnlyModel am, String out)
+          throws IllegalArgumentException, FileNotFoundException, UnsupportedEncodingException {
 
     switch (type) {
       case "JFrame":
         return new JFrameView("JFrameView", am);
       case "SVG":
-        return new SVG();
+        return new SVG(am, out);
       case "textView":
-        return new TextualView();
+        return new TextualView(am, out);
       default:
         throw new IllegalArgumentException("Invalid view type.");
     }

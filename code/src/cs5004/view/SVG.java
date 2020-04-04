@@ -32,17 +32,19 @@ public class SVG implements IView {
 
   @Override
   public void outputFile() throws FileNotFoundException, UnsupportedEncodingException {
-    //Is the background black?
     StringBuilder sb = new StringBuilder();
     sb.append("<svg width=\"").append(m.getCanvas().getWidth()).append("\" height=\"")
-            .append(m.getCanvas().getHeight()).append("\" version=\"1.1\" style=\"fill:black\">\n");
+            .append(m.getCanvas().getHeight()).append("\" version=\"1.1\"\n")
+            .append("xmlns=\"http://www.w3.org/2000/svg\">");
     for (Shape s : m.getShapes()) {
       switch (s.getType()) {
         case RECTANGLE:
           sb.append("  <rect id=\"").append(s.getId()).append("\" x=\"").append(s.getPos().getX())
                   .append("\" y=\"").append(s.getPos().getY()).append("\" width=\"")
                   .append((int) ((Rectangle) s).getWidth()).append("\" height=\"")
-                  .append((int) ((Rectangle) s).getHeight()).append("\">\n");
+                  .append((int) ((Rectangle) s).getHeight()).append("\" fill=\"rgb(")
+                  .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
+                  .append(")\" visibility=\"visible\" >");
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
@@ -124,18 +126,20 @@ public class SVG implements IView {
                         .append(((ColorChange) c).getEndG()).append(", ").append(((ColorChange) c)
                         .getEndB()).append(")\" begin=\"").append((int) c.getStartTime())
                         .append("s\" dur=\"").append((int) (c.getEndTime() - c.getStartTime()))
-                        .append("s\" fill=\"freeze\" />");
+                        .append("s\" fill=\"freeze\" />\n");
             }
           }
-          writer.println("</ellipse>");
+          sb.append("</ellipse>\n");
       }
-      writer.println("</svg>");
+      sb.append("</svg>\n");
 
     }
     if(!out.equals("SysOut")){
-      PrintWriter writer = new PrintWriter("SVGView.svg", "UTF-8");
-
+      PrintWriter writer = new PrintWriter(out, "UTF-8");
+      writer.append(sb);
       writer.close();
+    }else{
+      System.out.print(sb);
     }
   }
 }
