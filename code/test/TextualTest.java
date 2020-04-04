@@ -81,8 +81,14 @@ public class TextualTest {
    * Test for getTextDescription() method.
    */
   @Test
+  public void testEmptyOutputFile () {
+    TextualView empty = new TextualView(model, "out");
+    assertEquals("", empty.getCurrentState());
+  }
+
+  @Test
   public void testOutputFile () {
-    assertEquals("", this.textualView.getCurrentState());
+    assertEquals("something", this.textualView.getCurrentState());
   }
 
 
