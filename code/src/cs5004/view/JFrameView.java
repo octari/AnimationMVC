@@ -1,6 +1,8 @@
 package cs5004.view;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +24,9 @@ public class JFrameView extends JFrame implements IView {
   private ReadOnlyModel m;
 
   /**
-   * Construct a JFrameView object
+   * Construct a JFrameView object.
    *
-   * @param caption
+   * @param caption the caption of the view window
    */
   public JFrameView(String caption, ReadOnlyModel m) {
     super(caption);
@@ -94,6 +96,11 @@ public class JFrameView extends JFrame implements IView {
   @Override
   public String getCurrentState() {
     return null;
+  }
+
+  @Override
+  public void outputFile() throws FileNotFoundException, UnsupportedEncodingException {
+
   }
 
   public void refresh() {
