@@ -49,7 +49,7 @@ public class TextualTest {
 
     rectangle = new Rectangle("R", ShapeType.RECTANGLE, 1, 100, 50, 100,
             0, p1, 10, 5);
-    oval = new Oval("O", ShapeType.OVAL,6, 100, 60, 30,
+    oval = new Oval("O", ShapeType.OVAL, 6, 100, 60, 30,
             0, p2, 3, 4);
 
     changeP1 = new PosChange("R", 10, 50, p2);
@@ -58,6 +58,10 @@ public class TextualTest {
 
     changeColor1 = new ColorChange("O", 50, 80, 10, 0, 0);
     changeSize1 = new ScaleChange("O", 61, 70, 50, 100);
+
+    model.addShape(rectangle);
+    model.addShape(oval);
+  }
 
 
 
