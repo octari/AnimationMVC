@@ -16,6 +16,7 @@ import cs5004.view.JFrameView;
 import cs5004.view.ViewFactory;
 
 /**
+ * This is the main body
  * Great Project
  *
  * @author Yuchen Ji
