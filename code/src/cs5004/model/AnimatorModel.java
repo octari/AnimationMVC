@@ -65,6 +65,8 @@ public interface AnimatorModel extends ReadOnlyModel{
    */
   void addScale(String id, double startTime, double endTime, double index1, double index2)
           throws IllegalArgumentException;
+
+  void addCanvas(int x, int y, int width, int height);
 }
 
 

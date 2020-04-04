@@ -17,6 +17,7 @@ import cs5004.util.AnimationBuilder;
 public class AnimatorImpl implements AnimatorModel {
   private List<Shape> shapes;
   private Map<Shape, List<Change>> map;
+  private Canvas c;
 
 
   /**
@@ -153,6 +154,14 @@ public class AnimatorImpl implements AnimatorModel {
     }
   }
 
+  @Override
+  public void addCanvas(int x, int y, int width, int height) {
+    this.c.setX(x);
+    this.c.setY(y);
+    this.c.setWidth(width);
+    this.c.setHeight(height);
+  }
+
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
     AnimatorModel IModel;
     Map<String, ShapeType> shp;
@@ -195,7 +204,8 @@ public class AnimatorImpl implements AnimatorModel {
 
     @Override
     public AnimationBuilder setBounds(int x, int y, int width, int height) {
-      return null;
+      IModel.addCanvas(x, y, width, height);
+      return this;
     }
 
     @Override
@@ -256,6 +266,7 @@ public class AnimatorImpl implements AnimatorModel {
       }
     }
   }
+
   @Override
   public String getState() {
     StringBuilder output = new StringBuilder("Shapes:\n");
@@ -453,9 +464,20 @@ public class AnimatorImpl implements AnimatorModel {
     return s.copy();
   }
 
+
+  @Override
+  public Canvas getCanvas() {
+    return this.c;
+  }
+
   @Override
   public List<Shape> getShapes() {
-    return shapes;
+    return this.shapes;
+  }
+
+  @Override
+  public Map<Shape, List<Change>> getMap() {
+    return this.map;
   }
 
 }

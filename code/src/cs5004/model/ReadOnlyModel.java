@@ -1,6 +1,7 @@
 package cs5004.model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  animator.ReadOnlyModel is the the model for a readonly Animator made in the MVC structure for
@@ -38,5 +39,7 @@ public interface ReadOnlyModel {
    */
   List<Shape> getShapes();
 
+  Canvas getCanvas();
 
+  Map<Shape, List<Change>> getMap();
 }

@@ -1,11 +1,11 @@
 package cs5004.util;
 
-public interface AnimationBuilder<AnimatorModel> {
+public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.
    * @return the newly constructed document
    */
-  AnimatorModel build();
+  Doc build();
 
 
   /**
@@ -16,23 +16,23 @@ public interface AnimationBuilder<AnimatorModel> {
    * @param height The height of the bounding box
    * @return This {@link AnimationBuilder}
    */
-  AnimationBuilder<AnimatorModel> setBounds(int x, int y, int width, int height);
+  AnimationBuilder<Doc> setBounds(int x, int y, int width, int height);
 
   /**
    * Adds a new shape to the growing document.
    *
-   * @param name The unique name of the shape to be added.  
+   * @param name The unique name of the shape to be added.
    *             No shape with this name should already exist.
-   * @param type The type of shape (e.g. "ellipse", "rectangle") to be added.  
-   *             The set of supported shapes is unspecified, but should 
+   * @param type The type of shape (e.g. "ellipse", "rectangle") to be added.
+   *             The set of supported shapes is unspecified, but should
    *             include "ellipse" and "rectangle" as a minimum.
    * @return This {@link AnimationBuilder}
    */
-  AnimationBuilder<AnimatorModel> declareShape(String name, String type);
+  AnimationBuilder<Doc> declareShape(String name, String type);
 
   /**
    * Adds a transformation to the growing document.
-   * 
+   *
    * @param name The name of the shape (added with {@link AnimationBuilder#declareShape})
    * @param t1   The start time of this transformation
    * @param x1   The initial x-position of the shape
@@ -52,7 +52,7 @@ public interface AnimationBuilder<AnimatorModel> {
    * @param b2   The final blue color-value of the shape
    * @return This {@link AnimationBuilder}
    */
-  AnimationBuilder<AnimatorModel> addMotion(String name,
-                                            int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
-                                            int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
+  AnimationBuilder<Doc> addMotion(String name,
+                                  int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
+                                  int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
 }
