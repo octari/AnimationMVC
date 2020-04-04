@@ -16,7 +16,7 @@ import cs5004.view.JFrameView;
 import cs5004.view.ViewFactory;
 
 /**
- * Great Project
+ * This is the main body
  */
 public class Main  {
 
