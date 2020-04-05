@@ -27,6 +27,8 @@ public class AnimatorImpl implements AnimatorModel {
   public AnimatorImpl() {
     this.shapes = new ArrayList<>();
     this.map = new HashMap<>();
+    c = new Canvas(0,0,0,0);
+
   }
 
 
