@@ -25,7 +25,7 @@ public class TextualView implements IView {
 
   @Override
   public String getCurrentState() {
-    return null;
+    return m.getState();
   }
 
   @Override

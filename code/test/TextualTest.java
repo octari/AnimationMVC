@@ -66,10 +66,10 @@ public class TextualTest {
             oval.getPos(), oval.getRadius1(), oval.getRadius2(), oval.getR(), oval.getG(),
             oval.getB());
 
-    model.addMove("R", changeP1.getStartTime(), changeP1.getStartTime(), changeP1.getEndPos());
-    model.addScale("R", changeSize1.getStartTime(),changeSize1.getEndTime(),
+    model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(), changeP1.getEndPos());
+    model.addScale(rectangle.getId(), changeSize1.getStartTime(),changeSize1.getEndTime(),
             changeSize1.getEndIndex1(), changeSize1.getEndIndex2());
-    model.addColor("R", changeColor1.getStartTime(), changeColor1.getEndTime(),
+    model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());
 
     textualView = new TextualView(model, "out");
@@ -83,12 +83,28 @@ public class TextualTest {
   @Test
   public void testEmptyOutputFile () {
     TextualView empty = new TextualView(model, "out");
-    assertEquals("", empty.getCurrentState());
+    assertEquals(null, empty.getCurrentState());
   }
 
   @Test
   public void testOutputFile () {
-    assertEquals("something", this.textualView.getCurrentState());
+    assertEquals("Shapes:\n" +
+            "Name:R\n" +
+            "Type:RECTANGLE\n" +
+            "Min Corner: ( 250.0, 270.0), Width: 10.0, Height: 5.0, Color: (50, 100, 0)\n" +
+            "Appears at t = 1.0\n" +
+            "Disappears at t = 100.0\n" +
+            "Name:O\n" +
+            "Type:OVAL\n" +
+            "Center: ( 390.0, 390.0), radius1: 3.0, radius2: 6.0, Color: (60, 30, 0)\n" +
+            "Appears at t = 6.0\n" +
+            "Disappears at t = 100.0\n" +
+            "shape R moves from ( 250.0, 270.0)( 390.0, 390.0) to ( 390.0, 390.0) from t = 10.0s " +
+            "to t = 50.0s\n" +
+            "shape R changes color from (50,100,0)(60,30,0) to (10,0,0) from t = 50.0s to " +
+            "t = 80.0s\n" +
+            "shape R scales from (50.0, 100.0)(50.0, 100.0) to (50.0, 100.0) from t = 61.0s " +
+            "to t = 70.0s\n", this.textualView.getCurrentState());
   }
 
 

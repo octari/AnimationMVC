@@ -87,6 +87,7 @@ public class AnimatorImpl implements AnimatorModel {
                   "different from end Position.");
         }
         map.get(s).add(c);
+        break;
       } else {
         if (shapes.get(shapes.size() - 1).equals(s)) {
           throw new IllegalArgumentException("Does not have such Id in existing Shape ids.");
@@ -112,6 +113,7 @@ public class AnimatorImpl implements AnimatorModel {
           throw new IllegalArgumentException("Color change should be different.");
         }
         map.get(s).add(c);
+        break;
       } else {
         if (shapes.get(shapes.size() - 1).equals(s)) {
           throw new IllegalArgumentException("Does not have such Id in existing Shape ids.");
