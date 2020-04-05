@@ -379,7 +379,7 @@ public class AnimatorImpl implements AnimatorModel {
   }
 
   /**
-   * Helper is to form the new shape with given changeling conditions.
+   * Helper is to form the new shape with given changeling
    * The helper function is added to avoid redundancy.
    *
    * @param s the given shape

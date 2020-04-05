@@ -21,8 +21,9 @@ import cs5004.model.ShapeType;
 import cs5004.view.TextualView;
 
 import static org.junit.Assert.assertEquals;
+
 /**
- *
+ * TextualTest lass tests the output of TextualView.
  */
 public class TextualTest {
   AnimatorImpl model;
@@ -79,15 +80,18 @@ public class TextualTest {
   }
 
   /**
-   * Test for getTextDescription() method.
+   * Test getTextDescription() method for empty model.
    */
   @Test
   public void testEmptyOutputFile () {
     model0 = new AnimatorImpl();
     TextualView empty = new TextualView(model0, "emptyOut.txt");
-    assertEquals(null, empty.getCurrentState());
+    assertEquals("Shapes:\n", empty.getCurrentState());
   }
 
+  /**
+   * Test getTextDescription() method for populated model.
+   */
   @Test
   public void testOutputFile () {
     assertEquals("Shapes:\n" +

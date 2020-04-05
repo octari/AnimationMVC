@@ -22,7 +22,7 @@ import cs5004.view.ViewFactory;
  *
  * @author Yuchen Ji
  */
-public class Main  {
+public class EasyAnimator {
 
   /**
    * Main function is for actually executing the program and get the expected view results.
