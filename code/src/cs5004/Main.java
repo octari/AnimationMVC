@@ -45,14 +45,18 @@ public class Main  {
         case "-speed":
           speed = Integer.parseInt(args[i + 1]);
           break;
+        default:
+          throw new IllegalArgumentException("invalid command line arguments.");
       }
       i+=2;
     }
     if(out == null){
       out = "SysOut";
-    } else if(speed == 0){
+    }
+    if(speed == 0){
       speed = 1;
-    } else if(nameOfFile == null || view == null){
+    }
+    if((nameOfFile == null) || (view == null)){
       throw new IllegalArgumentException("name of animation file and view can't be null");
     }
     File f = new File(nameOfFile);

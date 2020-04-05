@@ -20,7 +20,7 @@ import cs5004.model.Shape;
 public class JFrameView extends JFrame implements IView {
 
   private ViewPanel p;
-  private ArrayList<Shape> shapes;
+
   private ReadOnlyModel m;
 
   /**
@@ -81,15 +81,6 @@ public class JFrameView extends JFrame implements IView {
    */
   public void setCurrentFrame(List<Shape> shapes) {
     p.setCurrentFrame(shapes);
-  }
-
-  /**
-   * Returns a list of Shape objects.
-   *
-   * @return a list of Shape objects
-   */
-  public List<Shape> getShapes() {
-    return this.shapes;
   }
 
 
