@@ -59,7 +59,7 @@ public class Main  {
     FileReader fr = new FileReader(f);
     AnimatorModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
     // user command line arg: text, svg, visual
-    IView viewM = ViewFactory.makeView(view, am, out);
+    IView viewM = ViewFactory.makeView(view, am, out, speed);
 
     ActionListener myListener = new TickActionListener((JFrameView) viewM);
     Timer t = new Timer(200, myListener);

@@ -17,14 +17,14 @@ public class ViewFactory {
    * @return a view
    * @throws IllegalArgumentException if type invalid.
    */
-  public static IView makeView (String type, ReadOnlyModel am, String out)
+  public static IView makeView (String type, ReadOnlyModel am, String out, int speed)
           throws IllegalArgumentException, FileNotFoundException, UnsupportedEncodingException {
 
     switch (type) {
       case "JFrame":
         return new JFrameView("JFrameView", am);
       case "SVG":
-        return new SVG(am, out);
+        return new SVG(am, out, speed);
       case "textView":
         return new TextualView(am, out);
       default:
