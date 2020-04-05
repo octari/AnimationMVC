@@ -35,7 +35,7 @@ public class JFrameView extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    ReadOnlyModel rm = new AnimatorImpl();
+
     this.p = new ViewPanel();
     add(p);
 
