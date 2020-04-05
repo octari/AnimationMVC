@@ -82,6 +82,7 @@ public class AnimatorImpl implements AnimatorModel {
           throw new IllegalArgumentException("Start/end time should be later/before " +
                   "than appear/disappear time.");
         }
+        // move can have the same position
 //        if (s.getPos().getX() == endPos.getX() && s.getPos().getY() == endPos.getY()) {
 //          throw new IllegalArgumentException("Start Position should be " +
 //                  "different from end Position.");
@@ -174,7 +175,7 @@ public class AnimatorImpl implements AnimatorModel {
     AnimatorModel IModel;
     Map<String, ShapeType> shp;
     Map<String, List<Transform>> shpTrans;
-    List<Transform> l;
+//    List<Transform> l;
     Map<String, Integer> minTicks;
     Map<String, Integer> maxTicks;
 
@@ -185,7 +186,7 @@ public class AnimatorImpl implements AnimatorModel {
       IModel = new AnimatorImpl();
       shp = new HashMap<>();
       shpTrans = new HashMap<>();
-      l = new ArrayList<>();
+//      l = new ArrayList<>();
       minTicks = new HashMap<>();
       maxTicks = new HashMap<>();
     }
@@ -229,8 +230,10 @@ public class AnimatorImpl implements AnimatorModel {
       switch (type) {
         case "rectangle":
           shp.put(name, ShapeType.RECTANGLE);
+          shpTrans.put(name, new ArrayList<>());
         case "ellipse":
           shp.put(name, ShapeType.OVAL);
+          shpTrans.put(name, new ArrayList<>());
       }
       return this;
     }
@@ -249,9 +252,8 @@ public class AnimatorImpl implements AnimatorModel {
       if(t2>maxTicks.get(name)){
         maxTicks.put(name, t2);
       }
-      l.add(new Transform(t1, t2, x1, x2, y1, y2, r1, r2, g1, g2, b1, b2,
+      shpTrans.get(name).add(new Transform(t1, t2, x1, x2, y1, y2, r1, r2, g1, g2, b1, b2,
               w1, w2, h1, h2));
-      shpTrans.put(name, l);
       return null;
     }
 
