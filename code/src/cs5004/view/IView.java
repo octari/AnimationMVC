@@ -2,6 +2,7 @@ package cs5004.view;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import cs5004.model.AnimatorModel;
@@ -32,5 +33,5 @@ public interface IView {
    */
   public String getCurrentState();
 
-  void outputFile() throws FileNotFoundException, UnsupportedEncodingException;
+  void outputFile() throws IOException;
 }

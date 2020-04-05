@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.Timer;
 
@@ -23,29 +24,34 @@ import cs5004.view.ViewFactory;
  */
 public class Main  {
 
-  public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
+  public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException, UnsupportedEncodingException {
 //    -in "name-of-animation-file" -view "type-of-view" -out "where-output-show-go" -speed "integer-ticks-per-second"
     int i = 0;
     String nameOfFile = null;
     String view = null;
     String out = null;
-    int tick = 0;
+    int speed = 0;
     while(i < args.length){
-      if(args[i].equals("-in")){
-        nameOfFile = args[i+1];
-      }else if(args[i].equals("-view")){
-        view = args[i+1];
-      }else if(args[i].equals("-out")){
-        out = args[i+1];
-      }else if(args[i].equals("-speed")){
-        tick = Integer.parseInt(args[i+1]);
+      switch (args[i]) {
+        case "-in":
+          nameOfFile = args[i + 1];
+          break;
+        case "-view":
+          view = args[i + 1];
+          break;
+        case "-out":
+          out = args[i + 1];
+          break;
+        case "-speed":
+          speed = Integer.parseInt(args[i + 1]);
+          break;
       }
       i+=2;
     }
     if(out == null){
       out = "SysOut";
-    } else if(tick == 0){
-      tick = 1;
+    } else if(speed == 0){
+      speed = 1;
     } else if(nameOfFile == null || view == null){
       throw new IllegalArgumentException("name of animation file and view can't be null");
     }
@@ -56,7 +62,7 @@ public class Main  {
     IView viewM = ViewFactory.makeView(view, am, out);
 
     ActionListener myListener = new TickActionListener((JFrameView) viewM);
-    Timer t = new Timer(1000/tick, myListener);
+    Timer t = new Timer(200, myListener);
     t.start();
   }
 }
