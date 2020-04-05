@@ -17,10 +17,9 @@ import cs5004.view.JFrameView;
 import cs5004.view.ViewFactory;
 
 /**
- * This is the main body
- * Great Project
+ * EasyAnimator class takes the main body of executing the program.
  *
- * @author Yuchen Ji
+ * @author Furong Tian, Yuchen Ji
  */
 public class EasyAnimator {
 

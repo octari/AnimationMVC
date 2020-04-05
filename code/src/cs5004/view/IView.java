@@ -23,15 +23,24 @@ public interface IView {
 
   /**
    * setModel passes the read-only AnimatorModel into view.
+   *
    * @param m the read-only AnimatorModel
    */
   void setModel(ReadOnlyModel m);
 
   /**
+   * getCurrentState gets the current status of all the shapes on canvas and returns
+   * in form of string.
    *
-   * @return String
+   * @return String shows the current status of all the shapes on canvas and returns
+   * in form of string.
    */
   public String getCurrentState();
 
+  /**
+   * outputFile takes the output into a given output file.
+   *
+   * @throws IOException when output file invalid or notfound.
+   */
   void outputFile() throws IOException;
 }

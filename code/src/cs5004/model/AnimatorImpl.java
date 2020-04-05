@@ -243,10 +243,10 @@ public class AnimatorImpl implements AnimatorModel {
       minTicks.putIfAbsent(name, t1);
       maxTicks.putIfAbsent(name, t2);
       // check if time is earlier/ later than appear/disappear time
-      if (t1<minTicks.get(name)){
+      if (t1 < minTicks.get(name)){
         minTicks.put(name, t1);
       }
-      if(t2>maxTicks.get(name)){
+      if(t2 > maxTicks.get(name)){
         maxTicks.put(name, t2);
       }
       l.add(new Transform(t1, t2, x1, x2, y1, y2, r1, r2, g1, g2, b1, b2,
