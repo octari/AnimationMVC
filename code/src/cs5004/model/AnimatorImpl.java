@@ -166,6 +166,10 @@ public class AnimatorImpl implements AnimatorModel {
     this.c.setHeight(height);
   }
 
+  /**
+   * Builder class implements AnimationBuilder interface.
+   * Build the final document for the project.
+   */
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
     AnimatorModel IModel;
     Map<String, ShapeType> shp;
@@ -174,6 +178,9 @@ public class AnimatorImpl implements AnimatorModel {
     Map<String, Integer> minTicks;
     Map<String, Integer> maxTicks;
 
+    /**
+     * Construct a document based on given model.
+     */
     public Builder() {
       IModel = new AnimatorImpl();
     }
@@ -357,19 +364,11 @@ public class AnimatorImpl implements AnimatorModel {
     Position newPos = s.getPos();
     switch (t) {
       case RECTANGLE:
-//        Shape newS = new Rectangle(s.getId(), s.getType(), s.getAppear(), s.getDisappear(),
-//                s.getR(), s.getG(), s.getB(), s.getPos(), ((Rectangle) s).getWidth(),
-//                ((Rectangle) s).getHeight());
-
-        // Can we use Casting here?
         double index1 = ((Rectangle) s).getWidth();
         double index2 = ((Rectangle) s).getHeight();
 
         helper(s, tick, index1, index2, newR, newG, newB, newPos);
       case OVAL:
-//        Shape newS = new Oval(s.getId(), s.getType(), s.getAppear(), s.getDisappear(),
-//                s.getR(), s.getG(), s.getB(), s.getPos(), ((Oval) s).getRadius1(),
-//                ((Oval) s).getRadius2());
         double r1 = ((Oval) s).getRadius1();
         double r2 = ((Oval) s).getRadius2();
 
@@ -379,8 +378,22 @@ public class AnimatorImpl implements AnimatorModel {
     }
   }
 
-
-  Shape helper (Shape s, double tick, double r1, double r2, int newR, int newG, int newB, Position newPos ) {
+  /**
+   * Helper is to form the new shape with given changeling conditions.
+   * The helper function is added to avoid redundancy.
+   *
+   * @param s the given shape
+   * @param tick a time reference
+   * @param r1 the first index
+   * @param r2 the second index
+   * @param newR the result r color component
+   * @param newG the result g color component
+   * @param newB the result b color component
+   * @param newPos the result position
+   * @return a shape object
+   */
+  Shape helper (Shape s, double tick, double r1, double r2, int newR, int newG,
+                int newB, Position newPos ) {
     for(Change c: map.get(s)){
       if(c.getStartTime()<tick){
         if(c.getEndTime()<tick){

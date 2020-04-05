@@ -24,8 +24,16 @@ import cs5004.view.ViewFactory;
  */
 public class Main  {
 
-  public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException, UnsupportedEncodingException {
-//    -in "name-of-animation-file" -view "type-of-view" -out "where-output-show-go" -speed "integer-ticks-per-second"
+  /**
+   * Main function is for actually executing the program and get the expected view results.
+   *
+   * @param args inout arguments including input filename, view type, and output filename.
+   * @throws FileNotFoundException throws when file not found.
+   * @throws IllegalArgumentException throws when command line argument is invalid.
+   * @throws UnsupportedEncodingException throws when Encoding code unsupported.
+   */
+  public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException,
+          UnsupportedEncodingException {
     int i = 0;
     String nameOfFile = "";
     String view = "";
@@ -71,6 +79,9 @@ public class Main  {
   }
 }
 
+/**
+ * TickActionListener implements ActionListener to carry out the JFrameView results.
+ */
 class TickActionListener implements ActionListener {
 
   private int currentTick = 0;

@@ -26,6 +26,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class TextualTest {
   AnimatorImpl model;
+  AnimatorImpl model0;
   Rectangle rectangle;
   Oval oval;
   Position p1;
@@ -72,7 +73,7 @@ public class TextualTest {
     model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());
 
-    textualView = new TextualView(model, "out");
+    textualView = new TextualView(model, "out.txt");
 
 
   }
@@ -82,7 +83,8 @@ public class TextualTest {
    */
   @Test
   public void testEmptyOutputFile () {
-    TextualView empty = new TextualView(model, "out");
+    model0 = new AnimatorImpl();
+    TextualView empty = new TextualView(model0, "emptyOut.txt");
     assertEquals(null, empty.getCurrentState());
   }
 
