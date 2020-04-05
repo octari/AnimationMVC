@@ -82,10 +82,10 @@ public class AnimatorImpl implements AnimatorModel {
           throw new IllegalArgumentException("Start/end time should be later/before " +
                   "than appear/disappear time.");
         }
-        if (s.getPos().getX() == endPos.getX() && s.getPos().getY() == endPos.getY()) {
-          throw new IllegalArgumentException("Start Position should be " +
-                  "different from end Position.");
-        }
+//        if (s.getPos().getX() == endPos.getX() && s.getPos().getY() == endPos.getY()) {
+//          throw new IllegalArgumentException("Start Position should be " +
+//                  "different from end Position.");
+//        }
         map.get(s).add(c);
         break;
       } else {
@@ -183,6 +183,11 @@ public class AnimatorImpl implements AnimatorModel {
      */
     public Builder() {
       IModel = new AnimatorImpl();
+      shp = new HashMap<>();
+      shpTrans = new HashMap<>();
+      l = new ArrayList<>();
+      minTicks = new HashMap<>();
+      maxTicks = new HashMap<>();
     }
 
     @Override
@@ -200,7 +205,7 @@ public class AnimatorImpl implements AnimatorModel {
             IModel.addMove(shapeId, t.t1, t.t2, new Position(t.x2, t.y2));
           }
           // scale
-          if (t.x1 - t.x2 != 0 || t.y1 - t.y2 != 0) {
+          if (t.w1 - t.w2 != 0 || t.h1 - t.h2 != 0) {
             IModel.addScale(shapeId, t.t1, t.t2, t.w2, t.h2);
           }
           // color

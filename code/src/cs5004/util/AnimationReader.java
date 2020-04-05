@@ -44,7 +44,7 @@ public class AnimationReader {
         case "canvas":
           readCanvas(s, builder);
           break;
-        case "src/cs5004/shape":
+        case "shape":
           readShape(s, builder);
           break;
         case "motion":
