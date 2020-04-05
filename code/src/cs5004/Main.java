@@ -27,9 +27,9 @@ public class Main  {
   public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException, UnsupportedEncodingException {
 //    -in "name-of-animation-file" -view "type-of-view" -out "where-output-show-go" -speed "integer-ticks-per-second"
     int i = 0;
-    String nameOfFile = null;
-    String view = null;
-    String out = null;
+    String nameOfFile = "";
+    String view = "";
+    String out = "";
     int speed = 0;
     while(i < args.length){
       switch (args[i]) {
