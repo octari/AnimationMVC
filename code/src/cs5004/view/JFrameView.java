@@ -20,7 +20,7 @@ import cs5004.model.Shape;
 public class JFrameView extends JFrame implements IView {
 
   private ViewPanel p;
-
+  private ArrayList<Shape> shapes;
   private ReadOnlyModel m;
 
   /**
@@ -42,6 +42,7 @@ public class JFrameView extends JFrame implements IView {
     ViewPanel p = new ViewPanel();
     p.setPreferredSize(new Dimension(700, 700));
 
+    p.setCurrentFrame(m.getShapes());
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -78,14 +79,17 @@ public class JFrameView extends JFrame implements IView {
    *
    * @param shapes a list of existing shapes
    */
-  public void setCurrentFrame(List<Shape> shapes) {
+
+  public void setCurrentFrame(ArrayList<Shape> shapes) {
+    this.shapes = shapes;
     p.setCurrentFrame(shapes);
   }
 
 
+
   @Override
   public String getCurrentState() {
-    return null;
+    return m.getState();
   }
 
   @Override

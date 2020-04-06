@@ -7,12 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
 import cs5004.model.AnimatorModel;
 import cs5004.model.AnimatorImpl;
 import cs5004.model.ReadOnlyModel;
+import cs5004.model.Shape;
 import cs5004.util.AnimationReader;
 import cs5004.view.IView;
 import cs5004.view.JFrameView;
@@ -105,7 +107,7 @@ class TickActionListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
 
     view.displayOutPut();
-    view.setCurrentFrame(view.getM().getShapesAt(currentTick));
+    view.setCurrentFrame((ArrayList<Shape>) view.getM().getShapesAt(currentTick));
     view.refresh();
 
 

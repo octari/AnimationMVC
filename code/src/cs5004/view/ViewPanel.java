@@ -24,12 +24,13 @@ public class ViewPanel extends JPanel {
    */
   public ViewPanel () {
     super();
-    this.shapes = new ArrayList<Shape>();
+    this.shapes = new ArrayList<>();
     this.setBackground(Color.WHITE);
   }
 
   /**
    * Set a list shapes inside the JPanel.
+   *
    * @param shapes a list of shape objects
    */
   public void setCurrentFrame(List<Shape> shapes) {
@@ -37,9 +38,11 @@ public class ViewPanel extends JPanel {
   }
 
 
+
   /**
    * Overrides the paintComponent methods from the JPanel abstract class and iterates through
    * the shape to draw new objects onto the canvas.
+   *
    * @param graphics a Graphics object
    */
   protected void paintComponent(Graphics graphics){
