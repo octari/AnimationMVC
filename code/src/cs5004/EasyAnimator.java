@@ -60,7 +60,7 @@ public class EasyAnimator {
       }
       i+=2;
     }
-    if(out == ""){
+    if(out.equals("")){
       out = "SysOut";
     }
     if(speed == 0){
@@ -72,20 +72,21 @@ public class EasyAnimator {
     File f = new File(nameOfFile);
     FileReader fr = new FileReader(f);
     ReadOnlyModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
-//    System.out.print(am.getState());
     // user command line arg: text, svg, visual
     IView viewM = ViewFactory.makeView(view, am, out, speed);
-    if (view.equals("visual")) {
-      ActionListener myListener = new TickActionListener((JFrameView) viewM);
-      Timer t = new Timer(200, myListener);
-      t.start();
-    } else if(view.equals("svg")){
-      ((SVG) viewM).outputFile();
-    } else if(view.equals("text")){
-      ((TextualView) viewM).outputFile();
+    switch (view) {
+      case "visual":
+        ActionListener myListener = new TickActionListener((JFrameView) viewM);
+        Timer t = new Timer(200, myListener);
+        t.start();
+        break;
+      case "svg":
+        ((SVG) viewM).outputFile();
+        break;
+      case "text":
+        ((TextualView) viewM).outputFile();
+        break;
     }
-
-
   }
 }
 
