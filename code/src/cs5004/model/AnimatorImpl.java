@@ -198,11 +198,12 @@ public class AnimatorImpl implements AnimatorModel {
     @Override
     public AnimatorModel build() {
       for (String shapeId : shp.keySet()) {
-        // rgb 000 for no color
-        // use first Transform Start time as its original pos and size(w & h)
+        // use first Transform Start state as its original state
         IModel.addShape(shapeId, shp.get(shapeId), minTicks.get(shapeId), maxTicks.get(shapeId),
                 new Position(shpTrans.get(shapeId).get(0).x1, shpTrans.get(shapeId).get(0).y1),
-                shpTrans.get(shapeId).get(0).w1, shpTrans.get(shapeId).get(0).h1, 0, 0, 0);
+                shpTrans.get(shapeId).get(0).w1, shpTrans.get(shapeId).get(0).h1,
+                shpTrans.get(shapeId).get(0).r1, shpTrans.get(shapeId).get(0).g1,
+                shpTrans.get(shapeId).get(0).b1);
         // iterate through the List<Transform>
         for (Transform t : shpTrans.get(shapeId)) {
           // move
