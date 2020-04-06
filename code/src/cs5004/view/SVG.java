@@ -39,17 +39,7 @@ public class SVG implements IView {
   }
 
   @Override
-  public void setModel(ReadOnlyModel m) {
-
-  }
-
-  @Override
-  public String getCurrentState() {
-    return null;
-  }
-
-  @Override
-  public void outputFile() throws IOException {
+  public String render() {
     StringBuilder sb = new StringBuilder();
     sb.append("<svg width=\"").append(m.getCanvas().getWidth()).append("\" height=\"")
             .append(m.getCanvas().getHeight()).append("\" version=\"1.1\"\n")
@@ -170,14 +160,24 @@ public class SVG implements IView {
           sb.append("  </ellipse>\n");
       }
       sb.append("</svg>\n");
-
     }
+    return String.valueOf(sb);
+  }
+
+  @Override
+  public String getCurrentState() {
+    return null;
+  }
+
+  @Override
+  public void outputFile() throws IOException {
+    String content = this.render();
     if (!out.equals("SysOut")) {
       PrintWriter writer = new PrintWriter(out, StandardCharsets.UTF_8);
-      writer.append(sb);
+      writer.append(content);
       writer.close();
     } else {
-      System.out.print(sb);
+      System.out.print(content);
     }
   }
 }

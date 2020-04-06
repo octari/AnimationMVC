@@ -11,6 +11,7 @@ import javax.swing.Timer;
 
 import cs5004.model.AnimatorModel;
 import cs5004.model.AnimatorImpl;
+import cs5004.model.ReadOnlyModel;
 import cs5004.util.AnimationReader;
 import cs5004.view.IView;
 import cs5004.view.JFrameView;
@@ -68,8 +69,8 @@ public class EasyAnimator {
     }
     File f = new File(nameOfFile);
     FileReader fr = new FileReader(f);
-    AnimatorModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
-    System.out.print(am.getState());
+    ReadOnlyModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
+//    System.out.print(am.getState());
     // user command line arg: text, svg, visual
     IView viewM = ViewFactory.makeView(view, am, out, speed);
     if (view.equals("visual")) {

@@ -68,10 +68,9 @@ public class JFrameView extends JFrame implements IView {
     setVisible(true);
   }
 
-
   @Override
-  public void setModel(ReadOnlyModel m) {
-    //do nothing for this view
+  public String render() {
+    return null;
   }
 
   /**

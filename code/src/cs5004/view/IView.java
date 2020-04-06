@@ -22,11 +22,11 @@ public interface IView {
   void displayOutPut();
 
   /**
-   * setModel passes the read-only AnimatorModel into view.
+   * This method gives the user textual output of desired form.
    *
-   * @param m the read-only AnimatorModel
+   * @return String of the output
    */
-  void setModel(ReadOnlyModel m);
+  public String render();
 
   /**
    * getCurrentState gets the current status of all the shapes on canvas and returns

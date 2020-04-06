@@ -15,17 +15,17 @@ public class TextualView implements IView {
 
   @Override
   public void displayOutPut() {
-
+    return;
   }
 
   @Override
-  public void setModel(ReadOnlyModel m) {
-
+  public String render() {
+    return m.getState();
   }
 
   @Override
   public String getCurrentState() {
-    return m.getState();
+    return null;
   }
 
   @Override
