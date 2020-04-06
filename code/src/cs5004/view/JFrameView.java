@@ -37,7 +37,7 @@ public class JFrameView extends JFrame implements IView {
 
 
     this.p = new ViewPanel();
-    add(p);
+    this.add(p);
 
     ViewPanel p = new ViewPanel();
     p.setPreferredSize(new Dimension(700, 700));
@@ -51,7 +51,6 @@ public class JFrameView extends JFrame implements IView {
 
     this.add(scrollPane, BorderLayout.CENTER);
 
-    this.pack();
 
   }
 
