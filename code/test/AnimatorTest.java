@@ -5,6 +5,7 @@ import org.junit.Test;
 import cs5004.model.AnimatorImpl;
 import cs5004.model.AnimatorModel;
 import cs5004.model.Position;
+import cs5004.model.Rectangle;
 import cs5004.model.ShapeType;
 
 import static org.junit.Assert.assertEquals;
@@ -271,10 +272,10 @@ public class AnimatorTest {
     assertEquals("Shapes:\n" +
                     "Name:rec1\n" +
                     "Type:RECTANGLE\n" +
-                    "Min Corner: ( 2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
+                    "Min Corner: (2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
                     "Appears at t = 1.2\n" +
                     "Disappears at t = 3.6\n" +
-                    "shape rec1 moves from ( 2.0, 4.5) to ( 8.8, 0.0) from t = 1.5s to t = 3.0s\n" +
+                    "shape rec1 moves from (2.0, 4.5) to (8.8, 0.0) from t = 1.5s to t = 3.0s\n" +
                     "shape rec1 scales from (3.0, 5.0) to (3.0, 5.0) from t = 2.0s to t = 3.0s\n",
             a.getState());
   }
@@ -289,10 +290,10 @@ public class AnimatorTest {
     assertEquals("Shapes:\n" +
                     "Name:rec1\n" +
                     "Type:RECTANGLE\n" +
-                    "Min Corner: ( 2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
+                    "Min Corner: (2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
                     "Appears at t = 1.2\n" +
                     "Disappears at t = 3.6\n" +
-                    "shape rec1 moves from ( 2.0, 4.5) to ( 8.8, 0.0) from t = 1.5s to t = 3.0s\n" +
+                    "shape rec1 moves from (2.0, 4.5) to (8.8, 0.0) from t = 1.5s to t = 3.0s\n" +
                     "shape rec1 scales from (3.0, 5.0) to (3.0, 5.0) from t = 2.0s to t = 3.0s\n",
             a.getState());
   }
@@ -309,17 +310,17 @@ public class AnimatorTest {
     assertEquals("Shapes:\n" +
             "Name:oval1\n" +
             "Type:OVAL\n" +
-            "Center: ( 3.0, 4.0), radius1: 3.0, radius2: 0.0, Color: (0, 100, 0)\n" +
+            "Center: (3.0, 4.0), radius1: 3.0, radius2: 0.0, Color: (0, 100, 0)\n" +
             "Appears at t = 0.0\n" +
             "Disappears at t = 5.0\n" +
             "Name:rec1\n" +
             "Type:RECTANGLE\n" +
-            "Min Corner: ( 2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
+            "Min Corner: (2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n" +
             "Appears at t = 1.2\n" +
             "Disappears at t = 3.6\n" +
             "Name:rec0\n" +
             "Type:RECTANGLE\n" +
-            "Min Corner: ( 1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
+            "Min Corner: (1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
             "Appears at t = 2.5\n" +
             "Disappears at t = 3.0\n", a.getState());
   }
@@ -333,7 +334,7 @@ public class AnimatorTest {
     assertEquals("Shapes:\n" +
                     "Name:rec0\n" +
                     "Type:RECTANGLE\n" +
-                    "Min Corner: ( 1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
+                    "Min Corner: (1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
                     "Appears at t = 2.5\n" +
                     "Disappears at t = 4.0\n" +
                     "shape rec0 changes color from (100,0,0) to (100,100,0) from t = 2.5s " +
@@ -349,7 +350,7 @@ public class AnimatorTest {
     assertEquals("Shapes:\n" +
                     "Name:rec0\n" +
                     "Type:RECTANGLE\n" +
-                    "Min Corner: ( 1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
+                    "Min Corner: (1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n" +
                     "Appears at t = 2.5\n" +
                     "Disappears at t = 4.0\n" +
                     "shape rec0 scales from (3.0, 5.0) to (3.0, 5.0) from t = 2.5s to t = 3.0s\n",
@@ -365,10 +366,10 @@ public class AnimatorTest {
     assertEquals("Shapes:\n"
                     + "Name:rec1\n"
                     + "Type:RECTANGLE\n"
-                    + "Min Corner: ( 2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n"
+                    + "Min Corner: (2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n"
                     + "Appears at t = 1.2\n"
                     + "Disappears at t = 3.6\n"
-                    + "shape rec1 moves from ( 2.0, 4.5) to ( 8.8, 0.0) from t = 1.5s "
+                    + "shape rec1 moves from (2.0, 4.5) to (8.8, 0.0) from t = 1.5s "
                     + "to t = 3.0s\n", a.getState());
   }
 
@@ -385,15 +386,15 @@ public class AnimatorTest {
     assertEquals("Shapes:\n"
                     + "Name:rec1\n"
                     + "Type:RECTANGLE\n"
-                    + "Min Corner: ( 2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n"
+                    + "Min Corner: (2.0, 4.5), Width: 3.0, Height: 4.5, Color: (0, 0, 100)\n"
                     + "Appears at t = 0.0\n"
                     + "Disappears at t = 12.0\n"
                     + "Name:rec0\n"
                     + "Type:RECTANGLE\n"
-                    + "Min Corner: ( 1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n"
+                    + "Min Corner: (1.0, 2.0), Width: 2.0, Height: 5.0, Color: (100, 0, 0)\n"
                     + "Appears at t = 2.0\n"
                     + "Disappears at t = 6.0\n"
-                    + "shape rec1 moves from ( 2.0, 4.5)( 1.0, 2.0) to ( 8.8, 0.0) from t = 0.5s "
+                    + "shape rec1 moves from (2.0, 4.5)(1.0, 2.0) to (8.8, 0.0) from t = 0.5s "
                     + "to t = 10.0s\n"
                     + "shape rec0 scales from (9.0, 4.5)(9.0, 4.5) to (9.0, 4.5) from t = 2.3s "
                     + "to t = 5.0s\n"
@@ -401,5 +402,16 @@ public class AnimatorTest {
                     + "to t = 12.0s\n", a.getState());
   }
 
+  @Test
+  public void getShapeAt(){
+    Rectangle rect0 = new Rectangle("rec0", ShapeType.RECTANGLE, 2, 6.0,
+             100, 0, 0, new Position(1, 2), 2, 5);
+    a.addShape("rec0", ShapeType.RECTANGLE, 2, 6.0,
+            new Position(1, 2), 2, 5, 100, 0, 0);
+    a.addShape("rec1", ShapeType.RECTANGLE, 0, 12,
+            new Position(2, 4.5), 3, 4.5, 0, 0, 100);
+    a.addMove("rec1", 0.5, 10, new Position(8.8, 0));
+    assertEquals("", a.getShapeAt(rect0, 4));
+  }
 
 }
