@@ -86,7 +86,6 @@ public class JFrameView extends JFrame implements IView {
   }
 
 
-
   @Override
   public String getCurrentState() {
     return m.getState();

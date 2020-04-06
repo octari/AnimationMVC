@@ -78,7 +78,7 @@ public class EasyAnimator {
     IView viewM = ViewFactory.makeView(view, am, out, speed);
     switch (view) {
       case "visual":
-        ActionListener myListener = new TickActionListener((JFrameView) viewM);
+        ActionListener myListener = new TickActionListener((JFrameView) viewM, speed);
         Timer t = new Timer(200, myListener);
         t.start();
         break;
@@ -99,16 +99,18 @@ class TickActionListener implements ActionListener {
 
   private int currentTick = 0;
   private JFrameView view;
+  private int speed;
 
-  TickActionListener(JFrameView view) {
+  TickActionListener(JFrameView view, int speed) {
     this.view = view;
+    this.speed = speed;
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
 
     view.displayOutPut();
-    view.setCurrentFrame((ArrayList<Shape>) view.getM().getShapesAt(currentTick));
+    view.setCurrentFrame((ArrayList<Shape>) view.getM().getShapesAt(speed * currentTick));
     view.refresh();
 
 
