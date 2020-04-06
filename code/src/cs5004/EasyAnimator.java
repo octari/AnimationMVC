@@ -72,10 +72,12 @@ public class EasyAnimator {
     System.out.print(am.getState());
     // user command line arg: text, svg, visual
     IView viewM = ViewFactory.makeView(view, am, out, speed);
+    if (view.equals("visual")) {
+      ActionListener myListener = new TickActionListener((JFrameView) viewM);
+      Timer t = new Timer(200, myListener);
+      t.start();
+    }
 
-    ActionListener myListener = new TickActionListener((JFrameView) viewM);
-    Timer t = new Timer(200, myListener);
-    t.start();
   }
 }
 
