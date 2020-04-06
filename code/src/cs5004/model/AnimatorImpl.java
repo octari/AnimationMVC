@@ -74,11 +74,11 @@ public class AnimatorImpl implements AnimatorModel {
               .collect(Collectors.toList());
       for (Change move : listOfAllMoves) {
         if(move.getId().equals(id)) {
-          if (move.getClass().equals(c.getClass())) {
+//          if (move.getClass().equals(c.getClass())) {
             if (!(endTime <= move.getStartTime() || move.getEndTime() <= startTime)) {
               throw new IllegalArgumentException("Conflicting time slot.");
             }
-          }
+//          }
         }
       }
       if (s.getId().equals(id)) {
@@ -230,14 +230,18 @@ public class AnimatorImpl implements AnimatorModel {
     }
 
     @Override
-    public AnimationBuilder declareShape(String name, String type) {
+    public AnimationBuilder declareShape(String name, String type) throws IllegalArgumentException {
       switch (type) {
         case "rectangle":
           shp.put(name, ShapeType.RECTANGLE);
           shpTrans.put(name, new ArrayList<>());
+          break;
         case "ellipse":
           shp.put(name, ShapeType.OVAL);
           shpTrans.put(name, new ArrayList<>());
+          break;
+        default:
+          throw new IllegalArgumentException("invalid shape.");
       }
       return this;
     }

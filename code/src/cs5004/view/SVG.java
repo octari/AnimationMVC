@@ -39,10 +39,12 @@ public class SVG implements IView {
   }
 
   @Override
-  public String render() {
+  public String render() throws IllegalArgumentException {
     StringBuilder sb = new StringBuilder();
-    sb.append("<svg width=\"").append(m.getCanvas().getWidth()).append("\" height=\"")
-            .append(m.getCanvas().getHeight()).append("\" version=\"1.1\"\n")
+    sb.append("<svg width=\"").append(m.getCanvas().getWidth()+m.getCanvas().getX())
+            .append("\" height=\"")
+            .append(m.getCanvas().getHeight()+m.getCanvas().getY())
+            .append("\" version=\"1.1\"\n")
             .append("xmlns=\"http://www.w3.org/2000/svg\">\n");
     for (Shape s : m.getShapes()) {
       switch (s.getType()) {
@@ -52,45 +54,47 @@ public class SVG implements IView {
                   .append((int) ((Rectangle) s).getWidth()).append("\" height=\"")
                   .append((int) ((Rectangle) s).getHeight()).append("\" fill=\"rgb(")
                   .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
-                  .append(")\" visibility=\"visible\" >");
+                  .append(")\" visibility=\"visible\" >\n");
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
-                if(s.getPos().getX() - ((PosChange) c).getEndPos().getX() > 0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                if(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
-                          .append("ms\" from=\"").append((int) s.getPos().getX())
+                          .append("ms\" attributeName=\"x\" from=\"").append((int) s.getPos().getX())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(s.getPos().getY() - ((PosChange) c).getEndPos().getY() > 0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                }else if(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
-                          .append("ms\" from=\"").append((int) s.getPos().getY())
+                          .append("ms\" attributeName=\"y\" from=\"").append((int) s.getPos().getY())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getY())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
               case SCALE:
-                if(((Rectangle) s).getWidth()-((ScaleChange) c).getEndIndex1()>0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                // Double.compare((((Rectangle) s).getWidth()), (((ScaleChange) c).getEndIndex1()))
+                if(Double.compare(((Rectangle) s).getWidth(), ((ScaleChange) c).getEndIndex1())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
-                          .append("ms\" from=\"").append(((Rectangle) s)
+                          .append("ms\" attributeName=\"width\" from=\"").append(((Rectangle) s)
                           .getWidth()).append("\" to=\"").append(((ScaleChange) c).getEndIndex1())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(((Rectangle) s).getHeight()-((ScaleChange) c).getEndIndex2()>0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                }else if(Double.compare(((Rectangle) s).getHeight(), ((ScaleChange) c).getEndIndex2())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
-                          .append("ms\" from=\"").append(((Rectangle) s)
+                          .append("ms\" attributeName=\"height\" from=\"").append(((Rectangle) s)
                           .getHeight()).append("\" to=\"").append(((ScaleChange) c).getEndIndex2())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
               case COLOR:
-                sb.append("    <animate attributeType=\"CSS\" from=\"" + "rgb(")
+                sb.append("    <animate attributeType=\"CSS\"  attributeName=\"fill\"")
+                        .append(" from=\" rgb(")
                         .append(s.getR()).append(", ").append(s.getG()).append(", ")
                         .append(s.getB()).append(")\" to=\"").append("rgb(")
                         .append(((ColorChange) c).getEndR()).append(", ").append(((ColorChange) c)
@@ -99,9 +103,11 @@ public class SVG implements IView {
                         .append("ms\" dur=\"")
                         .append((int) ( 1000 * (c.getEndTime() - c.getStartTime()) / speed))
                         .append("ms\" fill=\"freeze\" />\n");
+                break;
             }
           }
           sb.append("  </rect>\n\n");
+          break;
         case OVAL:
           sb.append("  <ellipse id=\"").append(s.getId()).append("\" cx=\"")
                   .append(s.getPos().getX()).append("\" cy=\"").append(s.getPos()
@@ -112,41 +118,42 @@ public class SVG implements IView {
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
-                if(s.getPos().getX() - ((PosChange) c).getEndPos().getX() > 0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                if(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
-                          .append("ms\" from=\"").append((int) s.getPos().getX())
+                          .append("ms\" attributeName=\"cx\" from=\"").append((int) s.getPos().getX())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(s.getPos().getY() - ((PosChange) c).getEndPos().getY() > 0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                }else if(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0) {
+                  sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
-                          .append("ms\" from=\"").append((int) s.getPos().getY())
+                          .append("ms\" attributeName=\"cy\" from=\"").append((int) s.getPos().getY())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getY())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
               case SCALE:
-                if(((Rectangle) s).getWidth()-((ScaleChange) c).getEndIndex1()>0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+
+                if(Double.compare(((Oval) s).getRadius1(), ((ScaleChange) c).getEndIndex1())==0) {
+                  sb.append("    <animate attributeName=\"rx\" attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
-                          .append("ms\" from=\"").append(((Rectangle) s)
-                          .getWidth()).append("\" to=\"").append(((ScaleChange) c).getEndIndex1())
+                          .append("ms\" from=\"").append(((Oval) s)
+                          .getRadius1()).append("\" to=\"").append(((ScaleChange) c).getEndIndex1())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(((Rectangle) s).getHeight()-((ScaleChange) c).getEndIndex2()>0.01) {
-                  sb.append("    <animate attributeType=\"XML\" begin=\"")
+                }else if(Double.compare(((Oval) s).getRadius2(), ((ScaleChange) c).getEndIndex2())==0) {
+                  sb.append("    <animate attributeName=\"ry\" attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
-                          .append("ms\" from=\"").append(((Rectangle) s)
-                          .getHeight()).append("\" to=\"").append(((ScaleChange) c).getEndIndex2())
+                          .append("ms\" from=\"").append(((Oval) s)
+                          .getRadius2()).append("\" to=\"").append(((ScaleChange) c).getEndIndex2())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
               case COLOR:
-                sb.append("    <animate attributeType=\"CSS\" from=\"" + "rgb(")
+                sb.append("    <animate attributeName=\"fill\" attributeType=\"CSS\" from=\"" + "rgb(")
                         .append(s.getR()).append(", ").append(s.getG()).append(", ")
                         .append(s.getB()).append(")\" to=\"").append("rgb(")
                         .append(((ColorChange) c).getEndR()).append(", ").append(((ColorChange) c)
@@ -155,9 +162,13 @@ public class SVG implements IView {
                         .append("ms\" dur=\"")
                         .append((int) ( 1000 * (c.getEndTime() - c.getStartTime()) / speed))
                         .append("ms\" fill=\"freeze\" />\n");
+                break;
             }
           }
           sb.append("  </ellipse>\n\n");
+          break;
+        default:
+          throw new IllegalArgumentException("invalid shape.");
       }
     }
     sb.append("</svg>\n");
