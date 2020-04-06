@@ -18,6 +18,7 @@ public class AnimatorImpl implements AnimatorModel {
   private List<Shape> shapes;
   private Map<Shape, List<Change>> map;
   private Canvas c;
+  private List<Shape> lastEndState;
 
 
   /**
@@ -27,7 +28,7 @@ public class AnimatorImpl implements AnimatorModel {
   public AnimatorImpl() {
     this.shapes = new ArrayList<>();
     this.map = new HashMap<>();
-    c = new Canvas(0,0,0,0);
+    c = new Canvas(0, 0, 0, 0);
 
   }
 
@@ -73,11 +74,11 @@ public class AnimatorImpl implements AnimatorModel {
               .filter(f -> f.getMotion().equals(Motion.MOVE))
               .collect(Collectors.toList());
       for (Change move : listOfAllMoves) {
-        if(move.getId().equals(id)) {
+        if (move.getId().equals(id)) {
 //          if (move.getClass().equals(c.getClass())) {
-            if (!(endTime <= move.getStartTime() || move.getEndTime() <= startTime)) {
-              throw new IllegalArgumentException("Conflicting time slot.");
-            }
+          if (!(endTime <= move.getStartTime() || move.getEndTime() <= startTime)) {
+            throw new IllegalArgumentException("Conflicting time slot.");
+          }
 //          }
         }
       }
@@ -172,14 +173,13 @@ public class AnimatorImpl implements AnimatorModel {
   }
 
   /**
-   * Builder class implements AnimationBuilder interface.
-   * Build the final document for the project.
+   * Builder class implements AnimationBuilder interface. Build the final document for the project.
    */
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
     AnimatorModel IModel;
     Map<String, ShapeType> shp;
     Map<String, List<Transform>> shpTrans;
-//    List<Transform> l;
+    //    List<Transform> l;
     Map<String, Integer> minTicks;
     Map<String, Integer> maxTicks;
 
@@ -255,10 +255,10 @@ public class AnimatorImpl implements AnimatorModel {
       minTicks.putIfAbsent(name, t1);
       maxTicks.putIfAbsent(name, t2);
       // check if time is earlier/ later than appear/disappear time
-      if (t1 < minTicks.get(name)){
+      if (t1 < minTicks.get(name)) {
         minTicks.put(name, t1);
       }
-      if(t2 > maxTicks.get(name)){
+      if (t2 > maxTicks.get(name)) {
         maxTicks.put(name, t2);
       }
       shpTrans.get(name).add(new Transform(t1, t2, x1, x2, y1, y2, r1, r2, g1, g2, b1, b2,
@@ -364,139 +364,160 @@ public class AnimatorImpl implements AnimatorModel {
 
   @Override
   public List<Shape> getShapesAt(double tick) {
-    List<Shape> shapes = new ArrayList<>();
-    for(Shape s: shapes){
-      shapes.add(this.getShapeAt(s, tick));
+    List<Shape> res = new ArrayList<>();
+    for (Shape s : shapes) {
+      res.add(this.getShapeAt(s, tick));
     }
-    return shapes;
+    return res;
   }
 
   @Override
-  public Shape getShapeAt(Shape s, double tick) throws IllegalArgumentException{
+  public Shape getShapeAt(Shape s, double tick) throws IllegalArgumentException {
     ShapeType t = s.getType();
-    int newR = s.getR();
-    int newG = s.getG();
-    int newB = s.getB();
-    Position newPos = s.getPos();
-    switch (t) {
-      case RECTANGLE:
-        double index1 = ((Rectangle) s).getWidth();
-        double index2 = ((Rectangle) s).getHeight();
-
-        return helper(s, tick, index1, index2, newR, newG, newB, newPos);
-      case OVAL:
-        double r1 = ((Oval) s).getRadius1();
-        double r2 = ((Oval) s).getRadius2();
-
-        return helper(s, tick, r1, r2, newR, newG, newB, newPos);
-      default:
-        throw new IllegalArgumentException("Invalid shape.");
-    }
-  }
-
-  /**
-   * Helper is to form the new shape with given changeling
-   * The helper function is added to avoid redundancy.
-   *
-   * @param s the given shape
-   * @param tick a time reference
-   * @param r1 the first index
-   * @param r2 the second index
-   * @param newR the result r color component
-   * @param newG the result g color component
-   * @param newB the result b color component
-   * @param newPos the result position
-   * @return a shape object
-   */
-  Shape helper (Shape s, double tick, double r1, double r2, int newR, int newG,
-                int newB, Position newPos ) {
-    for(Change c: map.get(s)){
-      if(c.getStartTime()<tick){
-        if(c.getEndTime()<tick){
-          switch (c.getMotion()){
-            case MOVE:
-              double endX = ((PosChange) c).getEndPos().getX();
-              double endY = ((PosChange) c).getEndPos().getY();
-              newPos = new Position(endX, endY);
-              break;
-            case COLOR:
-              int endR = ((ColorChange) c).getEndR();
-              int endG = ((ColorChange) c).getEndG();
-              int endB = ((ColorChange) c).getEndB();
-              newR = endR;
-              newG = endG;
-              newB = endB;
-              break;
-            case SCALE:
-              r1 = ((ScaleChange) s).getEndIndex1();
-              r2 = ((ScaleChange) s).getEndIndex2();
-              break;
-            default:
-              throw new IllegalArgumentException("invalid move.");
-          }
-          return new Rectangle(s.getId(), s.getType(), s.getAppear(), s.getDisappear(),
-                  newR, newG, newB, newPos, r1, r2);
-        }else{
-          double timeElapse = c.getEndTime()-c.getStartTime();
-          switch (c.getMotion()){
-            case MOVE:
-              double endX = ((PosChange) c).getEndPos().getX();
-              double endY = ((PosChange) c).getEndPos().getY();
-              double xChange = endX - s.getPos().getX();
-              double yChange = endY - s.getPos().getY();
-              double x = s.getPos().getX() + (tick-c.getStartTime()) / timeElapse * xChange;
-              double y = s.getPos().getY() + (tick-c.getStartTime()) / timeElapse * yChange;
-              newPos = new Position(x, y);
-              break;
-            case COLOR:
-              int endR = ((ColorChange) c).getEndR();
-              int endG = ((ColorChange) c).getEndG();
-              int endB = ((ColorChange) c).getEndB();
-              double rChange = endR - s.getR();
-              double gChange = endG - s.getG();
-              double bChange = endB - s.getB();
-              newR = (int) (((ColorChange) c).getEndR()
-                      + (tick-c.getStartTime()) / timeElapse * rChange);
-              newG = (int) (((ColorChange) c).getEndG()
-                      + (tick-c.getStartTime()) / timeElapse * gChange);
-              newB = (int) (((ColorChange) c).getEndB()
-                      + (tick-c.getStartTime()) / timeElapse * bChange);
-              break;
-            case SCALE:
-              double endIndex1 = ((ScaleChange) s).getEndIndex1();
-              double endIndex2 = ((ScaleChange) s).getEndIndex2();
-              switch (s.getType()) {
-                case OVAL:
-                  double i1Change = endIndex1 - ((Oval) s).getRadius1();
-                  double i2Change = endIndex2 - ((Oval) s).getRadius2();
-                  double newi1 = ((Oval) s).getRadius1()
-                          + (tick-c.getStartTime()) / timeElapse * i1Change;
-                  double newi2 = ((Oval) s).getRadius2()
-                          + (tick-c.getStartTime()) / timeElapse * i2Change;
-                  return new Oval(s.getId(), s.getType(), s.getAppear(), s.getDisappear(),
-                          newR, newG, newB, newPos, newi1, newi2);
-                case RECTANGLE:
-                  double wChange = endIndex1 - ((Oval) s).getRadius1();
-                  double hChange = endIndex2 - ((Oval) s).getRadius2();
-                  double newW = ((Rectangle) s).getWidth()
-                          + (tick-c.getStartTime()) / timeElapse * wChange;
-                  double newH = ((Rectangle) s).getHeight()
-                          + (tick-c.getStartTime()) / timeElapse * hChange;
-
-                  return new Rectangle(s.getId(), s.getType(), s.getAppear(), s.getDisappear(),
-                          newR, newG, newB, newPos, newW, newH);
-                default:
-                  throw new IllegalArgumentException("invalid shape.");
-              }
-            default:
-              throw new IllegalArgumentException("invalid move.");
-          }
+    Shape res = s.copy();
+    for (Change c : map.get(s)) {
+      if (c.getStartTime() >= tick) {
+        break;
+      }
+      if (c.getEndTime() <= tick) {
+        switch (s.getType()) {
+          case RECTANGLE:
+            switch (c.getMotion()) {
+              case COLOR:
+                res = new Rectangle(s.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        ((ColorChange) c).endR, ((ColorChange) c).endG, ((ColorChange) c).endB,
+                        res.getPos(), ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
+                break;
+              case MOVE:
+                res = new Rectangle(s.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), ((PosChange) c).getEndPos(),
+                        ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
+                break;
+              case SCALE:
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), res.getPos(),
+                        ((ScaleChange) c).getEndIndex1(), ((ScaleChange) c).getEndIndex2());
+                break;
+            }
+            break;
+          case OVAL:
+            switch (c.getMotion()) {
+              case COLOR:
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        ((ColorChange) c).endR, ((ColorChange) c).endG, ((ColorChange) c).endB,
+                        res.getPos(), ((Oval) res).getRadius1(), ((Oval) res).getRadius2());
+                break;
+              case MOVE:
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), ((PosChange) c).getEndPos(),
+                        ((Oval) res).getRadius1(), ((Oval) res).getRadius2());
+                break;
+              case SCALE:
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), res.getPos(),
+                        ((ScaleChange) c).getEndIndex1(), ((ScaleChange) c).getEndIndex2());
+                break;
+              default:
+                throw new IllegalStateException("Unexpected value: " + c.getMotion());
+            }
+            break;
+        }
+      } else if (c.getStartTime() < tick && c.getEndTime() > tick) {
+        double timeElapse = c.getEndTime() - c.getStartTime();
+        switch (res.getType()) {
+          case RECTANGLE:
+            switch (c.getMotion()) {
+              case MOVE:
+                double endX = ((PosChange) c).getEndPos().getX();
+                double endY = ((PosChange) c).getEndPos().getY();
+                double xChange = endX - res.getPos().getX();
+                double yChange = endY - res.getPos().getY();
+                double x = res.getPos().getX() + (tick - c.getStartTime()) / timeElapse * xChange;
+                double y = res.getPos().getY() + (tick - c.getStartTime()) / timeElapse * yChange;
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), new Position(x, y),
+                        ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
+                break;
+              case COLOR:
+                int endR = ((ColorChange) c).getEndR();
+                int endG = ((ColorChange) c).getEndG();
+                int endB = ((ColorChange) c).getEndB();
+                double rChange = endR - res.getR();
+                double gChange = endG - res.getG();
+                double bChange = endB - res.getB();
+                int newR = (int) (((ColorChange) c).getEndR()
+                        + (tick - c.getStartTime()) / timeElapse * rChange);
+                int newG = (int) (((ColorChange) c).getEndG()
+                        + (tick - c.getStartTime()) / timeElapse * gChange);
+                int newB = (int) (((ColorChange) c).getEndB()
+                        + (tick - c.getStartTime()) / timeElapse * bChange);
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        newR, newG, newB, res.getPos(),
+                        ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
+                break;
+              case SCALE:
+                double endIndex1 = ((ScaleChange) c).getEndIndex1();
+                double endIndex2 = ((ScaleChange) c).getEndIndex2();
+                double wChange = endIndex1 - ((Rectangle) res).getWidth();
+                double hChange = endIndex2 - ((Rectangle) res).getHeight();
+                double newW = ((Rectangle) res).getWidth()
+                        + (tick - c.getStartTime()) / timeElapse * wChange;
+                double newH = ((Rectangle) res).getHeight()
+                        + (tick - c.getStartTime()) / timeElapse * hChange;
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), res.getPos(), newW, newH);
+                break;
+            }
+            break;
+          case OVAL:
+            switch (c.getMotion()) {
+              case MOVE:
+                double endX = ((PosChange) c).getEndPos().getX();
+                double endY = ((PosChange) c).getEndPos().getY();
+                double xChange = endX - res.getPos().getX();
+                double yChange = endY - res.getPos().getY();
+                double x = res.getPos().getX() + (tick - c.getStartTime()) / timeElapse * xChange;
+                double y = res.getPos().getY() + (tick - c.getStartTime()) / timeElapse * yChange;
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), new Position(x, y),
+                        ((Oval) res).getRadius1(), ((Oval) res).getRadius2());
+                break;
+              case COLOR:
+                int endR = ((ColorChange) c).getEndR();
+                int endG = ((ColorChange) c).getEndG();
+                int endB = ((ColorChange) c).getEndB();
+                double rChange = endR - res.getR();
+                double gChange = endG - res.getG();
+                double bChange = endB - res.getB();
+                int newR = (int) (((ColorChange) c).getEndR()
+                        + (tick - c.getStartTime()) / timeElapse * rChange);
+                int newG = (int) (((ColorChange) c).getEndG()
+                        + (tick - c.getStartTime()) / timeElapse * gChange);
+                int newB = (int) (((ColorChange) c).getEndB()
+                        + (tick - c.getStartTime()) / timeElapse * bChange);
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        newR, newG, newB, res.getPos(),
+                        ((Oval) res).getRadius1(), ((Oval) res).getRadius2());
+                break;
+              case SCALE:
+                double endIndex1 = ((ScaleChange) c).getEndIndex1();
+                double endIndex2 = ((ScaleChange) c).getEndIndex2();
+                double wChange = endIndex1 - ((Oval) res).getRadius1();
+                double hChange = endIndex2 - ((Oval) res).getRadius2();
+                double newW = ((Oval) res).getRadius1()
+                        + (tick - c.getStartTime()) / timeElapse * wChange;
+                double newH = ((Oval) res).getRadius2()
+                        + (tick - c.getStartTime()) / timeElapse * hChange;
+                res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                        res.getR(), res.getG(), res.getB(), res.getPos(), newW, newH);
+                break;
+            }
+            break;
         }
       }
     }
-    return s.copy();
+    return res;
   }
-
 
   @Override
   public Canvas getCanvas() {

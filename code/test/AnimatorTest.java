@@ -404,14 +404,21 @@ public class AnimatorTest {
 
   @Test
   public void getShapeAt(){
-    Rectangle rect0 = new Rectangle("rec0", ShapeType.RECTANGLE, 2, 6.0,
-             100, 0, 0, new Position(1, 2), 2, 5);
+    a.addShape("rec0", ShapeType.RECTANGLE, 2, 6.0,
+            new Position(1, 2), 2, 5, 100, 0, 0);
+    a.addMove("rec0", 3, 5, new Position(8.8, 0));
+    assertEquals("", a.getShapeAt(a.getShapes().get(0), 4).toString());
+  }
+
+  @Test
+  public void getShapesAt(){
     a.addShape("rec0", ShapeType.RECTANGLE, 2, 6.0,
             new Position(1, 2), 2, 5, 100, 0, 0);
     a.addShape("rec1", ShapeType.RECTANGLE, 0, 12,
             new Position(2, 4.5), 3, 4.5, 0, 0, 100);
-    a.addMove("rec1", 0.5, 10, new Position(8.8, 0));
-    assertEquals("", a.getShapeAt(rect0, 4));
+    a.addMove("rec0", 3, 5, new Position(8.8, 0));
+    a.addMove("rec1", 3, 5, new Position(1.8, 0));
+    assertEquals("", a.getShapesAt(4).toString());
   }
 
 }
