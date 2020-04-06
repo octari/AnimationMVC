@@ -21,11 +21,11 @@ public class ViewFactory {
           throws IllegalArgumentException, FileNotFoundException, UnsupportedEncodingException {
 
     switch (type) {
-      case "JFrame":
+      case "visual":
         return new JFrameView("JFrameView", am);
-      case "SVG":
+      case "svg":
         return new SVG(am, out, speed);
-      case "textView":
+      case "text":
         return new TextualView(am, out);
       default:
         throw new IllegalArgumentException("Invalid view type.");

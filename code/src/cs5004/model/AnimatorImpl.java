@@ -73,8 +73,12 @@ public class AnimatorImpl implements AnimatorModel {
               .filter(f -> f.getMotion().equals(Motion.MOVE))
               .collect(Collectors.toList());
       for (Change move : listOfAllMoves) {
-        if (!(endTime < move.getStartTime() || move.getEndTime() < startTime)) {
-          throw new IllegalArgumentException("Conflicting time slot.");
+        if(move.getId().equals(id)) {
+          if (move.getClass().equals(c.getClass())) {
+            if (!(endTime <= move.getStartTime() || move.getEndTime() <= startTime)) {
+              throw new IllegalArgumentException("Conflicting time slot.");
+            }
+          }
         }
       }
       if (s.getId().equals(id)) {
