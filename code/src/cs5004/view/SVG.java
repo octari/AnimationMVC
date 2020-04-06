@@ -58,14 +58,14 @@ public class SVG implements IView {
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
-                if(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0) {
+                if(!(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
                           .append("ms\" attributeName=\"x\" from=\"").append((int) s.getPos().getX())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0) {
+                }else if(!(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
@@ -76,14 +76,14 @@ public class SVG implements IView {
                 break;
               case SCALE:
                 // Double.compare((((Rectangle) s).getWidth()), (((ScaleChange) c).getEndIndex1()))
-                if(Double.compare(((Rectangle) s).getWidth(), ((ScaleChange) c).getEndIndex1())==0) {
+                if(!(Double.compare(((Rectangle) s).getWidth(), ((ScaleChange) c).getEndIndex1())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
                           .append("ms\" attributeName=\"width\" from=\"").append(((Rectangle) s)
                           .getWidth()).append("\" to=\"").append(((ScaleChange) c).getEndIndex1())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(Double.compare(((Rectangle) s).getHeight(), ((ScaleChange) c).getEndIndex2())==0) {
+                }else if(!(Double.compare(((Rectangle) s).getHeight(), ((ScaleChange) c).getEndIndex2())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
@@ -118,14 +118,14 @@ public class SVG implements IView {
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
-                if(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0) {
+                if(!(Double.compare(s.getPos().getX(),  ((PosChange) c).getEndPos().getX())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
                           .append("ms\" attributeName=\"cx\" from=\"").append((int) s.getPos().getX())
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0) {
+                }else if(!(Double.compare(s.getPos().getY(),  ((PosChange) c).getEndPos().getY())==0)) {
                   sb.append("    <animate attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
@@ -136,14 +136,14 @@ public class SVG implements IView {
                 break;
               case SCALE:
 
-                if(Double.compare(((Oval) s).getRadius1(), ((ScaleChange) c).getEndIndex1())==0) {
+                if(!(Double.compare(((Oval) s).getRadius1(), ((ScaleChange) c).getEndIndex1())==0)) {
                   sb.append("    <animate attributeName=\"rx\" attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
                           .append("ms\" from=\"").append(((Oval) s)
                           .getRadius1()).append("\" to=\"").append(((ScaleChange) c).getEndIndex1())
                           .append("\" fill=\"freeze\" />\n");
-                }else if(Double.compare(((Oval) s).getRadius2(), ((ScaleChange) c).getEndIndex2())==0) {
+                }else if(!(Double.compare(((Oval) s).getRadius2(), ((ScaleChange) c).getEndIndex2())==0)) {
                   sb.append("    <animate attributeName=\"ry\" attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
