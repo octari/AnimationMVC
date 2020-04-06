@@ -8,9 +8,11 @@ import cs5004.model.ReadOnlyModel;
 
 public class TextualView implements IView {
   private ReadOnlyModel m;
+  private String out;
 
   public TextualView(ReadOnlyModel m, String out) {
     this.m = m;
+    this.out = out;
   }
 
   @Override
@@ -30,8 +32,12 @@ public class TextualView implements IView {
 
   @Override
   public void outputFile() throws FileNotFoundException, UnsupportedEncodingException {
-    PrintWriter writer = new PrintWriter("TextualView.txt", "UTF-8");
-    writer.print(m.getState());
-    writer.close();
+    if (!out.equals("SysOut")) {
+      PrintWriter writer = new PrintWriter("TextualView.txt", "UTF-8");
+      writer.print(m.getState());
+      writer.close();
+    }else{
+      System.out.print(this.render());
+    }
   }
 }

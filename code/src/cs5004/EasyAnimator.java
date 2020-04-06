@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.Timer;
@@ -15,6 +16,8 @@ import cs5004.model.ReadOnlyModel;
 import cs5004.util.AnimationReader;
 import cs5004.view.IView;
 import cs5004.view.JFrameView;
+import cs5004.view.SVG;
+import cs5004.view.TextualView;
 import cs5004.view.ViewFactory;
 
 /**
@@ -32,8 +35,7 @@ public class EasyAnimator {
    * @throws IllegalArgumentException throws when command line argument is invalid.
    * @throws UnsupportedEncodingException throws when Encoding code unsupported.
    */
-  public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException,
-          UnsupportedEncodingException {
+  public static void main(String[] args) throws IOException, IllegalArgumentException {
     int i = 0;
     String nameOfFile = "";
     String view = "";
@@ -58,7 +60,7 @@ public class EasyAnimator {
       }
       i+=2;
     }
-    if(out == null){
+    if(out == ""){
       out = "SysOut";
     }
     if(speed == 0){
@@ -77,7 +79,12 @@ public class EasyAnimator {
       ActionListener myListener = new TickActionListener((JFrameView) viewM);
       Timer t = new Timer(200, myListener);
       t.start();
+    } else if(view.equals("svg")){
+      ((SVG) viewM).outputFile();
+    } else if(view.equals("text")){
+      ((TextualView) viewM).outputFile();
     }
+
 
   }
 }

@@ -35,7 +35,7 @@ public class SVG implements IView {
 
   @Override
   public void displayOutPut() {
-
+    return;
   }
 
   @Override
