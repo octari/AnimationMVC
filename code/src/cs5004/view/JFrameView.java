@@ -51,6 +51,7 @@ public class JFrameView extends JFrame implements IView {
 
     this.add(scrollPane, BorderLayout.CENTER);
 
+//    this.pack();
 
   }
 
