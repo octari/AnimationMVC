@@ -383,12 +383,12 @@ public class AnimatorImpl implements AnimatorModel {
         double index1 = ((Rectangle) s).getWidth();
         double index2 = ((Rectangle) s).getHeight();
 
-        helper(s, tick, index1, index2, newR, newG, newB, newPos);
+        return helper(s, tick, index1, index2, newR, newG, newB, newPos);
       case OVAL:
         double r1 = ((Oval) s).getRadius1();
         double r2 = ((Oval) s).getRadius2();
 
-        helper(s, tick, r1, r2, newR, newG, newB, newPos);
+        return helper(s, tick, r1, r2, newR, newG, newB, newPos);
       default:
         throw new IllegalArgumentException("Invalid shape.");
     }
