@@ -373,13 +373,12 @@ public class AnimatorImpl implements AnimatorModel {
 
   @Override
   public Shape getShapeAt(Shape s, double tick) throws IllegalArgumentException {
-    ShapeType t = s.getType();
     Shape res = s.copy();
     for (Change c : map.get(s)) {
-      if (c.getStartTime() >= tick) {
+      if (c.getStartTime() > tick) {
         break;
       }
-      if (c.getEndTime() <= tick) {
+      if (c.getEndTime() < tick) {
         switch (s.getType()) {
           case RECTANGLE:
             switch (c.getMotion()) {
@@ -389,7 +388,7 @@ public class AnimatorImpl implements AnimatorModel {
                         res.getPos(), ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
                 break;
               case MOVE:
-                res = new Rectangle(s.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         res.getR(), res.getG(), res.getB(), ((PosChange) c).getEndPos(),
                         ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
                 break;
@@ -422,7 +421,7 @@ public class AnimatorImpl implements AnimatorModel {
             }
             break;
         }
-      } else if (c.getStartTime() < tick && c.getEndTime() > tick) {
+      } else if (c.getStartTime() <= tick && c.getEndTime() >= tick) {
         double timeElapse = c.getEndTime() - c.getStartTime();
         switch (res.getType()) {
           case RECTANGLE:
@@ -489,11 +488,11 @@ public class AnimatorImpl implements AnimatorModel {
                 double rChange = endR - res.getR();
                 double gChange = endG - res.getG();
                 double bChange = endB - res.getB();
-                int newR = (int) (((ColorChange) c).getEndR()
+                int newR = (int) (res.getR()
                         + (tick - c.getStartTime()) / timeElapse * rChange);
-                int newG = (int) (((ColorChange) c).getEndG()
+                int newG = (int) (res.getG()
                         + (tick - c.getStartTime()) / timeElapse * gChange);
-                int newB = (int) (((ColorChange) c).getEndB()
+                int newB = (int) (res.getB()
                         + (tick - c.getStartTime()) / timeElapse * bChange);
                 res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         newR, newG, newB, res.getPos(),
