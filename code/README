@@ -35,8 +35,8 @@ Animator (interface)
 	addColor;
 	addScale;
 	getState;
-	getShapeAt;   // havent been impliment yet but will be available for further development.
-	getShapesAt;  // havent been impliment yet but will be available for further development.
+	getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
+	getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
 
 AnimatorImpl (Impliments animatior interface)
 	filed: 
