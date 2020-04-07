@@ -94,7 +94,7 @@ public class EasyAnimator {
   /**
    * TickActionListener implements ActionListener to carry out the JFrameView results.
    */
-  public static class TickActionListener implements ActionListener {
+  private static class TickActionListener implements ActionListener {
 
     private int currentTick = 0;
     private JFrameView view;
