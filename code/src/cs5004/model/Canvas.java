@@ -1,12 +1,13 @@
 package cs5004.model;
 
 /**
- *
+ * This the the Canvas of the output. It has a point and size.
  */
 public class Canvas {
   private int x, y, width, height;
 
   /**
+   * This is the contructor for canvas, it initialize the property of the canvas.
    * @param x
    * @param y
    * @param width
