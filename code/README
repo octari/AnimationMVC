@@ -1,0 +1,163 @@
+CS5004 Assignment 8
+Team 40525
+Team member: Furong Tian, Yuchen Ji
+
+README
+Changes made to model in HW7:
+W
+
+
+For this project, we have 3 packages, which are animator, shape, and change. For each package,
+there is a interface in order to represent the methods of class should have, and an abstract
+class to reduce the redundancy.
+
+animator:
+In this package we have interface: AnimatorModel, and its implimentation: AnimatorImpl.
+AnimatorModel is the the model for the Animator made in the MVC structure. Animator is
+the canvas for shapes; it contains shapes and make changes to them based on given commands.
+AnimatorImpl implements the AnimatorModel. An AnimatorModelImpl has a map that stores each 
+shape as the key and its changes as the value. It also has a list of shape that stores every 
+shape on the canvas. AnimatorImpl has the function of adding a shape to the canvas and
+adding motion to the existing shape. It can also get the current state of the whole canvas
+in string format.
+
+Animator (interface)
+	addShape;
+	addMove;
+	addColor;
+	addScale;
+	getState;
+	getShapeAt;   // havent been impliment yet but will be available for further development.
+	getShapesAt;  // havent been impliment yet but will be available for further development.
+
+AnimatorImpl (Impliments animatior interface)
+	filed: 
+		List<Shape>;
+		Map<Shape, List<Change>>;
+
+	methods implimentation:
+		addShape;  
+		addMove;   
+		addColor;  
+		addScale;  
+		getState;  
+
+
+change:
+In this package we have interface: Change, its implimentation: AbstractChange, and an enum 
+for defining motion type. For each motion, there is a concrete class extends the abstract class.
+Each concrete class has its unique fileds, getters, and methods of change.
+Change interface represents all the possible changes on a shape. It includes the type of motion
+and the start and end time.
+AbstractChange is the abstract class for changes, it has common fields and getters for all motions.
+
+Change (interface)
+	getId;
+	getMotion;
+	getStartTime;
+	getEndTime;
+
+AbstractChange (implements Change)
+	field:
+		String id;
+		Motion m;
+		double startTime;
+		double endTime;
+
+	methods implimentation:
+		getId;
+		getMotion;
+		getStartTime;
+		getEndTime;
+
+Motion (enum)
+	MOVE, SCALE, COLOR
+
+ColorChange (extends AbstractChange)
+	field:
+		int endR;
+		int endG;
+		int endB;
+
+	methods:
+		getEndR;
+		getEndG;
+		getEndB;
+
+PosChange (extends AbstractChange)
+	field:
+		Position endPos;
+
+	methods:
+		getEndPos;
+
+ScaleChange (extends AbstractChange)
+	field:
+		endIndex1;
+		endIndex2;
+
+	methods:
+		getEndIndex1;
+		getEndIndex2;
+		toString;
+
+
+shape:
+In this package we have interface: Shape, its implimentation: AbstractShape, and an enum 
+for defining shape type. For each shape, there is a concrete class extends the abstract class.
+Each concrete class has its unique fileds, getters, and toString function. Also, a Position
+class unite x and y factor together to represent the position of the shape.
+Shape interface represents all the possible shapes. It includes the type of shape, the position,
+the index for color(r,g,b) , and the appear and disappear time.
+AbstractShape is the abstract class for all shapes it has all the common fields and methods of 
+shape.
+
+Shape (interface)
+	all the getters
+
+
+Shape (Abstract class)
+	attributes:
+		String id;
+		ShapeType type;
+		double appear;
+		double disappear;
+		int r;
+		int g;
+		int b;
+		Position p;
+
+	methods:
+		impliments all the getters
+
+ShapeType (enum)
+	RECTANGLE, OVAL
+
+Rectangle (extend Shape)
+	field:
+		double width;
+		double height;
+	
+	method:
+		getWidth;
+		getHeight;
+		toString;
+
+
+Oval (extend Shape)
+	field:
+		double radius1;
+		double radius2;
+	method:
+		getRadius1;
+		getRadius2;
+		toString;
+
+Position
+	field:
+		double x;
+		double y;
+	methods:
+		getters
+
+

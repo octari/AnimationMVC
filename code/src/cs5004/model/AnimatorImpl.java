@@ -18,7 +18,6 @@ public class AnimatorImpl implements AnimatorModel {
   private List<Shape> shapes;
   private Map<Shape, List<Change>> map;
   private Canvas c;
-  private List<Shape> lastEndState;
 
 
   /**
@@ -311,7 +310,7 @@ public class AnimatorImpl implements AnimatorModel {
         case OVAL:
           output.append("Center: ").append(s.getPos().toString()).append(", radius1: ")
                   .append(((Oval) s).getRadius1()).append(", radius2: ")
-                  .append(((Oval) s).getAppear());
+                  .append(((Oval) s).getRadius2());
           break;
         default:
           throw new IllegalStateException("Unexpected value: " + s.getType());

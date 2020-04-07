@@ -45,9 +45,12 @@ public class SVG implements IView {
             .append(m.getCanvas().getY()).append(" ").append(m.getCanvas().getWidth())
             .append(" ").append(m.getCanvas().getHeight())
             .append("\" ")
-            .append("width=\"").append(m.getCanvas().getWidth() - m.getCanvas().getX())
+            .append("width=\"")
+            .append(m.getCanvas().getWidth())
+//            .append(m.getCanvas().getWidth() - m.getCanvas().getX())
             .append("\" height=\"")
-            .append(m.getCanvas().getHeight() - m.getCanvas().getY())
+            .append(m.getCanvas().getHeight())
+//            .append(m.getCanvas().getHeight() - m.getCanvas().getY())
             .append("\" version=\"1.1\"\n")
             .append("xmlns=\"http://www.w3.org/2000/svg\">\n");
     for (Shape s : m.getShapes()) {
@@ -69,7 +72,7 @@ public class SVG implements IView {
                           .append("ms\" attributeName=\"x\" from=\"")
 //                          .append((int) s.getPos().getX())
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getX())
-                          .append("\" to=\"").append(((PosChange) c).getEndPos().getX())
+                          .append("\" to=\"").append((int)((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 if (!(Double.compare(s.getPos().getY(), ((PosChange) c).getEndPos().getY()) == 0)) {
@@ -79,7 +82,7 @@ public class SVG implements IView {
                           .append("ms\" attributeName=\"y\" from=\"")
 //                          .append((int) s.getPos().getY())
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getY())
-                          .append("\" to=\"").append(((PosChange) c).getEndPos().getY())
+                          .append("\" to=\"").append((int)((PosChange) c).getEndPos().getY())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
@@ -154,7 +157,6 @@ public class SVG implements IView {
                 }
                 break;
               case SCALE:
-
                 if (!(Double.compare(((Oval) s).getRadius1(), ((ScaleChange) c).getEndIndex1()) == 0)) {
                   sb.append("    <animate attributeName=\"rx\" attributeType=\"xml\" begin=\"")
                           .append((int) (1000 * c.getStartTime() / speed)).append("ms\" dur=\"")
