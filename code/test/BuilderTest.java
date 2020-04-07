@@ -14,12 +14,7 @@ import org.junit.Test;
  */
 public class BuilderTest {
   Map<String, ShapeType> shp;
-
-  /**
-   * Construct the object for testing the builder class's methods.
-   */
-  public BuilderTest() {
-  }
+  
 
   @Test
   public void setBound() {

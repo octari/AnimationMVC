@@ -3,7 +3,7 @@ package cs5004.util;
 /**
  * Constructs a final document.
  *
- * @param <Doc> takes in a AnimationBuilder<Doc>
+ * @param <Doc> takes in a animatorImpl
  */
 public interface AnimationBuilder<Doc> {
   /**
