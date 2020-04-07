@@ -4,13 +4,12 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 import cs5004.model.ReadOnlyModel;
-import cs5004.model.Shape;
+
 
 
 /**
@@ -20,7 +19,6 @@ import cs5004.model.Shape;
 public class JFrameView extends JFrame implements IView {
 
   private ViewPanel p;
-  private ArrayList<Shape> shapes;
   private ReadOnlyModel m;
 
   /**
@@ -41,7 +39,6 @@ public class JFrameView extends JFrame implements IView {
 
     p.setPreferredSize(new Dimension(700, 700));
 
-//    p.setCurrentFrame(m.getShapes());
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -50,44 +47,22 @@ public class JFrameView extends JFrame implements IView {
 
     this.add(scrollPane, BorderLayout.CENTER);
     setVisible(true);
-
-//    this.pack();
-
   }
 
+  /**
+   * setCurrentTick takes the tick and get the shapes status to se the current frame.
+   *
+   * @param tick the time component
+   */
   public void setCurrentTick(int tick) {
     p.setCurrentFrame(m.getShapesAt(tick));
   }
 
-  /**
-   * getM to get the Model.
-   *
-   * @return the readonly Model for use
-   */
-  public ReadOnlyModel getM() {
-    return m;
-  }
 
   @Override
-  public void displayOutPut() {
-    setVisible(true);
+  public String render() throws UnsupportedOperationException{
+    throw new UnsupportedOperationException();
   }
-
-  @Override
-  public String render() {
-    return null;
-  }
-
-//  /**
-//   * setCurrentFrame get the existing shapes.
-//   *
-//   * @param shapes a list of existing shapes
-//   */
-//
-//  public void setCurrentFrame(ArrayList<Shape> shapes) {
-//    this.shapes = shapes;
-//    p.setCurrentFrame(shapes);
-//  }
 
 
   @Override

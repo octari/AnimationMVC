@@ -168,3 +168,42 @@ Position
 		getters
 
 
+view:
+In this package we have interface: Iview, receives inputs from the Controller and generates
+an output description of the animation that includes the Shapes in the animation and the Actions
+performed by the Shapes. There are three concrete class implement the methods for textual, visual,
+and SVG view.
+
+View (interface)
+	String render();
+	String getCurrentState();
+	outputFile() throws IOException;
+
+
+JFrameView (implements Iview extends JFrame)
+	attributes:
+		private ViewPanel p;
+		private ReadOnlyModel m;
+
+	method:
+		setCurrentTick;
+		ReadOnlyModel;
+		getCurrentState;
+		refresh;
+		render; (throws UnsupportedOperationException; it is used in SVG)
+		outputFile; (same as above)
+
+ViewPanel (extends JPanel)
+	attributes:
+		private List<Shape> shapes;
+
+
+SVG (implements Iview)
+
+
+textView (call model getState)
+
+
+ViewFacroty
+
+
