@@ -45,9 +45,9 @@ public class SVG implements IView {
             .append(m.getCanvas().getY()).append(" ").append(m.getCanvas().getWidth())
             .append(" ").append(m.getCanvas().getHeight())
             .append("\" ")
-            .append("width=\"").append(m.getCanvas().getWidth() + m.getCanvas().getX())
+            .append("width=\"").append(m.getCanvas().getWidth() - m.getCanvas().getX())
             .append("\" height=\"")
-            .append(m.getCanvas().getHeight() + m.getCanvas().getY())
+            .append(m.getCanvas().getHeight() - m.getCanvas().getY())
             .append("\" version=\"1.1\"\n")
             .append("xmlns=\"http://www.w3.org/2000/svg\">\n");
     for (Shape s : m.getShapes()) {
