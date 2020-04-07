@@ -6,10 +6,19 @@ import java.io.UnsupportedEncodingException;
 
 import cs5004.model.ReadOnlyModel;
 
+/**
+ * TextualView implements IView. Forms the textural view.
+ */
 public class TextualView implements IView {
   private ReadOnlyModel m;
   private String out;
 
+  /**
+   * TextualView takes in a readonly model the textural view.
+   *
+   * @param m   the readOnlyModel
+   * @param out the output filename
+   */
   public TextualView(ReadOnlyModel m, String out) {
     this.m = m;
     this.out = out;
@@ -31,7 +40,7 @@ public class TextualView implements IView {
       PrintWriter writer = new PrintWriter(out, "UTF-8");
       writer.print(m.getState());
       writer.close();
-    }else{
+    } else {
       System.out.print(this.render());
     }
   }

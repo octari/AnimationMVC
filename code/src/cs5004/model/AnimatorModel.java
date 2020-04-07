@@ -1,13 +1,11 @@
 package cs5004.model;
 
-import java.util.List;
-
 
 /**
  * animator.AnimatorModel is the the model for the Animator made in the MVC structure. Animator is
  * the canvas for shapes; it contains shapes and make changes to them based on given commands.
  */
-public interface AnimatorModel extends ReadOnlyModel{
+public interface AnimatorModel extends ReadOnlyModel {
 
   /**
    * Get a shape to add to the animation model list.
@@ -33,7 +31,7 @@ public interface AnimatorModel extends ReadOnlyModel{
    * @param id        a String that each shape has as a identification
    * @param startTime the start time of the motion
    * @param endTime   the end time of the motion
-   * @param endPos the end position of the shape
+   * @param endPos    the end position of the shape
    * @throws IllegalArgumentException throws if invalid input is given.
    */
   void addMove(String id, double startTime, double endTime, Position endPos)

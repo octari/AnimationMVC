@@ -1,5 +1,10 @@
 package cs5004.util;
 
+/**
+ * Constructs a final document.
+ *
+ * @param <Doc> takes in a AnimationBuilder<doc>
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.

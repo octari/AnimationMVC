@@ -3,10 +3,16 @@ package cs5004.model;
 /**
  *
  */
-public class Canvas{
+public class Canvas {
   private int x, y, width, height;
 
-  public Canvas(int x, int y, int width, int height){
+  /**
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
+  public Canvas(int x, int y, int width, int height) {
     this.x = x;
     this.y = y;
     this.width = width;
