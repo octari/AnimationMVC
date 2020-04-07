@@ -59,7 +59,8 @@ public class TextualTest {
             oval.getPos(), oval.getRadius1(), oval.getRadius2(), oval.getR(), oval.getG(),
             oval.getB());
 
-    model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(), changeP1.getEndPos());
+    model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(),
+            changeP1.getEndPos());
     model.addScale(rectangle.getId(), changeSize1.getStartTime(), changeSize1.getEndTime(),
             changeSize1.getEndIndex1(), changeSize1.getEndIndex2());
     model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),

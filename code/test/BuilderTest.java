@@ -1,7 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+
 
 import cs5004.model.AnimatorModel;
 import cs5004.model.ShapeType;
@@ -9,11 +6,18 @@ import cs5004.model.AnimatorImpl.Builder;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+/**
+ * BuilderTest tests the builder class's methods.
+ */
 public class BuilderTest {
   Map<String, ShapeType> shp;
 
+  /**
+   * Construct the object for testing the builder class's methods.
+   */
   public BuilderTest() {
   }
 
@@ -41,10 +45,9 @@ public class BuilderTest {
   public void build() {
     Builder builder = new Builder();
     this.shp = new HashMap();
-    builder.declareShape("R", "rectangle");
-    builder.declareShape("R", "oval");
     this.shp.put("R", ShapeType.RECTANGLE);
-    this.shp.put("R", ShapeType.OVAL);
-    builder.addMotion("R", 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8);
+    this.shp.put("O", ShapeType.OVAL);
+
+    assertEquals ("{R=RECTANGLE, O=OVAL}", shp.toString());
   }
 }

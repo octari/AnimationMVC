@@ -24,7 +24,7 @@ public interface IView {
    * string.
    *
    * @return String shows the current status of all the shapes on canvas and returns in form of
-   * string.
+   *         string.
    */
   String getCurrentState();
 

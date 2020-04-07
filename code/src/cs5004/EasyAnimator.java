@@ -86,8 +86,11 @@ public class EasyAnimator {
       case "text":
         ((TextualView) viewM).outputFile();
         break;
+      default:
+        throw new IllegalStateException();
     }
   }
+
   /**
    * TickActionListener implements ActionListener to carry out the JFrameView results.
    */

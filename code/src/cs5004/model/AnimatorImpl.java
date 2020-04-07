@@ -300,7 +300,7 @@ public class AnimatorImpl implements AnimatorModel {
   public String getState() {
     StringBuilder output = new StringBuilder("Shapes:\n");
     List<Change> listOfAllChanges = new ArrayList<>();
-//    shapes.sort(Comparator.comparing(Shape::getAppear));
+
     for (Shape s : shapes) {
       output.append("Name:").append(s.getId()).append("\n");
       output.append("Type:").append(s.getType()).append("\n");
@@ -425,6 +425,8 @@ public class AnimatorImpl implements AnimatorModel {
                 throw new IllegalStateException("Unexpected value: " + c.getMotion());
             }
             break;
+          default:
+            throw new IllegalStateException("Unexpected value: " + c.getMotion());
         }
       } else if (c.getStartTime() <= tick && c.getEndTime() >= tick) {
         double timeElapse = c.getEndTime() - c.getStartTime();

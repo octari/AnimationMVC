@@ -3,27 +3,25 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import cs5004.model.AnimatorImpl;
 import cs5004.model.ColorChange;
 import cs5004.model.Oval;
 import cs5004.model.PosChange;
 import cs5004.model.Position;
-import cs5004.model.ReadOnlyModel;
 import cs5004.model.Rectangle;
 import cs5004.model.ScaleChange;
-import cs5004.model.Shape;
+
 import cs5004.model.ShapeType;
 import cs5004.view.IView;
-import cs5004.view.SVG;
+
 import cs5004.view.TextualView;
 import cs5004.view.ViewFactory;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- *
+ * SVGTest tests the SVG output.
  */
 public class SVGTest {
   AnimatorImpl model;
