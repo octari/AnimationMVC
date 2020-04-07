@@ -1,5 +1,8 @@
 import org.junit.Before;
+import org.junit.Test;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import cs5004.model.AnimatorImpl;
@@ -11,11 +14,14 @@ import cs5004.model.Rectangle;
 import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 import cs5004.model.ShapeType;
+import cs5004.view.IView;
 import cs5004.view.TextualView;
+import cs5004.view.ViewFactory;
+
+import static org.junit.Assert.assertEquals;
 
 public class SVGTest {
   AnimatorImpl model;
-  AnimatorImpl model0;
   Rectangle rectangle;
   Oval oval;
   Position p1;
@@ -27,8 +33,6 @@ public class SVGTest {
   ColorChange changeColor1;
   ScaleChange changeSize1;
   TextualView textualView;
-
-  ArrayList<Shape> shapesList;
 
   @Before
   public void setup() {
@@ -63,5 +67,16 @@ public class SVGTest {
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());
 
     textualView = new TextualView(model, "out.txt");
+  }
+
+  @Test
+  public void testEmptySVG(){
+    IView svg =
+  }
+
+  @Test
+  public void testSVG() throws FileNotFoundException, UnsupportedEncodingException {
+    IView svg = ViewFactory.makeView("svg", model, "", 20);
+    assertEquals("", svg.render());
   }
 }

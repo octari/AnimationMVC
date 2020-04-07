@@ -16,11 +16,6 @@ public class TextualView implements IView {
   }
 
   @Override
-  public void displayOutPut() {
-    return;
-  }
-
-  @Override
   public String render() {
     return m.getState();
   }
@@ -33,7 +28,7 @@ public class TextualView implements IView {
   @Override
   public void outputFile() throws FileNotFoundException, UnsupportedEncodingException {
     if (!out.equals("SysOut")) {
-      PrintWriter writer = new PrintWriter("TextualView.txt", "UTF-8");
+      PrintWriter writer = new PrintWriter(out, "UTF-8");
       writer.print(m.getState());
       writer.close();
     }else{
