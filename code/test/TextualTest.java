@@ -2,11 +2,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
 
 import cs5004.model.AnimatorImpl;
 import cs5004.model.ColorChange;
@@ -14,7 +10,6 @@ import cs5004.model.Oval;
 import cs5004.model.Rectangle;
 import cs5004.model.PosChange;
 import cs5004.model.Position;
-import cs5004.model.ReadOnlyModel;
 import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 import cs5004.model.ShapeType;
@@ -40,7 +35,6 @@ public class TextualTest {
   ScaleChange changeSize1;
   TextualView textualView;
 
-  ArrayList<Shape> shapesList;
 
   @Before
   public void setup() {
