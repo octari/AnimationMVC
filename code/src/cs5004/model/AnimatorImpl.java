@@ -74,11 +74,9 @@ public class AnimatorImpl implements AnimatorModel {
               .collect(Collectors.toList());
       for (Change move : listOfAllMoves) {
         if (move.getId().equals(id)) {
-//          if (move.getClass().equals(c.getClass())) {
           if (!(endTime <= move.getStartTime() || move.getEndTime() <= startTime)) {
             throw new IllegalArgumentException("Conflicting time slot.");
           }
-//          }
         }
       }
       if (s.getId().equals(id)) {
@@ -86,11 +84,6 @@ public class AnimatorImpl implements AnimatorModel {
           throw new IllegalArgumentException("Start/end time should be later/before " +
                   "than appear/disappear time.");
         }
-        // move can have the same position
-//        if (s.getPos().getX() == endPos.getX() && s.getPos().getY() == endPos.getY()) {
-//          throw new IllegalArgumentException("Start Position should be " +
-//                  "different from end Position.");
-//        }
         map.get(s).add(c);
         break;
       } else {

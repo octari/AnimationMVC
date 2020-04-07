@@ -16,9 +16,6 @@ public class Position {
    * @exception IllegalArgumentException throws if invalid input is given.
    */
   public Position(double x, double y) throws IllegalArgumentException {
-    if (x < 0 || y < 0) {
-      throw new IllegalArgumentException("Invalid position. X, y need to be positive.");
-    }
     this.x = x;
     this.y = y;
   }

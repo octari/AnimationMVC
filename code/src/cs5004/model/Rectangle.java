@@ -55,7 +55,6 @@ public class Rectangle extends AbstractShape {
   public String toString() {
     return "(" + width + ", " + height+ ")";
 
-//    return "(" + getPos().getX() + "   " + getPos().getY() + ")";
   }
 
   @Override
