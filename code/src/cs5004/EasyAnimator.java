@@ -87,7 +87,7 @@ public class EasyAnimator {
         ((TextualView) viewM).outputFile();
         break;
       default:
-        throw new IllegalStateException();
+        throw new IllegalStateException("not a valid view");
     }
   }
 
