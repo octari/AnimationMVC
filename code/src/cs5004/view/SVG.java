@@ -24,8 +24,13 @@ public class SVG implements IView {
   private String out;
   private int speed;
 
-  SVG(ReadOnlyModel m, String out, int speed) throws FileNotFoundException,
-          UnsupportedEncodingException {
+  /**
+   * This is the constructor for SVG view.
+   * @param m ReadOnly model
+   * @param out the way of outputing the model content
+   * @param speed the speed of rendering the animation
+   */
+  SVG(ReadOnlyModel m, String out, int speed){
     this.m = m;
     this.out = out;
     this.speed = speed;
