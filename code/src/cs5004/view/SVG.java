@@ -41,7 +41,11 @@ public class SVG implements IView {
   @Override
   public String render() throws IllegalArgumentException {
     StringBuilder sb = new StringBuilder();
-    sb.append("<svg width=\"").append(m.getCanvas().getWidth() + m.getCanvas().getX())
+    sb.append("<svg ").append("viewBox=\"").append(m.getCanvas().getX()).append(" ")
+            .append(m.getCanvas().getY()).append(" ").append(m.getCanvas().getWidth())
+            .append(" ").append(m.getCanvas().getHeight())
+            .append("\" ")
+            .append("width=\"").append(m.getCanvas().getWidth() + m.getCanvas().getX())
             .append("\" height=\"")
             .append(m.getCanvas().getHeight() + m.getCanvas().getY())
             .append("\" version=\"1.1\"\n")
