@@ -15,7 +15,6 @@ import cs5004.model.ScaleChange;
 import cs5004.model.ShapeType;
 import cs5004.view.IView;
 
-import cs5004.view.TextualView;
 import cs5004.view.ViewFactory;
 
 import static org.junit.Assert.assertEquals;
@@ -25,29 +24,22 @@ import static org.junit.Assert.assertEquals;
  */
 public class SVGTest {
   private AnimatorImpl model;
-  private Rectangle rectangle;
-  private Oval oval;
-  private Position p1;
-  private Position p2;
-  private PosChange changeP1;
-  private ColorChange changeColor1;
-  private ScaleChange changeSize1;
 
   @Before
   public void setup() {
     model = new AnimatorImpl();
-    p1 = new Position(250, 270);
-    p2 = new Position(390, 390);
+    Position p1 = new Position(250, 270);
+    Position p2 = new Position(390, 390);
 
-    rectangle = new Rectangle("R", ShapeType.RECTANGLE, 1, 100, 50, 100,
+    Rectangle rectangle = new Rectangle("R", ShapeType.RECTANGLE, 1, 100, 50, 100,
             0, p1, 10, 5);
-    oval = new Oval("O", ShapeType.OVAL, 6, 100, 60, 30,
+    Oval oval = new Oval("O", ShapeType.OVAL, 6, 100, 60, 30,
             0, p2, 3, 4);
 
-    changeP1 = new PosChange("R", 10, 50, p2);
+    PosChange changeP1 = new PosChange("R", 10, 50, p2);
 
-    changeColor1 = new ColorChange("O", 50, 80, 10, 0, 0);
-    changeSize1 = new ScaleChange("O", 61, 70, 50, 100);
+    ColorChange changeColor1 = new ColorChange("O", 50, 80, 10, 0, 0);
+    ScaleChange changeSize1 = new ScaleChange("O", 61, 70, 50, 100);
 
     model.addShape(rectangle.getId(), rectangle.getType(), rectangle.getAppear(),
             rectangle.getDisappear(), rectangle.getPos(), rectangle.getWidth(),

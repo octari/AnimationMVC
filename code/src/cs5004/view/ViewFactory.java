@@ -1,8 +1,5 @@
 package cs5004.view;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-
 import cs5004.model.ReadOnlyModel;
 
 /**
