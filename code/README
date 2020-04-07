@@ -14,12 +14,13 @@ text file and populate a model, build it and so that we can deliver our ReadOnly
 main/controller.
 
 
-For this project, we have 3 packages, which are animator, shape, and change. For each package,
+For this project, we used to have 3 packages, which are animator, shape, and change. Now
+we have 3 packages, which are model, util(given), and view. For each package,
 there is a interface in order to represent the methods of class should have, and an abstract
 class to reduce the redundancy.
 
 animator:
-In this package we have interface: AnimatorModel, and its implimentation: AnimatorImpl.
+In this package we have interface: AnimatorModel, and its implementation: AnimatorImpl.
 AnimatorModel is the the model for the Animator made in the MVC structure. Animator is
 the canvas for shapes; it contains shapes and make changes to them based on given commands.
 AnimatorImpl implements the AnimatorModel. An AnimatorModelImpl has a map that stores each 
@@ -51,7 +52,7 @@ AnimatorImpl (Impliments animatior interface)
 
 
 change:
-In this package we have interface: Change, its implimentation: AbstractChange, and an enum 
+We have interface: Change, its implimentation: AbstractChange, and an enum
 for defining motion type. For each motion, there is a concrete class extends the abstract class.
 Each concrete class has its unique fileds, getters, and methods of change.
 Change interface represents all the possible changes on a shape. It includes the type of motion
@@ -110,9 +111,9 @@ ScaleChange (extends AbstractChange)
 
 
 shape:
-In this package we have interface: Shape, its implimentation: AbstractShape, and an enum 
+We have interface: Shape, its implementation: AbstractShape, and an enum
 for defining shape type. For each shape, there is a concrete class extends the abstract class.
-Each concrete class has its unique fileds, getters, and toString function. Also, a Position
+Each concrete class has its unique fields, getters, and toString function. Also, a Position
 class unite x and y factor together to represent the position of the shape.
 Shape interface represents all the possible shapes. It includes the type of shape, the position,
 the index for color(r,g,b) , and the appear and disappear time.
@@ -172,7 +173,7 @@ view:
 In this package we have interface: Iview, receives inputs from the Controller and generates
 an output description of the animation that includes the Shapes in the animation and the Actions
 performed by the Shapes. There are three concrete class implement the methods for textual, visual,
-and SVG view.
+and SVG view. A JPanel class for visual view and a JFactory for creating the view interface in main.
 
 View (interface)
 	String render();
@@ -198,12 +199,36 @@ ViewPanel (extends JPanel)
 		private List<Shape> shapes;
 
 
+ViewPanel (extends JPanel)
+	attributes:
+		private List<Shape> shapes;
+	method:
+		ViewPanel;
+		setCurrentFrame;
+		paintComponent;
+
+
 SVG (implements Iview)
+	attributes:
+		private List<Shape> shapes;
+	method:
+		render;
+		getCurrentState;
+		outputFile;
 
 
 textView (call model getState)
+	attributes:
+		private ReadOnlyModel m;
+  		private String out;
+	method:
+		render;
+		getCurrentState;
+		outputFile;
 
+ViewFacroty (class)
+	method:
+		makeView;
 
-ViewFacroty
 
 

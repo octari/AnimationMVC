@@ -5,13 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
 
-import cs5004.model.AnimatorModel;
 import cs5004.model.Change;
 import cs5004.model.ColorChange;
-import cs5004.model.Motion;
 import cs5004.model.Oval;
 import cs5004.model.PosChange;
 import cs5004.model.ReadOnlyModel;
@@ -33,10 +29,6 @@ public class SVG implements IView {
     this.speed = speed;
   }
 
-  @Override
-  public void displayOutPut() {
-
-  }
 
   @Override
   public String render() throws IllegalArgumentException {

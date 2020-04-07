@@ -16,11 +16,6 @@ public class TextualView implements IView {
   }
 
   @Override
-  public void displayOutPut() {
-    return;
-  }
-
-  @Override
   public String render() {
     return m.getState();
   }
