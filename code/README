@@ -38,12 +38,12 @@ Animator (interface)
 	getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
 	getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
 
-AnimatorImpl (Impliments animatior interface)
+AnimatorImpl (Implements animator model interface)
 	filed: 
 		List<Shape>;
 		Map<Shape, List<Change>>;
 
-	methods implimentation:
+	methods implementation:
 		addShape;  
 		addMove;   
 		addColor;  
@@ -52,9 +52,9 @@ AnimatorImpl (Impliments animatior interface)
 
 
 change:
-We have interface: Change, its implimentation: AbstractChange, and an enum
+We have interface: Change, its implementation: AbstractChange, and an enum
 for defining motion type. For each motion, there is a concrete class extends the abstract class.
-Each concrete class has its unique fileds, getters, and methods of change.
+Each concrete class has its unique fields, getters, and methods of change.
 Change interface represents all the possible changes on a shape. It includes the type of motion
 and the start and end time.
 AbstractChange is the abstract class for changes, it has common fields and getters for all motions.
