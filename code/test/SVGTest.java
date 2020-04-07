@@ -1,9 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-
 import cs5004.model.AnimatorImpl;
 import cs5004.model.ColorChange;
 import cs5004.model.Oval;
@@ -57,7 +54,7 @@ public class SVGTest {
   }
 
   @Test
-  public void testEmptySVG() throws FileNotFoundException, UnsupportedEncodingException {
+  public void testEmptySVG() {
     IView svg = ViewFactory.makeView("svg", new AnimatorImpl(), "", 20);
     assertEquals("<svg viewBox=\"0 0 0 0\" width=\"0\" height=\"0\" version=\"1.1\"\n" +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
@@ -65,7 +62,7 @@ public class SVGTest {
   }
 
   @Test
-  public void testSVG() throws FileNotFoundException, UnsupportedEncodingException {
+  public void testSVG() {
     IView svg = ViewFactory.makeView("svg", model, "", 20);
     assertEquals("<svg viewBox=\"0 0 0 0\" width=\"0\" height=\"0\" version=\"1.1\"\n" +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
