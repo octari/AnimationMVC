@@ -16,7 +16,8 @@ import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 
 /**
- *
+ * This class represent the XML style output of the model. It has a ReadOnly Model
+ * and it can output a file or just output to the terminal.
  */
 public class SVG implements IView {
   private ReadOnlyModel m;
@@ -28,7 +29,6 @@ public class SVG implements IView {
     this.out = out;
     this.speed = speed;
   }
-
 
   @Override
   public String render() throws IllegalArgumentException {
