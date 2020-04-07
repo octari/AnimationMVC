@@ -91,29 +91,29 @@ public class EasyAnimator {
         break;
     }
   }
+  /**
+   * TickActionListener implements ActionListener to carry out the JFrameView results.
+   */
+  public static class TickActionListener implements ActionListener {
+
+    private int currentTick = 0;
+    private JFrameView view;
+
+    TickActionListener(JFrameView view) {
+      this.view = view;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+      view.setCurrentTick(currentTick);
+      view.refresh();
+
+
+      currentTick++;
+
+
+    }
+  }
 }
 
-/**
- * TickActionListener implements ActionListener to carry out the JFrameView results.
- */
-class TickActionListener implements ActionListener {
-
-  private int currentTick = 0;
-  private JFrameView view;
-
-  TickActionListener(JFrameView view) {
-    this.view = view;
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-
-    view.setCurrentTick(currentTick);
-    view.refresh();
-
-
-    currentTick++;
-
-
-  }
-}

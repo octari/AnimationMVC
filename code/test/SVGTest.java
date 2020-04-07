@@ -10,11 +10,13 @@ import cs5004.model.ColorChange;
 import cs5004.model.Oval;
 import cs5004.model.PosChange;
 import cs5004.model.Position;
+import cs5004.model.ReadOnlyModel;
 import cs5004.model.Rectangle;
 import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 import cs5004.model.ShapeType;
 import cs5004.view.IView;
+import cs5004.view.SVG;
 import cs5004.view.TextualView;
 import cs5004.view.ViewFactory;
 
@@ -70,13 +72,13 @@ public class SVGTest {
   }
 
   @Test
-  public void testEmptySVG(){
-    IView svg =
+  public void testEmptySVG() throws FileNotFoundException, UnsupportedEncodingException {
+    IView svg = ViewFactory.makeView("svg", new AnimatorImpl(), "", 20);
   }
 
   @Test
   public void testSVG() throws FileNotFoundException, UnsupportedEncodingException {
     IView svg = ViewFactory.makeView("svg", model, "", 20);
-    assertEquals("", svg.render());
+//    assertEquals("", svg.render());
   }
 }

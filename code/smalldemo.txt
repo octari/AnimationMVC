@@ -1,26 +1,16 @@
-# initializes the canvas, with top-left corner (200,70) and
-# dimensions 360x360
-canvas 200 70 360 360
-# declares a rectangle shape named R
-shape R rectangle
-# describes the motions of shape R, between two moments of animation:
-# t == tick
-# (x,y) == position
-# (w,h) == dimensions
-# (r,g,b) == color (with values between 0 and 255)
-#                  start                           end
-#        --------------------------    ----------------------------
-#        t  x   y   w  h   r   g  b    t   x   y   w  h   r   g  b
-motion R 1  200 200 50 100 255 0  0    10  200 200 50 100 255 0  0
-motion R 10 200 200 50 100 255 0  0    50  300 300 50 100 255 0  0
-motion R 50 300 300 50 100 255 0  0    51  300 300 50 100 255 0  0
-motion R 51 300 300 50 100 255 0  0    70  300 300 25 100 255 0  0
-motion R 70 300 300 25 100 255 0  0    100 200 200 25 100 255 0  0
+<svg viewBox="200 70 360 360" width="360" height="360" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+  <rect id="R" x="200.0" y="200.0" width="50" height="100" fill="rgb(255, 0, 0)" visibility="visible" >
+    <animate attributeType="xml" begin="100ms" dur="400ms" attributeName="x" from="200" to="300" fill="freeze" />
+    <animate attributeType="xml" begin="100ms" dur="400ms" attributeName="y" from="200" to="300" fill="freeze" />
+    <animate attributeType="xml" begin="510ms" dur="190ms" attributeName="width" from="50" to="25.0" fill="freeze" />
+  </rect>
 
-shape C ellipse
-motion C 6  440 70 120 60 0 0 255 # start state
-         20 440 70 120 60 0 0 255 # end state
-motion C 20 440 70 120 60 0 0 255      50 440 250 120 60 0 0 255
-motion C 50 440 250 120 60 0 0 255     70 440 370 120 60 0 170 85
-motion C 70 440 370 120 60 0 170 85    80 440 370 120 60 0 255 0
-motion C 80 440 370 120 60 0 255 0     100 440 370 120 60 0 255 0
+  <ellipse id="C" cx="440.0" cy="70.0" rx="120" ry="60" fill="rgb(0, 0, 255)" visibility="visible" >
+    <animate attributeType="xml" begin="200ms" dur="300ms" attributeName="cy" from="70" to="250.0" fill="freeze" />
+    <animate attributeType="xml" begin="500ms" dur="200ms" attributeName="cy" from="250" to="370.0" fill="freeze" />
+    <animate attributeName="fill" attributeType="CSS" from="rgb(0, 0, 255)" to="rgb(0, 170, 85)" begin="500ms" dur="200ms" fill="freeze" />
+    <animate attributeName="fill" attributeType="CSS" from="rgb(0, 0, 255)" to="rgb(0, 255, 0)" begin="700ms" dur="100ms" fill="freeze" />
+  </ellipse>
+
+</svg>
