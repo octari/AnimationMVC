@@ -43,7 +43,6 @@ public class BuilderTest {
 
   @Test
   public void build() {
-    Builder builder = new Builder();
     this.shp = new HashMap();
     this.shp.put("R", ShapeType.RECTANGLE);
     this.shp.put("O", ShapeType.OVAL);
