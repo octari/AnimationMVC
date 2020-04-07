@@ -1,7 +1,8 @@
 package cs5004.view;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.swing.*;
 
 import cs5004.model.Oval;
 import cs5004.model.Position;
-import cs5004.model.ReadOnlyModel;
 import cs5004.model.Rectangle;
 import cs5004.model.Shape;
 

@@ -4,7 +4,14 @@ Team member: Furong Tian, Yuchen Ji
 
 README
 Changes made to model in HW7:
-W
+We have a new Class Canvas and add a new field which is a Canvas object to our model
+to store the information related to the size and origin of the canvas. We also add a
+getter and setter for Canvas.
+We added a ReadOnly model to our model package so that we can let main/controller only
+have access to the data to the model but have no way to modify them.
+We also add a static Builder class to implement the builder to read all the information in
+text file and populate a model, build it and so that we can deliver our ReadOnly model to
+main/controller.
 
 
 For this project, we have 3 packages, which are animator, shape, and change. For each package,

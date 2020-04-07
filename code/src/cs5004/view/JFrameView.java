@@ -1,6 +1,8 @@
 package cs5004.view;
 
-import java.awt.*;
+//import java.awt.
+import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
