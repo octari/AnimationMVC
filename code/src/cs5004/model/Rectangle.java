@@ -21,7 +21,7 @@ public class Rectangle extends AbstractShape {
    * @param p         a position object represents the position of the shape
    * @param width     a double represents the width of rectangle
    * @param height    a double represents teh height of the rectangle
-   * @exception IllegalArgumentException throws if invalid input is given.
+   * @throws IllegalArgumentException throws if invalid input is given.
    */
   public Rectangle(String id, ShapeType type, double appear, double disappear, int r, int g, int b,
                    Position p, double width, double height) throws IllegalArgumentException {
@@ -53,7 +53,7 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public String toString() {
-    return "(" + width + ", " + height+ ")";
+    return "(" + width + ", " + height + ")";
 
   }
 

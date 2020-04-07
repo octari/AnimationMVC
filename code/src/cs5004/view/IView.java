@@ -17,16 +17,16 @@ public interface IView {
    *
    * @return String of the output
    */
-   String render();
+  String render();
 
   /**
-   * getCurrentState gets the current status of all the shapes on canvas and returns
-   * in form of string.
+   * getCurrentState gets the current status of all the shapes on canvas and returns in form of
+   * string.
    *
-   * @return String shows the current status of all the shapes on canvas and returns
-   * in form of string.
+   * @return String shows the current status of all the shapes on canvas and returns in form of
+   * string.
    */
-   String getCurrentState();
+  String getCurrentState();
 
   /**
    * outputFile takes the output into a given output file.

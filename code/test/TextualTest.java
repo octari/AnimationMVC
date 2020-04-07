@@ -2,8 +2,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import cs5004.model.AnimatorImpl;
 import cs5004.model.ColorChange;
 import cs5004.model.Oval;
@@ -11,7 +9,6 @@ import cs5004.model.Rectangle;
 import cs5004.model.PosChange;
 import cs5004.model.Position;
 import cs5004.model.ScaleChange;
-import cs5004.model.Shape;
 import cs5004.model.ShapeType;
 import cs5004.view.TextualView;
 
@@ -63,7 +60,7 @@ public class TextualTest {
             oval.getB());
 
     model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(), changeP1.getEndPos());
-    model.addScale(rectangle.getId(), changeSize1.getStartTime(),changeSize1.getEndTime(),
+    model.addScale(rectangle.getId(), changeSize1.getStartTime(), changeSize1.getEndTime(),
             changeSize1.getEndIndex1(), changeSize1.getEndIndex2());
     model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());
@@ -77,7 +74,7 @@ public class TextualTest {
    * Test getTextDescription() method for empty model.
    */
   @Test
-  public void testEmptyOutputFile () {
+  public void testEmptyOutputFile() {
     model0 = new AnimatorImpl();
     TextualView empty = new TextualView(model0, "emptyOut.txt");
     assertEquals("Shapes:\n", empty.getCurrentState());
@@ -87,7 +84,7 @@ public class TextualTest {
    * Test getTextDescription() method for populated model.
    */
   @Test
-  public void testOutputFile () {
+  public void testOutputFile() {
     assertEquals("Shapes:\n" +
             "Name:R\n" +
             "Type:RECTANGLE\n" +
@@ -106,7 +103,6 @@ public class TextualTest {
             "shape R scales from (50.0, 100.0)(50.0, 100.0) to (50.0, 100.0) from t = 61.0s " +
             "to t = 70.0s\n", this.textualView.getCurrentState());
   }
-
 
 
 }

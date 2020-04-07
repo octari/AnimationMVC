@@ -13,6 +13,9 @@ import cs5004.model.Shape;
 import cs5004.model.ShapeType;
 import cs5004.view.TextualView;
 
+/**
+ *
+ */
 public class SVGTest {
   AnimatorImpl model;
   AnimatorImpl model0;
@@ -56,8 +59,9 @@ public class SVGTest {
             oval.getPos(), oval.getRadius1(), oval.getRadius2(), oval.getR(), oval.getG(),
             oval.getB());
 
-    model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(), changeP1.getEndPos());
-    model.addScale(rectangle.getId(), changeSize1.getStartTime(),changeSize1.getEndTime(),
+    model.addMove(rectangle.getId(), changeP1.getStartTime(), changeP1.getEndTime(),
+            changeP1.getEndPos());
+    model.addScale(rectangle.getId(), changeSize1.getStartTime(), changeSize1.getEndTime(),
             changeSize1.getEndIndex1(), changeSize1.getEndIndex2());
     model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());

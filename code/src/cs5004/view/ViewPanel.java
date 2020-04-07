@@ -6,7 +6,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+
+import javax.swing.JPanel;
 
 import cs5004.model.Oval;
 import cs5004.model.Position;
@@ -22,7 +23,7 @@ public class ViewPanel extends JPanel {
   /**
    * Construct a viewPanel with list of shape.
    */
-  public ViewPanel () {
+  public ViewPanel() {
     super();
     this.shapes = new ArrayList<>();
     this.setBackground(Color.WHITE);
@@ -39,15 +40,14 @@ public class ViewPanel extends JPanel {
 
 
   /**
-   * Overrides the paintComponent methods from the JPanel abstract class and iterates through
-   * the shape to draw new objects onto the canvas.
+   * Overrides the paintComponent methods from the JPanel abstract class and iterates through the
+   * shape to draw new objects onto the canvas.
    *
    * @param graphics a Graphics object
    */
   @Override
-  protected void paintComponent(Graphics graphics){
+  protected void paintComponent(Graphics graphics) {
     super.paintComponent(graphics);
-//    System.out.println(shapes);
     Graphics2D g2d = (Graphics2D) graphics;
 
     g2d.setColor(Color.BLACK);
@@ -60,7 +60,7 @@ public class ViewPanel extends JPanel {
       int g = s.getG();
       int b = s.getB();
 
-      switch(s.getType()) {
+      switch (s.getType()) {
         case RECTANGLE:
           int w = (int) ((Rectangle) s).getWidth();
           int h = (int) ((Rectangle) s).getHeight();

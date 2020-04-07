@@ -2,14 +2,11 @@ package cs5004.view;
 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 import cs5004.model.ReadOnlyModel;
-
 
 
 /**
@@ -60,7 +57,7 @@ public class JFrameView extends JFrame implements IView {
 
 
   @Override
-  public String render() throws UnsupportedOperationException{
+  public String render() throws UnsupportedOperationException {
     throw new UnsupportedOperationException();
   }
 
@@ -71,8 +68,8 @@ public class JFrameView extends JFrame implements IView {
   }
 
   @Override
-  public void outputFile() throws FileNotFoundException, UnsupportedEncodingException {
-
+  public void outputFile() throws UnsupportedOperationException {
+    throw new UnsupportedOperationException();
   }
 
   public void refresh() {

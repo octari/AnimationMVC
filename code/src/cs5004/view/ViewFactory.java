@@ -13,11 +13,12 @@ public class ViewFactory {
 
   /**
    * makeView takes in the type of view the client want and throws exception if type invalid.
+   *
    * @param type a string represent the type of view
    * @return a view
    * @throws IllegalArgumentException if type invalid.
    */
-  public static IView makeView (String type, ReadOnlyModel am, String out, int speed)
+  public static IView makeView(String type, ReadOnlyModel am, String out, int speed)
           throws IllegalArgumentException, FileNotFoundException, UnsupportedEncodingException {
 
     switch (type) {

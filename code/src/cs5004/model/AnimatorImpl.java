@@ -168,10 +168,9 @@ public class AnimatorImpl implements AnimatorModel {
    * Builder class implements AnimationBuilder interface. Build the final document for the project.
    */
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
-    AnimatorModel IModel;
+    AnimatorModel iModel;
     Map<String, ShapeType> shp;
     Map<String, List<Transform>> shpTrans;
-    //    List<Transform> l;
     Map<String, Integer> minTicks;
     Map<String, Integer> maxTicks;
 
@@ -179,10 +178,9 @@ public class AnimatorImpl implements AnimatorModel {
      * Construct a document based on given model.
      */
     public Builder() {
-      IModel = new AnimatorImpl();
+      iModel = new AnimatorImpl();
       shp = new HashMap<>();
       shpTrans = new HashMap<>();
-//      l = new ArrayList<>();
       minTicks = new HashMap<>();
       maxTicks = new HashMap<>();
     }
@@ -191,7 +189,7 @@ public class AnimatorImpl implements AnimatorModel {
     public AnimatorModel build() {
       for (String shapeId : shp.keySet()) {
         // use first Transform Start state as its original state
-        IModel.addShape(shapeId, shp.get(shapeId), minTicks.get(shapeId), maxTicks.get(shapeId),
+        iModel.addShape(shapeId, shp.get(shapeId), minTicks.get(shapeId), maxTicks.get(shapeId),
                 new Position(shpTrans.get(shapeId).get(0).x1, shpTrans.get(shapeId).get(0).y1),
                 shpTrans.get(shapeId).get(0).w1, shpTrans.get(shapeId).get(0).h1,
                 shpTrans.get(shapeId).get(0).r1, shpTrans.get(shapeId).get(0).g1,
@@ -200,25 +198,25 @@ public class AnimatorImpl implements AnimatorModel {
         for (Transform t : shpTrans.get(shapeId)) {
           // move
           if (t.x1 - t.x2 != 0 || t.y1 - t.y2 != 0) {
-            IModel.addMove(shapeId, t.t1, t.t2, new Position(t.x2, t.y2));
+            iModel.addMove(shapeId, t.t1, t.t2, new Position(t.x2, t.y2));
           }
           // scale
           if (t.w1 - t.w2 != 0 || t.h1 - t.h2 != 0) {
-            IModel.addScale(shapeId, t.t1, t.t2, t.w2, t.h2);
+            iModel.addScale(shapeId, t.t1, t.t2, t.w2, t.h2);
           }
           // color
           if (t.r1 - t.r2 != 0 || t.g1 - t.g2 != 0 || t.b1 - t.b2 != 0) {
-            IModel.addColor(shapeId, t.t1, t.t2, t.r2, t.g2, t.b2);
+            iModel.addColor(shapeId, t.t1, t.t2, t.r2, t.g2, t.b2);
           }
         }
 
       }
-      return IModel;
+      return iModel;
     }
 
     @Override
     public AnimationBuilder setBounds(int x, int y, int width, int height) {
-      IModel.addCanvas(x, y, width, height);
+      iModel.addCanvas(x, y, width, height);
       return this;
     }
 
@@ -259,10 +257,22 @@ public class AnimatorImpl implements AnimatorModel {
     }
 
     static class Transform {
-      int t1, t2;
-      int x1, x2, y1, y2;
-      int r1, r2, g1, g2, b1, b2;
-      int w1, w2, h1, h2;
+      int t1;
+      int t2;
+      int x1;
+      int x2;
+      int y1;
+      int y2;
+      int r1;
+      int r2;
+      int g1;
+      int g2;
+      int b1;
+      int b2;
+      int w1;
+      int w2;
+      int h1;
+      int h2;
 
       Transform(int t1, int t2, int x1, int x2, int y1, int y2, int r1, int r2, int g1, int g2,
                 int b1, int b2, int w1, int w2, int h1, int h2) {
@@ -389,6 +399,9 @@ public class AnimatorImpl implements AnimatorModel {
                         res.getR(), res.getG(), res.getB(), res.getPos(),
                         ((ScaleChange) c).getEndIndex1(), ((ScaleChange) c).getEndIndex2());
                 break;
+              default:
+                throw new IllegalStateException("Invalid input");
+
             }
             break;
           case OVAL:
@@ -458,6 +471,8 @@ public class AnimatorImpl implements AnimatorModel {
                 res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         res.getR(), res.getG(), res.getB(), res.getPos(), newW, newH);
                 break;
+              default:
+                throw new IllegalStateException("Invalid input");
             }
             break;
           case OVAL:
@@ -502,8 +517,12 @@ public class AnimatorImpl implements AnimatorModel {
                 res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         res.getR(), res.getG(), res.getB(), res.getPos(), newR1, newR2);
                 break;
+              default:
+                throw new IllegalStateException("Invalid input");
             }
             break;
+          default:
+            throw new IllegalStateException("Invalid input");
         }
       }
     }
