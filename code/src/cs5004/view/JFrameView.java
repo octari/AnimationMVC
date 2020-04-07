@@ -1,16 +1,14 @@
 package cs5004.view;
 
-//import java.awt.
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
-import cs5004.model.AnimatorImpl;
 import cs5004.model.ReadOnlyModel;
 import cs5004.model.Shape;
 
