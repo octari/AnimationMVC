@@ -24,26 +24,20 @@ import static org.junit.Assert.assertEquals;
  * SVGTest tests the SVG output.
  */
 public class SVGTest {
-  AnimatorImpl model;
-  Rectangle rectangle;
-  Oval oval;
-  Position p1;
-  Position p2;
-  Position p3;
-  Position p4;
-  PosChange changeP1;
-  PosChange changeP2;
-  ColorChange changeColor1;
-  ScaleChange changeSize1;
-  TextualView textualView;
+  private AnimatorImpl model;
+  private Rectangle rectangle;
+  private Oval oval;
+  private Position p1;
+  private Position p2;
+  private PosChange changeP1;
+  private ColorChange changeColor1;
+  private ScaleChange changeSize1;
 
   @Before
   public void setup() {
     model = new AnimatorImpl();
     p1 = new Position(250, 270);
     p2 = new Position(390, 390);
-    p3 = new Position(510, 115);
-    p4 = new Position(5, 40);
 
     rectangle = new Rectangle("R", ShapeType.RECTANGLE, 1, 100, 50, 100,
             0, p1, 10, 5);
@@ -51,7 +45,6 @@ public class SVGTest {
             0, p2, 3, 4);
 
     changeP1 = new PosChange("R", 10, 50, p2);
-    changeP2 = new PosChange("O", 10, 50, p1);
 
     changeColor1 = new ColorChange("O", 50, 80, 10, 0, 0);
     changeSize1 = new ScaleChange("O", 61, 70, 50, 100);
@@ -69,14 +62,14 @@ public class SVGTest {
             changeSize1.getEndIndex1(), changeSize1.getEndIndex2());
     model.addColor(rectangle.getId(), changeColor1.getStartTime(), changeColor1.getEndTime(),
             changeColor1.getEndR(), changeColor1.getEndG(), changeColor1.getEndB());
-
-    textualView = new TextualView(model, "out.txt");
   }
 
   @Test
   public void testEmptySVG() throws FileNotFoundException, UnsupportedEncodingException {
     IView svg = ViewFactory.makeView("svg", new AnimatorImpl(), "", 20);
-    assertEquals("", svg.render());
+    assertEquals("<svg viewBox=\"0 0 0 0\" width=\"0\" height=\"0\" version=\"1.1\"\n" +
+            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "</svg>\n", svg.render());
   }
 
   @Test
@@ -102,6 +95,6 @@ public class SVGTest {
             "fill=\"rgb(60, 30, 0)\" visibility=\"visible\" >\n" +
             "  </ellipse>\n" +
             "\n" +
-            "</svg>", svg.render());
+            "</svg>\n", svg.render());
   }
 }

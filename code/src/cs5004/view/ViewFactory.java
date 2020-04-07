@@ -19,7 +19,7 @@ public class ViewFactory {
    * @throws IllegalArgumentException if type invalid.
    */
   public static IView makeView(String type, ReadOnlyModel am, String out, int speed)
-          throws IllegalArgumentException, FileNotFoundException, UnsupportedEncodingException {
+          throws IllegalArgumentException {
 
     switch (type) {
       case "visual":

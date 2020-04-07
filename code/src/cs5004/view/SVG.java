@@ -16,8 +16,8 @@ import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 
 /**
- * This class represent the XML style output of the model. It has a ReadOnly Model
- * and it can output a file or just output to the terminal.
+ * This class represent the XML style output of the model. It has a ReadOnly Model and it can output
+ * a file or just output to the terminal.
  */
 public class SVG implements IView {
   private ReadOnlyModel m;
@@ -26,11 +26,12 @@ public class SVG implements IView {
 
   /**
    * This is the constructor for SVG view.
-   * @param m ReadOnly model
-   * @param out the way of outputing the model content
+   *
+   * @param m     ReadOnly model
+   * @param out   the way of outputing the model content
    * @param speed the speed of rendering the animation
    */
-  SVG(ReadOnlyModel m, String out, int speed){
+  SVG(ReadOnlyModel m, String out, int speed) {
     this.m = m;
     this.out = out;
     this.speed = speed;
@@ -68,7 +69,7 @@ public class SVG implements IView {
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
                           .append("ms\" attributeName=\"x\" from=\"")
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getX())
-                          .append("\" to=\"").append((int)((PosChange) c).getEndPos().getX())
+                          .append("\" to=\"").append((int) ((PosChange) c).getEndPos().getX())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 if (Double.compare(m.getShapeAt(s, c.getStartTime()).getPos().getY(),
@@ -78,7 +79,7 @@ public class SVG implements IView {
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
                           .append("ms\" attributeName=\"y\" from=\"")
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getY())
-                          .append("\" to=\"").append((int)((PosChange) c).getEndPos().getY())
+                          .append("\" to=\"").append((int) ((PosChange) c).getEndPos().getY())
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;
@@ -117,7 +118,7 @@ public class SVG implements IView {
                         .append("ms\" fill=\"freeze\" />\n");
                 break;
               default:
-                throw  new IllegalArgumentException("invalid motion");
+                throw new IllegalArgumentException("invalid motion");
             }
           }
           sb.append("  </rect>\n\n");
@@ -176,7 +177,7 @@ public class SVG implements IView {
                 }
                 break;
               case COLOR:
-                sb.append("    <animate attributeName=\"fill\" attributeType=\"CSS\" from=\"" )
+                sb.append("    <animate attributeName=\"fill\" attributeType=\"CSS\" from=\"")
                         .append("rgb(")
                         .append(s.getR()).append(", ").append(s.getG()).append(", ")
                         .append(s.getB()).append(")\" to=\"").append("rgb(")
