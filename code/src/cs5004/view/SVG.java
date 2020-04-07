@@ -5,13 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
 
-import cs5004.model.AnimatorModel;
 import cs5004.model.Change;
 import cs5004.model.ColorChange;
-import cs5004.model.Motion;
 import cs5004.model.Oval;
 import cs5004.model.PosChange;
 import cs5004.model.ReadOnlyModel;
@@ -20,7 +16,8 @@ import cs5004.model.ScaleChange;
 import cs5004.model.Shape;
 
 /**
- *
+ * This class represent the XML style output of the model. It has a ReadOnly Model
+ * and it can output a file or just output to the terminal.
  */
 public class SVG implements IView {
   private ReadOnlyModel m;
@@ -31,11 +28,6 @@ public class SVG implements IView {
     this.m = m;
     this.out = out;
     this.speed = speed;
-  }
-
-  @Override
-  public void displayOutPut() {
-
   }
 
   @Override
