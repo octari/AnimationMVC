@@ -38,16 +38,16 @@ public class ViewPanel extends JPanel {
   }
 
 
-
   /**
    * Overrides the paintComponent methods from the JPanel abstract class and iterates through
    * the shape to draw new objects onto the canvas.
    *
    * @param graphics a Graphics object
    */
+  @Override
   protected void paintComponent(Graphics graphics){
     super.paintComponent(graphics);
-
+//    System.out.println(shapes);
     Graphics2D g2d = (Graphics2D) graphics;
 
     g2d.setColor(Color.BLACK);

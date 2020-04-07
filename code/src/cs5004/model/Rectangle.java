@@ -53,14 +53,16 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public String toString() {
-    return "(" + width + ", " + height + ")";
+    return "(" + width + ", " + height+ ")";
+
+//    return "(" + getPos().getX() + "   " + getPos().getY() + ")";
   }
 
   @Override
   public Shape copy() {
     Rectangle newR = new Rectangle(this.getId(), this.getType(), this.getAppear(),
             this.getDisappear(), this.getR(), this.getG(), this.getB(), this.getPos(),
-            height, width);
+            width, height);
     return newR;
   }
 }

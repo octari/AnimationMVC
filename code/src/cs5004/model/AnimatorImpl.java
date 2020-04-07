@@ -445,11 +445,11 @@ public class AnimatorImpl implements AnimatorModel {
                 double rChange = endR - res.getR();
                 double gChange = endG - res.getG();
                 double bChange = endB - res.getB();
-                int newR = (int) (((ColorChange) c).getEndR()
+                int newR = (int) (res.getR()
                         + (tick - c.getStartTime()) / timeElapse * rChange);
-                int newG = (int) (((ColorChange) c).getEndG()
+                int newG = (int) (res.getG()
                         + (tick - c.getStartTime()) / timeElapse * gChange);
-                int newB = (int) (((ColorChange) c).getEndB()
+                int newB = (int) (res.getB()
                         + (tick - c.getStartTime()) / timeElapse * bChange);
                 res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         newR, newG, newB, res.getPos(),
@@ -504,12 +504,12 @@ public class AnimatorImpl implements AnimatorModel {
                 double endIndex2 = ((ScaleChange) c).getEndIndex2();
                 double wChange = endIndex1 - ((Oval) res).getRadius1();
                 double hChange = endIndex2 - ((Oval) res).getRadius2();
-                double newW = ((Oval) res).getRadius1()
+                double newR1 = ((Oval) res).getRadius1()
                         + (tick - c.getStartTime()) / timeElapse * wChange;
-                double newH = ((Oval) res).getRadius2()
+                double newR2 = ((Oval) res).getRadius2()
                         + (tick - c.getStartTime()) / timeElapse * hChange;
                 res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
-                        res.getR(), res.getG(), res.getB(), res.getPos(), newW, newH);
+                        res.getR(), res.getG(), res.getB(), res.getPos(), newR1, newR2);
                 break;
             }
             break;

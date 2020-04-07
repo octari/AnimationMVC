@@ -39,10 +39,9 @@ public class JFrameView extends JFrame implements IView {
     this.p = new ViewPanel();
     this.add(p);
 
-    ViewPanel p = new ViewPanel();
     p.setPreferredSize(new Dimension(700, 700));
 
-    p.setCurrentFrame(m.getShapes());
+//    p.setCurrentFrame(m.getShapes());
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -50,9 +49,14 @@ public class JFrameView extends JFrame implements IView {
     scrollPane.setBounds(50, 30, 300, 50);
 
     this.add(scrollPane, BorderLayout.CENTER);
+    setVisible(true);
 
 //    this.pack();
 
+  }
+
+  public void setCurrentTick(int tick) {
+    p.setCurrentFrame(m.getShapesAt(tick));
   }
 
   /**
@@ -74,16 +78,16 @@ public class JFrameView extends JFrame implements IView {
     return null;
   }
 
-  /**
-   * setCurrentFrame get the existing shapes.
-   *
-   * @param shapes a list of existing shapes
-   */
-
-  public void setCurrentFrame(ArrayList<Shape> shapes) {
-    this.shapes = shapes;
-    p.setCurrentFrame(shapes);
-  }
+//  /**
+//   * setCurrentFrame get the existing shapes.
+//   *
+//   * @param shapes a list of existing shapes
+//   */
+//
+//  public void setCurrentFrame(ArrayList<Shape> shapes) {
+//    this.shapes = shapes;
+//    p.setCurrentFrame(shapes);
+//  }
 
 
   @Override

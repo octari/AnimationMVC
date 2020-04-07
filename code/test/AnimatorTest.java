@@ -407,7 +407,7 @@ public class AnimatorTest {
     a.addShape("rec0", ShapeType.RECTANGLE, 2, 6.0,
             new Position(1, 2), 2, 5, 100, 0, 0);
     a.addMove("rec0", 3, 5, new Position(8.8, 0));
-    assertEquals("", a.getShapeAt(a.getShapes().get(0), 4).toString());
+    assertEquals("(2.0, 5.0)", a.getShapeAt(a.getShapes().get(0), 4).toString());
   }
 
   @Test
@@ -418,7 +418,9 @@ public class AnimatorTest {
             new Position(2, 4.5), 3, 4.5, 0, 0, 100);
     a.addMove("rec0", 3, 5, new Position(8.8, 0));
     a.addMove("rec1", 3, 5, new Position(1.8, 0));
-    assertEquals("", a.getShapesAt(4).toString());
+    assertEquals("[(2.0, 5.0), (3.0, 4.5)]", a.getShapesAt(0).toString());
+    assertEquals("[(2.0, 5.0), (3.0, 4.5)]", a.getShapesAt(4).toString());
+    assertEquals("[(2.0, 5.0), (3.0, 4.5)]", a.getShapesAt(10).toString());
   }
 
 }
