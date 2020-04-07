@@ -72,6 +72,9 @@ public class JFrameView extends JFrame implements IView {
     throw new UnsupportedOperationException();
   }
 
+  /**
+   * This method refresh the paint on the canvas every some time.
+   */
   public void refresh() {
     this.repaint();
   }
