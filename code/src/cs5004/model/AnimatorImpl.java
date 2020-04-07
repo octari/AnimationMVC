@@ -444,11 +444,11 @@ public class AnimatorImpl implements AnimatorModel {
                 double rChange = endR - res.getR();
                 double gChange = endG - res.getG();
                 double bChange = endB - res.getB();
-                int newR = (int) (((ColorChange) c).getEndR()
+                int newR = (int) (res.getR()
                         + (tick - c.getStartTime()) / timeElapse * rChange);
-                int newG = (int) (((ColorChange) c).getEndG()
+                int newG = (int) (res.getG()
                         + (tick - c.getStartTime()) / timeElapse * gChange);
-                int newB = (int) (((ColorChange) c).getEndB()
+                int newB = (int) (res.getB()
                         + (tick - c.getStartTime()) / timeElapse * bChange);
                 res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         newR, newG, newB, res.getPos(),
@@ -488,11 +488,11 @@ public class AnimatorImpl implements AnimatorModel {
                 double rChange = endR - res.getR();
                 double gChange = endG - res.getG();
                 double bChange = endB - res.getB();
-                int newR = (int) (((ColorChange) c).getEndR()
+                int newR = (int) (res.getR()
                         + (tick - c.getStartTime()) / timeElapse * rChange);
-                int newG = (int) (((ColorChange) c).getEndG()
+                int newG = (int) (res.getG()
                         + (tick - c.getStartTime()) / timeElapse * gChange);
-                int newB = (int) (((ColorChange) c).getEndB()
+                int newB = (int) (res.getB()
                         + (tick - c.getStartTime()) / timeElapse * bChange);
                 res = new Oval(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         newR, newG, newB, res.getPos(),
