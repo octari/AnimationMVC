@@ -4,14 +4,18 @@ package cs5004.model;
  * This the the Canvas of the output. It has a point and size.
  */
 public class Canvas {
-  private int x, y, width, height;
+  private int x;
+  private int y;
+  private int width;
+  private int height;
 
   /**
    * This is the contructor for canvas, it initialize the property of the canvas.
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   *
+   * @param x x-coordinate of the canvas reference point
+   * @param y y- coordinate of the canvas reference point
+   * @param width width of the canvas
+   * @param height height of the canvas
    */
   public Canvas(int x, int y, int width, int height) {
     this.x = x;
