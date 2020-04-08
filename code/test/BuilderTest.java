@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class BuilderTest {
   Map<String, ShapeType> shp;
-  
+
 
   @Test
   public void setBound() {
@@ -42,6 +42,6 @@ public class BuilderTest {
     this.shp.put("R", ShapeType.RECTANGLE);
     this.shp.put("O", ShapeType.OVAL);
 
-    assertEquals ("{R=RECTANGLE, O=OVAL}", shp.toString());
+    assertEquals("{R=RECTANGLE, O=OVAL}", shp.toString());
   }
 }
