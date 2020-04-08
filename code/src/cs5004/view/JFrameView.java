@@ -26,7 +26,7 @@ public class JFrameView extends JFrame implements IView {
   public JFrameView(String caption, ReadOnlyModel m) {
     super(caption);
     this.m = m;
-    setSize(500, 300);
+    setSize(900, 1000);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -34,13 +34,13 @@ public class JFrameView extends JFrame implements IView {
     this.p = new ViewPanel();
     this.add(p);
 
-    p.setPreferredSize(new Dimension(700, 700));
+    p.setPreferredSize(new Dimension(1000, 1000));
 
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-    scrollPane.setBounds(50, 30, 300, 50);
+    scrollPane.setBounds(50, 30, 80, 50);
 
     this.add(scrollPane, BorderLayout.CENTER);
     setVisible(true);

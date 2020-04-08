@@ -300,7 +300,7 @@ public class AnimatorImpl implements AnimatorModel {
   public String getState() {
     StringBuilder output = new StringBuilder("Shapes:\n");
     List<Change> listOfAllChanges = new ArrayList<>();
-
+//    shapes.sort(Comparator.comparing(Shape::getAppear));
     for (Shape s : shapes) {
       output.append("Name:").append(s.getId()).append("\n");
       output.append("Type:").append(s.getType()).append("\n");
@@ -367,9 +367,11 @@ public class AnimatorImpl implements AnimatorModel {
   @Override
   public List<Shape> getShapesAt(double tick) {
     List<Shape> res = new ArrayList<>();
+    shapes.sort(Comparator.comparing(Shape::getAppear));
     for (Shape s : shapes) {
-      if (tick >= s.getAppear() && tick <= s.getDisappear())
+      if (tick >= s.getAppear() && tick <= s.getDisappear()) {
         res.add(this.getShapeAt(s, tick));
+      }
     }
     return res;
   }
@@ -377,6 +379,9 @@ public class AnimatorImpl implements AnimatorModel {
   @Override
   public Shape getShapeAt(Shape s, double tick) throws IllegalArgumentException {
     Shape res = s.copy();
+    List<Change> listOfAllChanges = new ArrayList<>();
+    listOfAllChanges.addAll(map.get(s));
+    listOfAllChanges.sort(Comparator.comparing(Change::getStartTime));
     for (Change c : map.get(s)) {
       if (c.getStartTime() > tick) {
         break;
