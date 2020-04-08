@@ -5,14 +5,17 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import cs5004.controller.Controller;
 import cs5004.model.ReadOnlyModel;
 
 public class PlaybackView extends JFrame implements IPlayBack {
-
   private ViewPanel p;
   private ReadOnlyModel m;
+  private JLabel display;
+  private JButton echoButton, exitButton,toggleButton;
 
   /**
    * Construct a JFrameView object.
@@ -53,7 +56,10 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
   @Override
   public void addFeatures(Controller controller) {
-
+    // wiring btw controller and view
+//    echoButton.addActionListener(evt -> features.echoOutput(input.getText()));
+//    toggleButton.addActionListener(evt -> features.toggleColor());
+//    exitButton.addActionListener(evt -> features.exitProgram());
   }
 
   @Override

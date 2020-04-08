@@ -9,7 +9,6 @@ import javax.swing.Timer;
  *
  */
 public class Controller implements Features {
-
   private AnimatorModel model;
   private IView view;
   private Timer timer;
@@ -23,14 +22,46 @@ public class Controller implements Features {
     model = m;
     view = v;
     ((IPlayBack) view).addFeatures(this);
-
-
   }
 
   @Override
   public void play(AnimatorModel model) {
 //    Timer timer = new Timer(500, m);
     timer.start();
+  }
+
+  @Override
+  public void start() {
+
+  }
+
+  @Override
+  public void pause() {
+
+  }
+
+  @Override
+  public void resume() {
+
+  }
+
+  @Override
+  public void restart() {
+
+  }
+
+  @Override
+  public void increaseSpeed() {
+
+  }
+
+  @Override
+  public void decreaseSpeed() {
+
+  }
+
+  @Override
+  public void loop() {
 
   }
 

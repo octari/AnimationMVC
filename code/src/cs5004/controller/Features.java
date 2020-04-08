@@ -14,6 +14,14 @@ public interface Features {
    */
   void play(AnimatorModel model);
 
+  void start();
+  void pause();
+  void resume();
+  void restart();
+  void increaseSpeed();
+  void decreaseSpeed();
+  void loop();
+
 
 
 
