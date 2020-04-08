@@ -386,7 +386,7 @@ public class AnimatorImpl implements AnimatorModel {
           case RECTANGLE:
             switch (c.getMotion()) {
               case COLOR:
-                res = new Rectangle(s.getId(), res.getType(), res.getAppear(), res.getDisappear(),
+                res = new Rectangle(res.getId(), res.getType(), res.getAppear(), res.getDisappear(),
                         ((ColorChange) c).endR, ((ColorChange) c).endG, ((ColorChange) c).endB,
                         res.getPos(), ((Rectangle) res).getWidth(), ((Rectangle) res).getHeight());
                 break;

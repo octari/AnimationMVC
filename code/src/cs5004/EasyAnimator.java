@@ -87,7 +87,7 @@ public class EasyAnimator {
         ((TextualView) viewM).outputFile();
         break;
       case "playback":
-        ((PlaybackView) viewM);
+//        ((PlaybackView) viewM);
       default:
         throw new IllegalStateException("not a valid view");
     }
