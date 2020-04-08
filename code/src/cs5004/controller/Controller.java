@@ -21,19 +21,13 @@ public class Controller implements IController {
   public Controller(AnimatorModel m, IView v) {
     model = m;
     view = v;
-    view.setListener(this);
-    view.displayOutPut();
+//    view.setListener(this);
   }
 
   @Override
   public void play(AnimatorModel model) {
-    Timer timer = new Timer(500, my)
+//    Timer timer = new Timer(500, my)
     timer.start();
 
-  }
-
-  @Override
-  public String processCommand(String command) {
-    return null;
   }
 }

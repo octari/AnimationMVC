@@ -14,13 +14,5 @@ public interface IController {
    */
   void play(AnimatorModel model);
 
-  /**
-   *
-   * @param command
-   * @return
-   */
-
-  public String processCommand(String command);
-
 
 }
