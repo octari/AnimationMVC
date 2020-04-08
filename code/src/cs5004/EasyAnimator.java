@@ -110,11 +110,7 @@ public class EasyAnimator {
 
       view.setCurrentTick(currentTick);
       view.refresh();
-
-
       currentTick++;
-
-
     }
   }
 }
