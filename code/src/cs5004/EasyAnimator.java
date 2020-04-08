@@ -79,6 +79,7 @@ public class EasyAnimator {
         int delay = 1000 / speed;
         Timer t = new Timer(delay, myListener);
         t.start();
+//        t.
         break;
       case "svg":
         ((SVG) viewM).outputFile();

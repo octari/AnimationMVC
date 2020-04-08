@@ -31,7 +31,6 @@ public class Controller implements Features {
   public void play(AnimatorModel model) {
 //    Timer timer = new Timer(500, m);
     timer.start();
-    timer.restart();
 
   }
 

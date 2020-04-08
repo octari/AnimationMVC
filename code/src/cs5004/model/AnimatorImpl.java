@@ -3,6 +3,7 @@ package cs5004.model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -179,10 +180,10 @@ public class AnimatorImpl implements AnimatorModel {
      */
     public Builder() {
       iModel = new AnimatorImpl();
-      shp = new HashMap<>();
-      shpTrans = new HashMap<>();
-      minTicks = new HashMap<>();
-      maxTicks = new HashMap<>();
+      shp = new LinkedHashMap<>();
+      shpTrans = new LinkedHashMap<>();
+      minTicks = new LinkedHashMap<>();
+      maxTicks = new LinkedHashMap<>();
     }
 
     @Override
@@ -367,7 +368,7 @@ public class AnimatorImpl implements AnimatorModel {
   @Override
   public List<Shape> getShapesAt(double tick) {
     List<Shape> res = new ArrayList<>();
-    shapes.sort(Comparator.comparing(Shape::getAppear));
+//    shapes.sort(Comparator.comparing(Shape::getAppear));
     for (Shape s : shapes) {
       if (tick >= s.getAppear() && tick <= s.getDisappear()) {
         res.add(this.getShapeAt(s, tick));
@@ -379,9 +380,9 @@ public class AnimatorImpl implements AnimatorModel {
   @Override
   public Shape getShapeAt(Shape s, double tick) throws IllegalArgumentException {
     Shape res = s.copy();
-    List<Change> listOfAllChanges = new ArrayList<>();
-    listOfAllChanges.addAll(map.get(s));
-    listOfAllChanges.sort(Comparator.comparing(Change::getStartTime));
+//    List<Change> listOfAllChanges = new ArrayList<>();
+//    listOfAllChanges.addAll(map.get(s));
+//    listOfAllChanges.sort(Comparator.comparing(Change::getStartTime));
     for (Change c : map.get(s)) {
       if (c.getStartTime() > tick) {
         break;
