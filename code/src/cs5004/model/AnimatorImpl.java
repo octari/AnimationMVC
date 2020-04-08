@@ -368,7 +368,8 @@ public class AnimatorImpl implements AnimatorModel {
   public List<Shape> getShapesAt(double tick) {
     List<Shape> res = new ArrayList<>();
     for (Shape s : shapes) {
-      res.add(this.getShapeAt(s, tick));
+      if (tick >= s.getAppear() && tick <= s.getDisappear())
+        res.add(this.getShapeAt(s, tick));
     }
     return res;
   }
