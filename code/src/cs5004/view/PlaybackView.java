@@ -6,9 +6,10 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import cs5004.controller.Controller;
 import cs5004.model.ReadOnlyModel;
 
-public class PlaybackView extends JFrame implements IView {
+public class PlaybackView extends JFrame implements IPlayBack {
 
   private ViewPanel p;
   private ReadOnlyModel m;
@@ -47,6 +48,11 @@ public class PlaybackView extends JFrame implements IView {
 
   @Override
   public void outputFile() {
+
+  }
+
+  @Override
+  public void addFeatures(Controller controller) {
 
   }
 

@@ -3,6 +3,8 @@ package cs5004.view;
 
 import java.io.IOException;
 
+import cs5004.controller.Controller;
+
 
 /**
  * This Iview interface represents a View. A View receives inputs from the Controller and generates
@@ -34,4 +36,5 @@ public interface IView {
    * @throws IOException when output file invalid or notfound.
    */
   void outputFile() throws IOException;
+
 }

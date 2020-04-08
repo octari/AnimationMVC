@@ -6,7 +6,7 @@ import cs5004.model.AnimatorModel;
 /**
  * a Controller for AnimatorModel.
  */
-public interface IController {
+public interface Features {
 
   /**
    * Execute a play of valid shapes on canvas.
@@ -14,13 +14,7 @@ public interface IController {
    */
   void play(AnimatorModel model);
 
-  /**
-   *
-   * @param command
-   * @return
-   */
 
-  public String processCommand(String command);
 
 
 }

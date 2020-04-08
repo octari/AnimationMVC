@@ -1,13 +1,14 @@
 package cs5004.controller;
 
 import cs5004.model.AnimatorModel;
+import cs5004.view.IPlayBack;
 import cs5004.view.IView;
 import javax.swing.Timer;
 
 /**
  *
  */
-public class Controller implements IController {
+public class Controller implements Features {
 
   private AnimatorModel model;
   private IView view;
@@ -21,19 +22,17 @@ public class Controller implements IController {
   public Controller(AnimatorModel m, IView v) {
     model = m;
     view = v;
-    view.setListener(this);
-    view.displayOutPut();
+    ((IPlayBack) view).addFeatures(this);
+
+
   }
 
   @Override
   public void play(AnimatorModel model) {
-    Timer timer = new Timer(500, my)
+//    Timer timer = new Timer(500, m);
     timer.start();
+    timer.restart();
 
   }
 
-  @Override
-  public String processCommand(String command) {
-    return null;
-  }
 }
