@@ -5,10 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 import cs5004.controller.Controller;
 import cs5004.controller.Features;
@@ -32,6 +29,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     setSize(1000, 1000);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setLayout(new BorderLayout());
 
 
     this.p = new ViewPanel();
@@ -42,37 +40,56 @@ public class PlaybackView extends JFrame implements IPlayBack {
     //start button
     startButton = new JButton("Start");
     startButton.setActionCommand("Start Button");
-    this.add(startButton);
+//    this.add(startButton, BorderLayout.EAST);
 
     //pause button
     pauseButton = new JButton("Pause");
     pauseButton.setActionCommand("Pause Button");
-    this.add(pauseButton);
+//    this.add(pauseButton, BorderLayout.EAST);
 
     //resume button
     resumeButton = new JButton("Resume");
     resumeButton.setActionCommand("Resume Button");
-    this.add(resumeButton);
+//    this.add(resumeButton, BorderLayout.EAST);
 
     //restart button
     restartButton = new JButton("Restart");
     restartButton.setActionCommand("Restart Button");
-    this.add(restartButton);
+//    this.add(restartButton, BorderLayout.);
 
     //loop button
     loopButton = new JButton("Looping");
     loopButton.setActionCommand("Looping Button");
-    this.add(loopButton);
+//    this.add(loopButton, BorderLayout.EAST);
 
     //resume button
     increaseSpeed = new JButton("IncreaseSpeed");
     increaseSpeed.setActionCommand("IncreaseSpeed Button");
-    this.add(increaseSpeed);
+//    this.add(increaseSpeed, BorderLayout.EAST);
 
     //restart button
     decreaseSpeed = new JButton("DecreaseSpeed");
     decreaseSpeed.setActionCommand("DecreaseSpeed Button");
-    this.add(decreaseSpeed);
+//    this.add(decreaseSpeed, BorderLayout.EAST);
+
+    //This will be the main panel.
+    //We are going to put several buttons only in the "EAST" part of it.
+
+    this.setLayout( new BorderLayout() );
+    //We create a sub-panel. Notice, that we don't use any layout-manager,
+    //Because we want it to use the default FlowLayout
+    JPanel subPanel = new JPanel();
+
+    subPanel.add(startButton);
+    subPanel.add(pauseButton);
+    subPanel.add(resumeButton);
+    subPanel.add(restartButton);
+    subPanel.add(loopButton);
+    subPanel.add(increaseSpeed);
+    subPanel.add(decreaseSpeed);
+
+    //Now we simply add it to your main panel.
+    this.add(subPanel, BorderLayout.NORTH);
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -94,7 +111,6 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
   @Override
   public void addFeatures(Features features) {
-    // wiring btw controller and view
 //    startButton.addActionListener(evt -> features.start());
 //    pauseButton.addActionListener(evt -> features.pause());
 //    resumeButton.addActionListener(evt -> features.start());
@@ -102,7 +118,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    loopButton.addActionListener(evt -> features.loop());
 //    increaseSpeed.addActionListener(evt -> features.increaseSpeed());
 //    decreaseSpeed.addActionListener(evt -> features.decreaseSpeed());
-    // start pause resume restart
+
+    // wiring btw controller and view
     startButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

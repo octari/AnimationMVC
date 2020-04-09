@@ -59,11 +59,12 @@ public class Controller implements Features {
 
   @Override
   public void play() {
-    this.timer.start();
+//    this.timer.start();
     ((IPlayBack) view).addFeatures(this);
     while(loopFlag){
       ((IPlayBack) view).addFeatures(this);
     }
+    // check action performed in timer reset/stop?
   }
 
   @Override
@@ -89,16 +90,18 @@ public class Controller implements Features {
   @Override
   public void increaseSpeed() {
     speed *= 2;
+    timer.setDelay(1000/speed);
   }
 
   @Override
   public void decreaseSpeed() {
     speed /= 2;
+    timer.setDelay(1000/speed);
   }
 
   @Override
   public void loop() {
-    timer.start();
+//    timer.start();???
     loopFlag = !loopFlag;
   }
 
