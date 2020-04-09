@@ -10,7 +10,10 @@ import java.io.UnsupportedEncodingException;
 
 import javax.swing.Timer;
 
+import cs5004.controller.Controller;
+import cs5004.controller.Features;
 import cs5004.model.AnimatorImpl;
+import cs5004.model.AnimatorModel;
 import cs5004.model.ReadOnlyModel;
 import cs5004.util.AnimationReader;
 import cs5004.view.IView;
@@ -73,46 +76,10 @@ public class EasyAnimator {
     ReadOnlyModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
     // user command line arg: text, svg, visual
     IView viewM = ViewFactory.makeView(view, am, out, speed);
-    switch (view) {
-      case "visual":
-        ActionListener myListener = new TickActionListener((JFrameView) viewM);
-        int delay = 1000 / speed;
-        Timer t = new Timer(delay, myListener);
-        t.start();
-//        t.
-        break;
-      case "svg":
-        ((SVG) viewM).outputFile();
-        break;
-      case "text":
-        ((TextualView) viewM).outputFile();
-        break;
-      case "playback":
-//        ((PlaybackView) viewM);
-      default:
-        throw new IllegalStateException("not a valid view");
-    }
+    Features controller = new Controller((AnimatorModel) am, viewM, speed, view);
+    controller.play();
   }
 
-  /**
-   * TickActionListener implements ActionListener to carry out the JFrameView results.
-   */
-  private static class TickActionListener implements ActionListener {
 
-    private int currentTick = 0;
-    private JFrameView view;
-
-    TickActionListener(JFrameView view) {
-      this.view = view;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-      view.setCurrentTick(currentTick);
-      view.refresh();
-      currentTick++;
-    }
-  }
 }
 

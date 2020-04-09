@@ -25,6 +25,8 @@ public class ViewFactory {
         return new SVG(am, out, speed);
       case "text":
         return new TextualView(am, out);
+      case "playback":
+        return new PlaybackView("Playback View", am);
       default:
         throw new IllegalArgumentException("Invalid view type.");
     }

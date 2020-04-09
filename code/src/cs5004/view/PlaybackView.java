@@ -9,13 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import cs5004.controller.Controller;
+import cs5004.controller.Features;
 import cs5004.model.ReadOnlyModel;
 
 public class PlaybackView extends JFrame implements IPlayBack {
   private ViewPanel p;
   private ReadOnlyModel m;
   private JLabel display;
-  private JButton echoButton, exitButton,toggleButton;
+  private JButton startButton, pauseButton, resumeButton, restartButton, loopButton,
+          increaseSpeed, decreaseSpeed;
 
   /**
    * Construct a JFrameView object.
@@ -35,10 +37,44 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
     p.setPreferredSize(new Dimension(1500, 1500));
 
+    //start button
+    startButton = new JButton("start");
+    startButton.setActionCommand("start Button");
+    this.add(startButton);
+
+    //pause button
+    pauseButton = new JButton("pause");
+    pauseButton.setActionCommand("pause");
+    this.add(pauseButton);
+
+    //resume button
+    resumeButton = new JButton("Exit");
+    resumeButton.setActionCommand("Exit Button");
+    this.add(resumeButton);
+
+    //restart button
+    restartButton = new JButton("Exit");
+    restartButton.setActionCommand("Exit Button");
+    this.add(restartButton);
+
+    //loop button
+    loopButton = new JButton("Toggle color");
+    loopButton.setActionCommand("Toggle color");
+    this.add(loopButton);
+
+    //resume button
+    increaseSpeed = new JButton("Exit");
+    increaseSpeed.setActionCommand("Exit Button");
+    this.add(increaseSpeed);
+
+    //restart button
+    decreaseSpeed = new JButton("Exit");
+    decreaseSpeed.setActionCommand("Exit Button");
+    this.add(decreaseSpeed);
 
     JScrollPane scrollPane = new JScrollPane(p);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setBounds(50, 30, 300, 50);
 
     this.add(scrollPane, BorderLayout.CENTER);
@@ -55,11 +91,15 @@ public class PlaybackView extends JFrame implements IPlayBack {
   }
 
   @Override
-  public void addFeatures(Controller controller) {
+  public void addFeatures(Features features) {
     // wiring btw controller and view
-//    echoButton.addActionListener(evt -> features.echoOutput(input.getText()));
-//    toggleButton.addActionListener(evt -> features.toggleColor());
-//    exitButton.addActionListener(evt -> features.exitProgram());
+    startButton.addActionListener(evt -> features.start());
+    pauseButton.addActionListener(evt -> features.pause());
+    resumeButton.addActionListener(evt -> features.start());
+    restartButton.addActionListener(evt -> features.restart());
+    loopButton.addActionListener(evt -> features.loop());
+    increaseSpeed.addActionListener(evt -> features.increaseSpeed());
+    decreaseSpeed.addActionListener(evt -> features.decreaseSpeed());
   }
 
   @Override
@@ -72,5 +112,9 @@ public class PlaybackView extends JFrame implements IPlayBack {
    */
   public void refresh() {
     this.repaint();
+  }
+
+  public void setCurrentTick(int currentTick) {
+    p.setCurrentFrame(m.getShapesAt(currentTick));
   }
 }

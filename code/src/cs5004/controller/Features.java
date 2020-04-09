@@ -12,11 +12,11 @@ public interface Features {
    * Execute a play of valid shapes on canvas.
    *
    */
-  void play(AnimatorModel model);
+  void play();
 
   void start();
   void pause();
-  void resume();
+//  void resume();
   void restart();
   void increaseSpeed();
   void decreaseSpeed();
