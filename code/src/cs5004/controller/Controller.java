@@ -25,7 +25,7 @@ public class Controller implements Features {
   private IView view;
   private Timer timer;
   private int speed;
-  private boolean loop;
+  private boolean loopFlag;
 
   /**
    * @param m
@@ -61,6 +61,9 @@ public class Controller implements Features {
   public void play() {
     this.timer.start();
     ((IPlayBack) view).addFeatures(this);
+    while(loopFlag){
+      ((IPlayBack) view).addFeatures(this);
+    }
   }
 
   @Override
@@ -80,7 +83,7 @@ public class Controller implements Features {
 
   @Override
   public void restart() {
-    timer.start();
+    timer.restart();
   }
 
   @Override
@@ -95,7 +98,8 @@ public class Controller implements Features {
 
   @Override
   public void loop() {
-
+    timer.start();
+    loopFlag = !loopFlag;
   }
 
   /**
