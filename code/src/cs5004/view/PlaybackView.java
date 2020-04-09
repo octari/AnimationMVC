@@ -3,11 +3,9 @@ package cs5004.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.*;
 
-import cs5004.controller.Controller;
 import cs5004.controller.Features;
 import cs5004.model.ReadOnlyModel;
 
@@ -15,8 +13,9 @@ public class PlaybackView extends JFrame implements IPlayBack {
   private ViewPanel p;
   private ReadOnlyModel m;
   private JLabel display;
-  private JButton startButton, pauseButton, resumeButton, restartButton, loopButton,
+  private JButton startButton, pauseButton, resumeButton, restartButton,
           increaseSpeed, decreaseSpeed;
+  private JCheckBox looping;
 
   /**
    * Construct a JFrameView object.
@@ -58,8 +57,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    this.add(restartButton, BorderLayout.);
 
     //loop button
-    loopButton = new JButton("Looping");
-    loopButton.setActionCommand("Looping Button");
+    looping = new JCheckBox("Looping");
+    looping.setActionCommand("Looping Button");
 //    this.add(loopButton, BorderLayout.EAST);
 
     //resume button
@@ -84,7 +83,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
-    subPanel.add(loopButton);
+    subPanel.add(looping);
     subPanel.add(increaseSpeed);
     subPanel.add(decreaseSpeed);
 
@@ -152,7 +151,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
         }
       }
     });
-    loopButton.addActionListener(new ActionListener() {
+    looping.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Looping Button")){
