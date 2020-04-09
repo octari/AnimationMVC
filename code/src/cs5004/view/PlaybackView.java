@@ -29,7 +29,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
   public PlaybackView(String caption, ReadOnlyModel m) {
     super(caption);
     this.m = m;
-    setSize(500, 300);
+    setSize(1000, 1000);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,7 +37,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     this.p = new ViewPanel();
     this.add(p);
 
-    p.setPreferredSize(new Dimension(1500, 1500));
+    p.setPreferredSize(new Dimension(1200, 1200));
 
     //start button
     startButton = new JButton("Start");
