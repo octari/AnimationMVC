@@ -38,9 +38,11 @@ public class Controller implements Features {
     switch (viewType) {
       case "visual":
       case "playback":
-        ActionListener myListener = new Controller.TickActionListener(view);
+//        ActionListener myListener = new Controller.TickActionListener(view);
+//        int delay = 1000 / this.speed;
+//        this.timer = new Timer(delay, myListener);
         int delay = 1000 / this.speed;
-        this.timer = new Timer(delay, myListener);
+        this.timer = new Timer(delay, new Controller.TickActionListener(view));
         break;
       case "svg":
         ((SVG) view).outputFile();
@@ -102,7 +104,8 @@ public class Controller implements Features {
   @Override
   public void loop() {
 //    timer.start();???
-    loopFlag = !loopFlag;
+    loopFlag = true;
+    timer.stop();
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
             , model.getFinalTime());
     int delayPB = 1000 / this.speed;
@@ -113,6 +116,12 @@ public class Controller implements Features {
   @Override
   public void unloop() {
     loopFlag = false;
+    timer.stop();
+    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
+            , model.getFinalTime());
+    int delayPB = 1000 / this.speed;
+    this.timer = new Timer(delayPB, myListenerPB);
+    timer.start();
   }
 
   /**

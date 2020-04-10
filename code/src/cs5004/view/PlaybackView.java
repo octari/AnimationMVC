@@ -32,6 +32,9 @@ public class PlaybackView extends JFrame implements IPlayBack {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
 
+//    pDisplay = new JLabel("Password will appear here");
+//    pDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//    pPanel.add(pDisplay);
 
     this.p = new ViewPanel();
     this.add(p);
@@ -74,32 +77,34 @@ public class PlaybackView extends JFrame implements IPlayBack {
     //resume button
     increaseSpeed = new JButton("IncreaseSpeed");
     increaseSpeed.setActionCommand("IncreaseSpeed Button");
-//    this.add(increaseSpeed, BorderLayout.EAST);
 
     //restart button
     decreaseSpeed = new JButton("DecreaseSpeed");
     decreaseSpeed.setActionCommand("DecreaseSpeed Button");
-//    this.add(decreaseSpeed, BorderLayout.EAST);
 
     //This will be the main panel.
-    //We are going to put several buttons only in the "EAST" part of it.
-
+    //We are going to put several buttons only in the "North" part of it.
     this.setLayout( new BorderLayout() );
     //We create a sub-panel. Notice, that we don't use any layout-manager,
     //Because we want it to use the default FlowLayout
     JPanel subPanel = new JPanel();
 
+    display = new JLabel("Press button to do what it showed. " +
+            "Choose looping/unlooping to start a loop/unloop animation.");
+    display.getHorizontalAlignment();
+//    display.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    subPanel.add(display);
+
+    subPanel.add(looping);
+    subPanel.add(unlooping);
     subPanel.add(startButton);
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
-    subPanel.add(looping);
-    subPanel.add(unlooping);
     subPanel.add(increaseSpeed);
     subPanel.add(decreaseSpeed);
 
-
-    //Now we simply add it to your main panel.
+    //add it to main panel.
     this.add(subPanel, BorderLayout.NORTH);
 
     JScrollPane scrollPane = new JScrollPane(p);
@@ -108,6 +113,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     scrollPane.setBounds(50, 30, 300, 50);
 
     this.add(scrollPane, BorderLayout.CENTER);
+    this.pack();
     setVisible(true);
   }
   @Override
