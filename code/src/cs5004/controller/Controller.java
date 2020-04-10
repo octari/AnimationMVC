@@ -102,7 +102,7 @@ public class Controller implements Features {
   @Override
   public void loop() {
 //    timer.start();???
-    loopFlag = true;
+    loopFlag = !loopFlag;
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
             , model.getFinalTime());
     int delayPB = 1000 / this.speed;
@@ -112,7 +112,6 @@ public class Controller implements Features {
 
   @Override
   public void unloop() {
-//    timer.start();???
     loopFlag = false;
   }
 
