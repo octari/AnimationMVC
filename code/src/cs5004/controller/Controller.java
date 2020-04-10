@@ -102,12 +102,18 @@ public class Controller implements Features {
   @Override
   public void loop() {
 //    timer.start();???
-    loopFlag = !loopFlag;
+    loopFlag = true;
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
             , model.getFinalTime());
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
+  }
+
+  @Override
+  public void unloop() {
+//    timer.start();???
+    loopFlag = false;
   }
 
   /**

@@ -21,6 +21,7 @@ public interface Features {
   void increaseSpeed();
   void decreaseSpeed();
   void loop();
+  void unloop();
 
 
 

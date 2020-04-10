@@ -15,7 +15,9 @@ public class PlaybackView extends JFrame implements IPlayBack {
   private JLabel display;
   private JButton startButton, pauseButton, resumeButton, restartButton,
           increaseSpeed, decreaseSpeed;
-  private JCheckBox looping;
+//  private JCheckBox looping;
+  private JRadioButton loop;
+  private JRadioButton unloop;
 
   /**
    * Construct a JFrameView object.
@@ -57,9 +59,17 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    this.add(restartButton, BorderLayout.);
 
     //loop button
-    looping = new JCheckBox("Looping");
-    looping.setActionCommand("Looping Button");
-//    this.add(loopButton, BorderLayout.EAST);
+//    looping = new JCheckBox("Looping");
+//    looping.setActionCommand("Looping Button");
+//    JRadioButton[] loopOrNot = new JRadioButton[2];
+    ButtonGroup rGroup = new ButtonGroup();
+    loop = new JRadioButton("Loop");
+    unloop = new JRadioButton("Unloop");
+    loop.setActionCommand("Loop");
+    unloop.setActionCommand("Un Loop");
+    rGroup.add(loop);
+    rGroup.add(unloop);
+
 
     //resume button
     increaseSpeed = new JButton("IncreaseSpeed");
@@ -83,9 +93,11 @@ public class PlaybackView extends JFrame implements IPlayBack {
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
-    subPanel.add(looping);
+    subPanel.add(loop);
+    subPanel.add(unloop);
     subPanel.add(increaseSpeed);
     subPanel.add(decreaseSpeed);
+
 
     //Now we simply add it to your main panel.
     this.add(subPanel, BorderLayout.NORTH);
@@ -151,14 +163,27 @@ public class PlaybackView extends JFrame implements IPlayBack {
         }
       }
     });
-    looping.addActionListener(new ActionListener() {
+
+
+    loop.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Looping Button")){
+        if(e.getActionCommand().equals("Loop")){
           features.loop();
         }
       }
     });
+
+    unloop.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Un Loop")) {
+          features.unloop();
+        }
+      }
+    });
+
+
     this.increaseSpeed.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
