@@ -16,8 +16,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
   private JButton startButton, pauseButton, resumeButton, restartButton,
           increaseSpeed, decreaseSpeed;
 //  private JCheckBox looping;
-  private JRadioButton loop;
-  private JRadioButton unloop;
+  private JRadioButton looping;
+  private JRadioButton unlooping;
 
   /**
    * Construct a JFrameView object.
@@ -63,12 +63,12 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    looping.setActionCommand("Looping Button");
 //    JRadioButton[] loopOrNot = new JRadioButton[2];
     ButtonGroup rGroup = new ButtonGroup();
-    loop = new JRadioButton("Loop");
-    unloop = new JRadioButton("Unloop");
-    loop.setActionCommand("Loop");
-    unloop.setActionCommand("Un Loop");
-    rGroup.add(loop);
-    rGroup.add(unloop);
+    looping = new JRadioButton("Looping");
+    unlooping = new JRadioButton("Unlooping");
+    looping.setActionCommand("Loop");
+    unlooping.setActionCommand("Un Loop");
+    rGroup.add(looping);
+    rGroup.add(unlooping);
 
 
     //resume button
@@ -93,8 +93,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
-    subPanel.add(loop);
-    subPanel.add(unloop);
+    subPanel.add(looping);
+    subPanel.add(unlooping);
     subPanel.add(increaseSpeed);
     subPanel.add(decreaseSpeed);
 
@@ -165,7 +165,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     });
 
 
-    loop.addActionListener(new ActionListener() {
+    looping.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Loop")){
@@ -174,7 +174,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
       }
     });
 
-    unloop.addActionListener(new ActionListener() {
+    unlooping.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Un Loop")) {
