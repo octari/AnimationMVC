@@ -42,4 +42,7 @@ public interface ReadOnlyModel {
   Canvas getCanvas();
 
   Map<Shape, List<Change>> getMap();
+
+  double getFinalTime();
 }
+

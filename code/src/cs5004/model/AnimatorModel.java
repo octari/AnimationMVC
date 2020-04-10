@@ -65,6 +65,8 @@ public interface AnimatorModel extends ReadOnlyModel {
           throws IllegalArgumentException;
 
   void addCanvas(int x, int y, int width, int height);
+
+
 }
 
 

@@ -37,7 +37,8 @@ public class Controller implements Features {
     this.speed = speed;
     switch (viewType) {
       case "visual":
-        ActionListener myListener = new Controller.TickActionListener((JFrameView) view);
+      case "playback":
+        ActionListener myListener = new Controller.TickActionListener(view);
         int delay = 1000 / this.speed;
         this.timer = new Timer(delay, myListener);
         break;
@@ -46,11 +47,6 @@ public class Controller implements Features {
         break;
       case "text":
         ((TextualView) view).outputFile();
-        break;
-      case "playback":
-        ActionListener myListenerPB = new Controller.TickActionListener((PlaybackView) view);
-        int delayPB = 1000 / this.speed;
-        this.timer = new Timer(delayPB, myListenerPB);
         break;
       default:
         throw new IllegalStateException("not a valid view");
@@ -84,7 +80,11 @@ public class Controller implements Features {
 
   @Override
   public void restart() {
-    timer.restart();
+    timer.stop();
+    ActionListener myListenerPB = new Controller.TickActionListener(view);
+    int delayPB = 1000 / this.speed;
+    this.timer = new Timer(delayPB, myListenerPB);
+    timer.start();
   }
 
   @Override
@@ -103,6 +103,11 @@ public class Controller implements Features {
   public void loop() {
 //    timer.start();???
     loopFlag = !loopFlag;
+    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
+            , model.getFinalTime());
+    int delayPB = 1000 / this.speed;
+    this.timer = new Timer(delayPB, myListenerPB);
+    timer.start();
   }
 
   /**
@@ -112,9 +117,16 @@ public class Controller implements Features {
 
     private int currentTick = 0;
     private IView view;
+    private boolean loopFlag;
+    private double finalTime;
 
     TickActionListener(IView view) {
       this.view = view;
+    }
+    TickActionListener(IView view, boolean loopFlag, double finalTime){
+      this.view = view;
+      this.loopFlag = loopFlag;
+      this.finalTime = finalTime;
     }
 
     @Override
@@ -126,7 +138,11 @@ public class Controller implements Features {
         ((PlaybackView)view).setCurrentTick(currentTick);
         ((PlaybackView)view).refresh();
       }
-      currentTick++;
+      if(loopFlag && currentTick==(int)finalTime){
+        currentTick = 0;
+      }else{
+        currentTick++;
+      }
     }
 
 //    /**

@@ -553,4 +553,11 @@ public class AnimatorImpl implements AnimatorModel {
     return this.map;
   }
 
+  @Override
+  public double getFinalTime() {
+    shapes.sort(Comparator.comparing(Shape::getDisappear));
+    return shapes.get(shapes.size()-1).getDisappear();
+  }
+
+
 }
