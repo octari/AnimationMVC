@@ -42,8 +42,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
     p.setPreferredSize(new Dimension(1200, 1200));
 
     //start button
-    startButton = new JButton("Start");
-    startButton.setActionCommand("Start Button");
+//    startButton = new JButton("Start");
+//    startButton.setActionCommand("Start Button");
 //    this.add(startButton, BorderLayout.EAST);
 
     //pause button
@@ -66,7 +66,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    looping.setActionCommand("Looping Button");
 //    JRadioButton[] loopOrNot = new JRadioButton[2];
     ButtonGroup rGroup = new ButtonGroup();
-    looping = new JRadioButton("Loop");
+    looping = new JRadioButton("Start Looping");
     unlooping = new JRadioButton("Nonloop");
     looping.setActionCommand("Loop");
     unlooping.setActionCommand("Un Loop");
@@ -96,7 +96,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
     subPanel.add(looping);
     subPanel.add(unlooping);
-    subPanel.add(startButton);
+//    subPanel.add(startButton);
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
@@ -136,14 +136,14 @@ public class PlaybackView extends JFrame implements IPlayBack {
 //    decreaseSpeed.addActionListener(evt -> features.decreaseSpeed());
 
     // wiring btw controller and view
-    startButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Start Button")){
-          features.start();
-        }
-      }
-    });
+//    startButton.addActionListener(new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//        if(e.getActionCommand().equals("Start Button")){
+//          features.start();
+//        }
+//      }
+//    });
     pauseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

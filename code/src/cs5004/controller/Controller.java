@@ -2,11 +2,8 @@ package cs5004.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
-import cs5004.EasyAnimator;
 import cs5004.model.AnimatorModel;
 import cs5004.view.IPlayBack;
 import cs5004.view.IView;
@@ -18,7 +15,7 @@ import cs5004.view.TextualView;
 import javax.swing.Timer;
 
 /**
- *
+ * Controller class implements Features and all the corresponding methods.
  */
 public class Controller implements Features {
   private AnimatorModel model;
@@ -28,8 +25,12 @@ public class Controller implements Features {
   private boolean loopFlag;
 
   /**
-   * @param m
-   * @param v
+   * Controller
+   * @param m the animation model
+   * @param v a view interface
+   * @param speed the given speed
+   * @param viewType the type of the required output view
+   * @throws IOException
    */
   public Controller(AnimatorModel m, IView v, int speed, String viewType) throws IOException {
     model = m;
@@ -38,9 +39,6 @@ public class Controller implements Features {
     switch (viewType) {
       case "visual":
       case "playback":
-//        ActionListener myListener = new Controller.TickActionListener(view);
-//        int delay = 1000 / this.speed;
-//        this.timer = new Timer(delay, myListener);
         int delay = 1000 / this.speed;
         this.timer = new Timer(delay, new Controller.TickActionListener(view));
         break;
