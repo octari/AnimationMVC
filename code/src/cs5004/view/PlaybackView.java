@@ -13,9 +13,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
   private ViewPanel p;
   private ReadOnlyModel m;
   private JLabel display;
-  private JButton startButton, pauseButton, resumeButton, restartButton,
+  private JButton pauseButton, resumeButton, restartButton,
           increaseSpeed, decreaseSpeed;
-//  private JCheckBox looping;
   private JRadioButton looping;
   private JRadioButton unlooping;
 
