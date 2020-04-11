@@ -72,7 +72,7 @@ public class ViewPanel extends JPanel {
           int r1 = (int) ((Oval) s).getRadius1();
           int r2 = (int) ((Oval) s).getRadius2();
           g2d.setColor(new Color(r, g, b));
-          g2d.fillOval(x, y, r1, r1);
+          g2d.fillOval(x, y, r1, r2);
           g2d.drawOval(x, y, r1, r2);
           break;
         default:
