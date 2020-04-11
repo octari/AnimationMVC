@@ -77,11 +77,6 @@ public class Controller implements Features {
     timer.stop();
   }
 
-//  @Override
-//  public void resume() {
-//
-//  }
-
   @Override
   public void restart() {
     timer.stop();

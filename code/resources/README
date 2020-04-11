@@ -25,9 +25,9 @@ AnimatorModel is the the model for the Animator made in the MVC structure. Anima
 the canvas for shapes; it contains shapes and make changes to them based on given commands.
 AnimatorImpl implements the AnimatorModel. An AnimatorModelImpl has a map that stores each 
 shape as the key and its changes as the value. It also has a list of shape that stores every 
-shape on the canvas. AnimatorImpl has the function of adding a shape to the canvas and
-adding motion to the existing shape. It can also get the current state of the whole canvas
-in string format.
+shape on the canvas. AnimatorImpl has the function of adding and removing a shape on the canvas and
+adding or removing motion to the existing shape. It can also get the current state of the whole
+canvas in string format.
 
 Animator (interface)
 	addShape;
@@ -35,8 +35,15 @@ Animator (interface)
 	addColor;
 	addScale;
 	getState;
+	addCanvas;
+	removeShape;
 	getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
 	getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
+	removeShape;
+	removeMove;
+	removeColor;
+	removeScale;
+
 
 AnimatorImpl (Implements animator model interface)
 	filed: 
@@ -48,7 +55,12 @@ AnimatorImpl (Implements animator model interface)
 		addMove;   
 		addColor;  
 		addScale;  
-		getState;  
+		getState;
+		addCanvas;
+    	removeShape;
+    	removeMove;
+    	removeColor;
+    	removeScale;
 
 
 change:

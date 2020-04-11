@@ -165,6 +165,41 @@ public class AnimatorImpl implements AnimatorModel {
     this.c.setHeight(height);
   }
 
+  @Override
+  public void removeShape(String id) {
+    // will be implement if needed
+  }
+
+  @Override
+  public void removeMove(String id, double startTime, double endTime, Position endPos)
+          throws IllegalArgumentException {
+    // will be implement if needed
+  }
+
+  @Override
+  public void removeColor(String id, double startTime, double endTime, int r, int g, int b) throws
+          IllegalArgumentException {
+    // will be implement if needed
+  }
+
+  @Override
+  public void removeScale(String id, double startTime, double endTime, double index1, double index2)
+          throws IllegalArgumentException {
+    // will be implement if needed
+  }
+
+  @Override
+  public List<Shape> getExistingShape() {
+    return this.shapes;
+
+  }
+
+  @Override
+  public List<Change> getChange(String id) {
+    return this.map.get(id);
+
+  }
+
   /**
    * Builder class implements AnimationBuilder interface. Build the final document for the project.
    */
