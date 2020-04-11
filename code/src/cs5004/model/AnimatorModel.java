@@ -123,7 +123,7 @@ public interface AnimatorModel extends ReadOnlyModel {
           throws IllegalArgumentException;
 
   /**
-   * get a list of existing Shapes
+   * get a list of existing Shapes.
    */
   List<Shape> getExistingShape();
 

@@ -4,22 +4,35 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+
+import javax.swing.JRadioButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import cs5004.controller.Features;
 import cs5004.model.ReadOnlyModel;
 
+/**
+ * PlaybackView extends JFrame implements IPlayBack.
+ */
 public class PlaybackView extends JFrame implements IPlayBack {
   private ViewPanel p;
   private ReadOnlyModel m;
   private JLabel display;
-  private JButton pauseButton, resumeButton, restartButton,
-          increaseSpeed, decreaseSpeed;
+  private JButton pauseButton;
+  private JButton resumeButton;
+  private JButton restartButton;
+  private JButton increaseSpeed;
+  private JButton decreaseSpeed;
   private JRadioButton looping;
   private JRadioButton unlooping;
 
   /**
-   * Construct a JFrameView object.
+   * Construct a playback object.
    *
    * @param caption the caption of the view window
    */
@@ -31,39 +44,26 @@ public class PlaybackView extends JFrame implements IPlayBack {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
 
-//    pDisplay = new JLabel("Password will appear here");
-//    pDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//    pPanel.add(pDisplay);
 
     this.p = new ViewPanel();
     this.add(p);
 
     p.setPreferredSize(new Dimension(1200, 1200));
 
-    //start button
-//    startButton = new JButton("Start");
-//    startButton.setActionCommand("Start Button");
-//    this.add(startButton, BorderLayout.EAST);
 
     //pause button
     pauseButton = new JButton("Pause");
     pauseButton.setActionCommand("Pause Button");
-//    this.add(pauseButton, BorderLayout.EAST);
 
     //resume button
     resumeButton = new JButton("Resume");
     resumeButton.setActionCommand("Resume Button");
-//    this.add(resumeButton, BorderLayout.EAST);
 
     //restart button
     restartButton = new JButton("Restart");
     restartButton.setActionCommand("Restart Button");
-//    this.add(restartButton, BorderLayout.);
 
-    //loop button
-//    looping = new JCheckBox("Looping");
-//    looping.setActionCommand("Looping Button");
-//    JRadioButton[] loopOrNot = new JRadioButton[2];
+    //loop/unloop radiobutton
     ButtonGroup rGroup = new ButtonGroup();
     looping = new JRadioButton("Start Looping");
     unlooping = new JRadioButton("Nonloop");
@@ -83,7 +83,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
     //This will be the main panel.
     //We are going to put several buttons only in the "North" part of it.
-    this.setLayout( new BorderLayout() );
+    this.setLayout(new BorderLayout());
     //We create a sub-panel. Notice, that we don't use any layout-manager,
     //Because we want it to use the default FlowLayout
     JPanel subPanel = new JPanel();
@@ -95,14 +95,12 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
     subPanel.add(looping);
     subPanel.add(unlooping);
-//    subPanel.add(startButton);
     subPanel.add(pauseButton);
     subPanel.add(resumeButton);
     subPanel.add(restartButton);
     subPanel.add(increaseSpeed);
     subPanel.add(decreaseSpeed);
 
-    //add it to main panel.
     this.add(subPanel, BorderLayout.NORTH);
 
     JScrollPane scrollPane = new JScrollPane(p);
@@ -114,6 +112,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     this.pack();
     setVisible(true);
   }
+
   @Override
   public String render() {
     return null;
@@ -126,43 +125,29 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
   @Override
   public void addFeatures(Features features) {
-//    startButton.addActionListener(evt -> features.start());
-//    pauseButton.addActionListener(evt -> features.pause());
-//    resumeButton.addActionListener(evt -> features.start());
-//    restartButton.addActionListener(evt -> features.restart());
-//    loopButton.addActionListener(evt -> features.loop());
-//    increaseSpeed.addActionListener(evt -> features.increaseSpeed());
-//    decreaseSpeed.addActionListener(evt -> features.decreaseSpeed());
 
-    // wiring btw controller and view
-//    startButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        if(e.getActionCommand().equals("Start Button")){
-//          features.start();
-//        }
-//      }
-//    });
     pauseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Pause Button")){
+        if (e.getActionCommand().equals("Pause Button")) {
           features.pause();
         }
       }
     });
+
     resumeButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Resume Button")){
+        if (e.getActionCommand().equals("Resume Button")) {
           features.start();
         }
       }
     });
+
     restartButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Restart Button")){
+        if (e.getActionCommand().equals("Restart Button")) {
           features.restart();
         }
       }
@@ -172,7 +157,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     looping.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Loop")){
+        if (e.getActionCommand().equals("Loop")) {
           features.loop();
         }
       }
@@ -187,19 +172,19 @@ public class PlaybackView extends JFrame implements IPlayBack {
       }
     });
 
-
     this.increaseSpeed.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("IncreaseSpeed Button")){
+        if (e.getActionCommand().equals("IncreaseSpeed Button")) {
           features.increaseSpeed();
         }
       }
     });
+
     this.decreaseSpeed.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("DecreaseSpeed Button")){
+        if (e.getActionCommand().equals("DecreaseSpeed Button")) {
           features.decreaseSpeed();
         }
       }
@@ -219,6 +204,11 @@ public class PlaybackView extends JFrame implements IPlayBack {
     this.repaint();
   }
 
+  /**
+   * setCurrentTick set the current tick.
+   *
+   * @param currentTick the time reference
+   */
   public void setCurrentTick(int currentTick) {
     p.setCurrentFrame(m.getShapesAt(currentTick));
   }

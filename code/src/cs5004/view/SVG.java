@@ -40,14 +40,11 @@ public class SVG implements IView {
   public String render() throws IllegalArgumentException {
     StringBuilder sb = new StringBuilder();
     sb.append("<svg ")
-//            .append("viewBox=\"").append(m.getCanvas().getX()).append(" ")
-//            .append(m.getCanvas().getY()).append(" ").append(m.getCanvas().getWidth())
-//            .append(" ").append(m.getCanvas().getHeight())
-//            .append("\" ")
+
             .append("width=\"")
-            .append(m.getCanvas().getWidth()+m.getCanvas().getX())
+            .append(m.getCanvas().getWidth() + m.getCanvas().getX())
             .append("\" height=\"")
-            .append(m.getCanvas().getHeight()+m.getCanvas().getY())
+            .append(m.getCanvas().getHeight() + m.getCanvas().getY())
             .append("\" version=\"1.1\"\n")
             .append("xmlns=\"http://www.w3.org/2000/svg\">\n");
     for (Shape s : m.getShapes()) {
@@ -59,10 +56,11 @@ public class SVG implements IView {
                   .append((int) ((Rectangle) s).getHeight()).append("\" fill=\"rgb(")
                   .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
                   .append(")\" visibility=\"hidden\" >\n");
-          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\"" + "visibility\" " +
-                  "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"remove\" />\n",
+          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\"" +
+                          "visibility\" " +
+                          "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"remove\" />\n",
                   (int) s.getAppear() * 1000 / speed,
-                  (int) (s.getDisappear()-s.getAppear() * 1000 /speed)));
+                  (int) (s.getDisappear() - s.getAppear() * 1000 / speed)));
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
@@ -134,10 +132,11 @@ public class SVG implements IView {
                   .append("\" ry=\"").append((int) ((Oval) s).getRadius2()).append("\" fill=\"rgb(")
                   .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
                   .append(")\" visibility=\"hidden\" >\n");
-          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\"" + "visibility\" " +
+          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\""
+                          + "visibility\" " +
                           "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"remove\" />\n",
                   (int) s.getAppear() * 1000 / speed,
-                  (int) (s.getDisappear()-s.getAppear() * 1000 /speed)));
+                  (int) (s.getDisappear() - s.getAppear() * 1000 / speed)));
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:

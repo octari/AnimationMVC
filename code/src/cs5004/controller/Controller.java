@@ -25,12 +25,13 @@ public class Controller implements Features {
   private boolean loopFlag;
 
   /**
-   * Controller
-   * @param m the animation model
-   * @param v a view interface
-   * @param speed the given speed
+   * A Controller for a visual view that the user can interact with.
+   *
+   * @param m        the animation model
+   * @param v        a view interface
+   * @param speed    the given speed
    * @param viewType the type of the required output view
-   * @throws IOException
+   * @throws IOException throes when file not found
    */
   public Controller(AnimatorModel m, IView v, int speed, String viewType) throws IOException {
     model = m;
@@ -55,16 +56,14 @@ public class Controller implements Features {
 
   @Override
   public void play() {
-//    this.timer.start();
     if (view instanceof IPlayBack) {
       ((IPlayBack) view).addFeatures(this);
-    while(loopFlag){
-      ((IPlayBack) view).addFeatures(this);
+      while (loopFlag) {
+        ((IPlayBack) view).addFeatures(this);
       }
     } else if (view instanceof JFrameView) {
       this.timer.start();
     }
-    // check action performed in timer reset/stop?
   }
 
   @Override
@@ -89,22 +88,22 @@ public class Controller implements Features {
   @Override
   public void increaseSpeed() {
     speed *= 2;
-    timer.setDelay(1000/speed);
+    timer.setDelay(1000 / speed);
   }
 
   @Override
   public void decreaseSpeed() {
     speed /= 2;
-    timer.setDelay(1000/speed);
+    timer.setDelay(1000 / speed);
   }
 
   @Override
   public void loop() {
-//    timer.start();???
+
     loopFlag = true;
     timer.stop();
-    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
-            , model.getFinalTime());
+    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
+            model.getFinalTime());
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
@@ -114,8 +113,8 @@ public class Controller implements Features {
   public void unloop() {
     loopFlag = false;
     timer.stop();
-    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag
-            , model.getFinalTime());
+    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
+            model.getFinalTime());
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
@@ -134,7 +133,8 @@ public class Controller implements Features {
     TickActionListener(IView view) {
       this.view = view;
     }
-    TickActionListener(IView view, boolean loopFlag, double finalTime){
+
+    TickActionListener(IView view, boolean loopFlag, double finalTime) {
       this.view = view;
       this.loopFlag = loopFlag;
       this.finalTime = finalTime;
@@ -142,39 +142,19 @@ public class Controller implements Features {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      if(view instanceof JFrameView){
-        ((JFrameView)view).setCurrentTick(currentTick);
-        ((JFrameView)view).refresh();
-      }else if(view instanceof PlaybackView){
-        ((PlaybackView)view).setCurrentTick(currentTick);
-        ((PlaybackView)view).refresh();
+      if (view instanceof JFrameView) {
+        ((JFrameView) view).setCurrentTick(currentTick);
+        ((JFrameView) view).refresh();
+      } else if (view instanceof PlaybackView) {
+        ((PlaybackView) view).setCurrentTick(currentTick);
+        ((PlaybackView) view).refresh();
       }
-      if(loopFlag && currentTick==(int)finalTime){
+      if (loopFlag && currentTick == (int) finalTime) {
         currentTick = 0;
-      }else{
+      } else {
         currentTick++;
       }
     }
 
-//    /**
-//     * TickActionListener implements ActionListener to carry out the JFrameView results.
-//     */
-//    private static class TickActionListenerPB implements ActionListener {
-//
-//      private int currentTick = 0;
-//      private PlaybackView view;
-//
-//      TickActionListenerPB(PlaybackView view) {
-//        this.view = view;
-//      }
-//
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//
-//        view.setCurrentTick(currentTick);
-//        view.refresh();
-//        currentTick++;
-//      }
-//    }
   }
 }

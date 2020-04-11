@@ -1,14 +1,12 @@
 package cs5004;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import javax.swing.Timer;
+
 
 import cs5004.controller.Controller;
 import cs5004.controller.Features;
@@ -17,9 +15,6 @@ import cs5004.model.AnimatorModel;
 import cs5004.model.ReadOnlyModel;
 import cs5004.util.AnimationReader;
 import cs5004.view.IView;
-import cs5004.view.JFrameView;
-import cs5004.view.SVG;
-import cs5004.view.TextualView;
 import cs5004.view.ViewFactory;
 
 /**
@@ -74,7 +69,7 @@ public class EasyAnimator {
     File f = new File(nameOfFile);
     FileReader fr = new FileReader(f);
     ReadOnlyModel am = AnimationReader.parseFile(fr, new AnimatorImpl.Builder());
-    // user command line arg: text, svg, visual
+
     IView viewM = ViewFactory.makeView(view, am, out, speed);
     Features controller = new Controller((AnimatorModel) am, viewM, speed, view);
     controller.play();
