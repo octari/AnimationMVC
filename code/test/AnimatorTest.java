@@ -422,4 +422,6 @@ public class AnimatorTest {
     assertEquals("[(2.0, 5.0), (3.0, 4.5)]", a.getShapesAt(10).toString());
   }
 
+  //
+
 }
