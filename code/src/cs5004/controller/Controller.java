@@ -56,12 +56,13 @@ public class Controller implements Features {
   @Override
   public void play() {
 //    this.timer.start();
-    if (view instanceof IPlayBack)
-    {
+    if (view instanceof IPlayBack) {
       ((IPlayBack) view).addFeatures(this);
     while(loopFlag){
       ((IPlayBack) view).addFeatures(this);
       }
+    } else if (view instanceof JFrameView) {
+      this.timer.start();
     }
     // check action performed in timer reset/stop?
   }
