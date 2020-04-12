@@ -2,9 +2,7 @@ package cs5004.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import cs5004.model.AnimatorModel;
 import cs5004.view.IPlayBack;

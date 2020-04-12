@@ -40,19 +40,19 @@ public interface ReadOnlyModel {
   List<Shape> getShapes();
 
   /**
-   * get the canvas of the animator
+   * get the canvas of the animator.
    * @return a canvas object
    */
   Canvas getCanvas();
 
   /**
-   * get the pairing of shape and all its chagnes
+   * get the pairing of shape and all its changes.
    * @return a map whose key is Shape and value is list of Changes corresponding to that shape
    */
   Map<Shape, List<Change>> getMap();
 
   /**
-   * get the end time for the whole animation
+   * get the end time for the whole animation.
    * @return a double represents the final time of the animation
    */
   double getFinalTime();

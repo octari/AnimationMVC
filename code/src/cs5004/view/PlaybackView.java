@@ -120,7 +120,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
   @Override
   public void outputFile() {
-    return;
+    // do nothing in this view
   }
 
   @Override

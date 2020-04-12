@@ -1,4 +1,4 @@
-CS5004 Assignment 8
+CS5004 Assignment 10
 Team 40525
 Team member: Furong Tian, Yuchen Ji
 
@@ -204,6 +204,7 @@ View (interface)
 	String render();
 	String getCurrentState();
 	outputFile() throws IOException;
+	String render();
 
 
 JFrameView (implements Iview extends JFrame)

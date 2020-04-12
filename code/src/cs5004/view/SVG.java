@@ -39,14 +39,10 @@ public class SVG implements IView {
   public String render() throws IllegalArgumentException {
     StringBuilder sb = new StringBuilder();
     sb.append("<svg ")
-//            .append("viewBox=\"").append(m.getCanvas().getX()).append(" ")
-//            .append(m.getCanvas().getY()).append(" ").append(m.getCanvas().getWidth())
-//            .append(" ").append(m.getCanvas().getHeight())
-//            .append("\" ")
             .append("width=\"")
-            .append(m.getCanvas().getWidth()+m.getCanvas().getX())
+            .append(m.getCanvas().getWidth() + m.getCanvas().getX())
             .append("\" height=\"")
-            .append(m.getCanvas().getHeight()+m.getCanvas().getY())
+            .append(m.getCanvas().getHeight() + m.getCanvas().getY())
             .append("\" version=\"1.1\"\n")
             .append("xmlns=\"http://www.w3.org/2000/svg\">\n");
     for (Shape s : m.getShapes()) {
@@ -58,10 +54,11 @@ public class SVG implements IView {
                   .append((int) ((Rectangle) s).getHeight()).append("\" fill=\"rgb(")
                   .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
                   .append(")\" visibility=\"hidden\" >\n");
-          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\"" + "visibility\" " +
-                  "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"freeze\" />\n",
+          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\""
+                          + "visibility\" " +
+                          "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"freeze\" />\n",
                   (int) s.getAppear() * 1000 / speed,
-                  (int) (s.getDisappear()-s.getAppear() * 1000 /speed)));
+                  (int) (s.getDisappear() - s.getAppear() * 1000 / speed)));
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
@@ -128,16 +125,18 @@ public class SVG implements IView {
           break;
         case OVAL:
           sb.append("  <ellipse id=\"").append(s.getId()).append("\" cx=\"")
-                  .append(s.getPos().getX()+((Oval) s).getRadius1()/2)
-                  .append("\" cy=\"").append(s.getPos().getY()+((Oval) s).getRadius2()/2)
-                  .append("\" rx=\"").append((int) ((Oval) s).getRadius1()/2)
-                  .append("\" ry=\"").append((int) ((Oval) s).getRadius2()/2).append("\" fill=\"rgb(")
+                  .append(s.getPos().getX() + ((Oval) s).getRadius1() / 2)
+                  .append("\" cy=\"").append(s.getPos().getY() + ((Oval) s).getRadius2() / 2)
+                  .append("\" rx=\"").append((int) ((Oval) s).getRadius1() / 2)
+                  .append("\" ry=\"").append((int) ((Oval) s).getRadius2() / 2)
+                  .append("\" fill=\"rgb(")
                   .append(s.getR()).append(", ").append(s.getG()).append(", ").append(s.getB())
                   .append(")\" visibility=\"hidden\" >\n");
-          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\"" + "visibility\" " +
+          sb.append(String.format("    <set attributeType=\"xml\" attributeName=\""
+                          + "visibility\" " +
                           "to=\"visible\" begin=\"%dms\" dur=\"%dms\" fill=\"freeze\" />\n",
                   (int) s.getAppear() * 1000 / speed,
-                  (int) (s.getDisappear()-s.getAppear() * 1000 /speed)));
+                  (int) (s.getDisappear() - s.getAppear() * 1000 / speed)));
           for (Change c : m.getMap().get(s)) {
             switch (c.getMotion()) {
               case MOVE:
@@ -148,9 +147,9 @@ public class SVG implements IView {
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime())) / speed)
                           .append("ms\" attributeName=\"cx\" from=\"")
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getX()
-                                  +((Oval) m.getShapeAt(s, c.getStartTime())).getRadius1()/2)
+                                  + ((Oval) m.getShapeAt(s, c.getStartTime())).getRadius1() / 2)
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getX()
-                          +((Oval) m.getShapeAt(s, c.getStartTime())).getRadius1()/2)
+                          + ((Oval) m.getShapeAt(s, c.getStartTime())).getRadius1() / 2)
                           .append("\" fill=\"freeze\" />\n");
                 }
                 if (Double.compare(m.getShapeAt(s, c.getStartTime()).getPos().getY(),
@@ -160,9 +159,9 @@ public class SVG implements IView {
                           .append((int) (1000 * (c.getEndTime() - c.getStartTime()) / speed))
                           .append("ms\" attributeName=\"cy\" from=\"")
                           .append((int) m.getShapeAt(s, c.getStartTime()).getPos().getY()
-                                  +((Oval) m.getShapeAt(s, c.getStartTime())).getRadius2()/2)
+                                  + ((Oval) m.getShapeAt(s, c.getStartTime())).getRadius2() / 2)
                           .append("\" to=\"").append(((PosChange) c).getEndPos().getY()
-                          +((Oval) m.getShapeAt(s, c.getStartTime())).getRadius2()/2)
+                          + ((Oval) m.getShapeAt(s, c.getStartTime())).getRadius2() / 2)
                           .append("\" fill=\"freeze\" />\n");
                 }
                 break;

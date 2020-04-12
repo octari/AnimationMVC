@@ -78,7 +78,7 @@ public class TextualTest {
   public void testEmptyOutputFile() {
     model0 = new AnimatorImpl();
     TextualView empty = new TextualView(model0, "emptyOut.txt");
-    assertEquals("Shapes:\n", empty.getCurrentState());
+    assertEquals("Shapes:\n", empty.render());
   }
 
   /**
@@ -89,20 +89,20 @@ public class TextualTest {
     assertEquals("Shapes:\n" +
             "Name:R\n" +
             "Type:RECTANGLE\n" +
-            "Min Corner: ( 250.0, 270.0), Width: 10.0, Height: 5.0, Color: (50, 100, 0)\n" +
+            "Min Corner: (250.0, 270.0), Width: 10.0, Height: 5.0, Color: (50, 100, 0)\n" +
             "Appears at t = 1.0\n" +
             "Disappears at t = 100.0\n" +
             "Name:O\n" +
             "Type:OVAL\n" +
-            "Center: ( 390.0, 390.0), radius1: 3.0, radius2: 6.0, Color: (60, 30, 0)\n" +
+            "Center: (390.0, 390.0), radius1: 3.0, radius2: 4.0, Color: (60, 30, 0)\n" +
             "Appears at t = 6.0\n" +
             "Disappears at t = 100.0\n" +
-            "shape R moves from ( 250.0, 270.0)( 390.0, 390.0) to ( 390.0, 390.0) from t = 10.0s " +
+            "shape R moves from (250.0, 270.0)(390.0, 390.0) to (390.0, 390.0) from t = 10.0s " +
             "to t = 50.0s\n" +
             "shape R changes color from (50,100,0)(60,30,0) to (10,0,0) from t = 50.0s to " +
             "t = 80.0s\n" +
             "shape R scales from (50.0, 100.0)(50.0, 100.0) to (50.0, 100.0) from t = 61.0s " +
-            "to t = 70.0s\n", this.textualView.getCurrentState());
+            "to t = 70.0s\n", this.textualView.render());
   }
 
 

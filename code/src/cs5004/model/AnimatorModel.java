@@ -1,8 +1,5 @@
 package cs5004.model;
 
-
-import java.util.List;
-
 /**
  * animator.AnimatorModel is the the model for the Animator made in the MVC structure. Animator is
  * the canvas for shapes; it contains shapes and make changes to them based on given commands.
