@@ -3,7 +3,12 @@ Team 40525
 Team member: Furong Tian, Yuchen Ji
 
 README
-Changes made to model in HW7:
+Changes HW10 made to model compared to HW8:
+We add several getter and setter method to the model so we can access and change the
+shapes or changes corresponding to shapes gracefully. We add a getFinalTime method to
+get the end time of the whole animation which we will make use of in the controller
+looping method to set the timer to 0 when it reaches the end of the animation.
+Changes HW8 made to model compared to HW7:
 We have a new Class Canvas and add a new field which is a Canvas object to our model
 to store the information related to the size and origin of the canvas. We also add a
 getter and setter for Canvas.
@@ -29,16 +34,22 @@ shape on the canvas. AnimatorImpl has the function of adding and removing a shap
 adding or removing motion to the existing shape. It can also get the current state of the whole
 canvas in string format.
 
+ReadOnlyModel (interface)
+    getShapes;
+    getChanges;
+    getMap;
+    getCanvas;
+    getFinalTime;
+    getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
+    getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
+
 Animator (interface)
 	addShape;
 	addMove;
 	addColor;
 	addScale;
-	getState;
 	addCanvas;
 	removeShape;
-	getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
-	getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
 	removeShape;
 	removeMove;
 	removeColor;
@@ -61,6 +72,7 @@ AnimatorImpl (Implements animator model interface)
     	removeMove;
     	removeColor;
     	removeScale;
+    	getFinalTime;
 
 
 change:

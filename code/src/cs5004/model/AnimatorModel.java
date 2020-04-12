@@ -122,18 +122,6 @@ public interface AnimatorModel extends ReadOnlyModel {
   void removeScale(String id, double startTime, double endTime, double index1, double index2)
           throws IllegalArgumentException;
 
-  /**
-   * get a list of existing Shapes.
-   */
-  List<Shape> getExistingShape();
-
-  /**
-   * get a list of change from the given shape id.
-   *
-   * @param id the id of the requested shape
-   */
-  List<Change> getChange(String id);
-
 }
 
 

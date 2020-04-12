@@ -189,12 +189,6 @@ public class AnimatorImpl implements AnimatorModel {
   }
 
   @Override
-  public List<Shape> getExistingShape() {
-    return this.shapes;
-
-  }
-
-  @Override
   public List<Change> getChange(String id) {
     return this.map.get(id);
 
