@@ -41,7 +41,8 @@ public class Controller implements Features {
       case "visual":
       case "playback":
         int delay = 1000 / this.speed;
-        this.timer = new Timer(delay, new Controller.TickActionListener(view));
+        this.timer = new Timer(delay, new Controller.TickActionListener(view, loopFlag,
+                model.getFinalTime()));
         break;
       case "svg":
         ((SVG) view).outputFile();
@@ -67,7 +68,7 @@ public class Controller implements Features {
   }
 
   @Override
-  public void start() {
+  public void resume() {
     timer.start();
   }
 
@@ -79,7 +80,8 @@ public class Controller implements Features {
   @Override
   public void restart() {
     timer.stop();
-    ActionListener myListenerPB = new Controller.TickActionListener(view);
+    ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
+            model.getFinalTime());
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
@@ -99,7 +101,6 @@ public class Controller implements Features {
 
   @Override
   public void loop() {
-
     loopFlag = true;
     timer.stop();
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
@@ -129,10 +130,6 @@ public class Controller implements Features {
     private IView view;
     private boolean loopFlag;
     private double finalTime;
-
-    TickActionListener(IView view) {
-      this.view = view;
-    }
 
     TickActionListener(IView view, boolean loopFlag, double finalTime) {
       this.view = view;

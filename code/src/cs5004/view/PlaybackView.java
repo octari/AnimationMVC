@@ -65,8 +65,8 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
     //loop/unloop radiobutton
     ButtonGroup rGroup = new ButtonGroup();
-    looping = new JRadioButton("Start Looping");
-    unlooping = new JRadioButton("Nonloop");
+    looping = new JRadioButton("Looping start");
+    unlooping = new JRadioButton("Not looping start");
     looping.setActionCommand("Loop");
     unlooping.setActionCommand("Un Loop");
     rGroup.add(looping);
@@ -88,7 +88,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     //Because we want it to use the default FlowLayout
     JPanel subPanel = new JPanel();
 
-    display = new JLabel("Choose loop/nonloop to start a loop/nonloop animation. " +
+    display = new JLabel("Choose a start which is either looping or not looping. " +
             "Press button to do what it indicates.");
     display.getHorizontalAlignment();
     subPanel.add(display);
@@ -139,7 +139,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Resume Button")) {
-          features.start();
+          features.resume();
         }
       }
     });

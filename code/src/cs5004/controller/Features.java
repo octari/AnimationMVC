@@ -14,7 +14,7 @@ public interface Features {
   /**
    * start to display the animation.
    */
-  void start();
+  void resume();
 
   /**
    * pause the current showing animation.
