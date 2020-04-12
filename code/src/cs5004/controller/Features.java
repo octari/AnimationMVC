@@ -9,42 +9,42 @@ public interface Features {
   /**
    * Execute a play of valid shapes on canvas.
    */
-  void play();
+  int play();
 
   /**
    * start to display the animation.
    */
-  void resume();
+  int resume();
 
   /**
    * pause the current showing animation.
    */
-  void pause();
+  int pause();
 
   /**
    * stop and cancel the current play and restart a new one.
    */
-  void restart();
+  int restart();
 
   /**
    * Increase the speed by double the current speed.
    */
-  void increaseSpeed();
+  int increaseSpeed();
 
   /**
    * decrease the speed by subtract the current speed by 2.
    */
-  void decreaseSpeed();
+  int decreaseSpeed();
 
   /**
    * restart the animation when its end to show the animation as looping till uncheck this choice.
    */
-  void loop();
+  int loop();
 
   /**
    * stop the current happening looping and start a one-time play.
    */
-  void unloop();
+  int unloop();
 
 
 }

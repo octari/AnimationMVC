@@ -2,7 +2,9 @@ package cs5004.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import cs5004.model.AnimatorModel;
 import cs5004.view.IPlayBack;
@@ -56,7 +58,7 @@ public class Controller implements Features {
   }
 
   @Override
-  public void play() {
+  public int play() {
     if (view instanceof IPlayBack) {
       ((IPlayBack) view).addFeatures(this);
       while (loopFlag) {
@@ -65,42 +67,48 @@ public class Controller implements Features {
     } else if (view instanceof JFrameView) {
       this.timer.start();
     }
+    return 0;
   }
 
   @Override
-  public void resume() {
+  public int resume() {
     timer.start();
+    return 0;
   }
 
   @Override
-  public void pause() {
+  public int pause() {
     timer.stop();
+    return 0;
   }
 
   @Override
-  public void restart() {
+  public int restart() {
     timer.stop();
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
             model.getFinalTime());
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
+    return 0;
   }
 
   @Override
-  public void increaseSpeed() {
+  public int increaseSpeed() {
     speed *= 2;
     timer.setDelay(1000 / speed);
+    return 0;
   }
 
   @Override
-  public void decreaseSpeed() {
+  public int decreaseSpeed() {
     speed /= 2;
     timer.setDelay(1000 / speed);
+    return 0;
   }
 
   @Override
-  public void loop() {
+  public int loop() {
     loopFlag = true;
     timer.stop();
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
@@ -108,10 +116,11 @@ public class Controller implements Features {
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
+    return 0;
   }
 
   @Override
-  public void unloop() {
+  public int unloop() {
     loopFlag = false;
     timer.stop();
     ActionListener myListenerPB = new Controller.TickActionListener(view, loopFlag,
@@ -119,6 +128,7 @@ public class Controller implements Features {
     int delayPB = 1000 / this.speed;
     this.timer = new Timer(delayPB, myListenerPB);
     timer.start();
+    return 0;
   }
 
   /**
