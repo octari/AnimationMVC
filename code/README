@@ -1,0 +1,291 @@
+CS5004 Assignment 8
+Team 40525
+Team member: Furong Tian, Yuchen Ji
+
+README
+Changes made to model in HW7:
+We have a new Class Canvas and add a new field which is a Canvas object to our model
+to store the information related to the size and origin of the canvas. We also add a
+getter and setter for Canvas.
+We added a ReadOnly model to our model package so that we can let main/controller only
+have access to the data to the model but have no way to modify them.
+We also add a static Builder class to implement the builder to read all the information in
+text file and populate a model, build it and so that we can deliver our ReadOnly model to
+main/controller.
+
+
+For this project, we used to have 3 packages, which are animator, shape, and change. Now
+we have 4 packages, which are model, util(given), controller, and view. For each package,
+there is a interface in order to represent the methods of class should have, and an abstract
+class to reduce the redundancy.
+
+animator:
+In this package we have interface: AnimatorModel, and its implementation: AnimatorImpl.
+AnimatorModel is the the model for the Animator made in the MVC structure. Animator is
+the canvas for shapes; it contains shapes and make changes to them based on given commands.
+AnimatorImpl implements the AnimatorModel. An AnimatorModelImpl has a map that stores each 
+shape as the key and its changes as the value. It also has a list of shape that stores every 
+shape on the canvas. AnimatorImpl has the function of adding and removing a shape on the canvas and
+adding or removing motion to the existing shape. It can also get the current state of the whole
+canvas in string format.
+
+Animator (interface)
+	addShape;
+	addMove;
+	addColor;
+	addScale;
+	getState;
+	addCanvas;
+	removeShape;
+	getShapeAt;   // now implemented in this project (it was a placeholder in hw7)
+	getShapesAt;  // now implemented in this project (it was a placeholder in hw7)
+	removeShape;
+	removeMove;
+	removeColor;
+	removeScale;
+
+
+AnimatorImpl (Implements animator model interface)
+	filed: 
+		List<Shape>;
+		Map<Shape, List<Change>>;
+
+	methods implementation:
+		addShape;  
+		addMove;   
+		addColor;  
+		addScale;  
+		getState;
+		addCanvas;
+    	removeShape;
+    	removeMove;
+    	removeColor;
+    	removeScale;
+
+
+change:
+We have interface: Change, its implementation: AbstractChange, and an enum
+for defining motion type. For each motion, there is a concrete class extends the abstract class.
+Each concrete class has its unique fields, getters, and methods of change.
+Change interface represents all the possible changes on a shape. It includes the type of motion
+and the start and end time.
+AbstractChange is the abstract class for changes, it has common fields and getters for all motions.
+
+Change (interface)
+	getId;
+	getMotion;
+	getStartTime;
+	getEndTime;
+
+AbstractChange (implements Change)
+	field:
+		String id;
+		Motion m;
+		double startTime;
+		double endTime;
+
+	methods implimentation:
+		getId;
+		getMotion;
+		getStartTime;
+		getEndTime;
+
+Motion (enum)
+	MOVE, SCALE, COLOR
+
+ColorChange (extends AbstractChange)
+	field:
+		int endR;
+		int endG;
+		int endB;
+
+	methods:
+		getEndR;
+		getEndG;
+		getEndB;
+
+PosChange (extends AbstractChange)
+	field:
+		Position endPos;
+
+	methods:
+		getEndPos;
+
+ScaleChange (extends AbstractChange)
+	field:
+		endIndex1;
+		endIndex2;
+
+	methods:
+		getEndIndex1;
+		getEndIndex2;
+		toString;
+
+
+shape:
+We have interface: Shape, its implementation: AbstractShape, and an enum
+for defining shape type. For each shape, there is a concrete class extends the abstract class.
+Each concrete class has its unique fields, getters, and toString function. Also, a Position
+class unite x and y factor together to represent the position of the shape.
+Shape interface represents all the possible shapes. It includes the type of shape, the position,
+the index for color(r,g,b) , and the appear and disappear time.
+AbstractShape is the abstract class for all shapes it has all the common fields and methods of 
+shape.
+
+Shape (interface)
+	all the getters
+
+
+Shape (Abstract class)
+	attributes:
+		String id;
+		ShapeType type;
+		double appear;
+		double disappear;
+		int r;
+		int g;
+		int b;
+		Position p;
+
+	methods:
+		impliments all the getters
+
+ShapeType (enum)
+	RECTANGLE, OVAL
+
+Rectangle (extend Shape)
+	field:
+		double width;
+		double height;
+	
+	method:
+		getWidth;
+		getHeight;
+		toString;
+
+
+Oval (extend Shape)
+	field:
+		double radius1;
+		double radius2;
+	method:
+		getRadius1;
+		getRadius2;
+		toString;
+
+Position
+	field:
+		double x;
+		double y;
+	methods:
+		getters
+
+
+view:
+In this package we have interface: Iview, receives inputs from the Controller and generates
+an output description of the animation that includes the Shapes in the animation and the Actions
+performed by the Shapes. There are three concrete class implement the methods for textual, visual,
+playback and SVG view. A JPanel class for visual view and a JFactory for creating the view interface
+in main.
+
+View (interface)
+	String render();
+	String getCurrentState();
+	outputFile() throws IOException;
+
+
+JFrameView (implements Iview extends JFrame)
+	attributes:
+		private ViewPanel p;
+		private ReadOnlyModel m;
+
+	method:
+		setCurrentTick;
+		ReadOnlyModel;
+		getCurrentState;
+		refresh;
+		render; (throws UnsupportedOperationException; it is used in SVG)
+		outputFile; (same as above)
+
+ViewPanel (extends JPanel)
+	attributes:
+		private List<Shape> shapes;
+
+
+ViewPanel (extends JPanel)
+	attributes:
+		private List<Shape> shapes;
+	method:
+		ViewPanel;
+		setCurrentFrame;
+		paintComponent;
+
+
+SVG (implements Iview)
+	attributes:
+		private List<Shape> shapes;
+	method:
+		render;
+		getCurrentState;
+		outputFile;
+
+
+textView (call model getState)
+	attributes:
+		private ReadOnlyModel m;
+  		private String out;
+	method:
+		render;
+		getCurrentState;
+		outputFile;
+
+IPlayBack (interface, extends IView)
+    addFeatures;
+
+playbackView (extends JFrame implements IPlayBack)
+	attribute:
+	    private ViewPanel p;
+        private ReadOnlyModel m;
+        private JLabel display;
+        private JButton startButton, pauseButton, resumeButton, restartButton,
+                increaseSpeed, decreaseSpeed;
+        private JRadioButton looping;
+        private JRadioButton unlooping;
+
+	methods:
+		addFeatures(); //add the functional buttons
+
+ViewFactory (class)
+	method:
+		makeView;
+
+
+controller:
+In this package we have interface: Features, which is the interface of a Controller for
+AnimatorModel, a concert class: Controller that implements all the corresponding methods, including
+play, pause, looping, unlooping, stop, and changing speed.
+
+Features (Interface)
+	public void play();
+	public void pause()/resume();
+	public void looping();
+	public void stop();
+	public void increaseSpeed();
+	public void decreaseSpeed();
+
+Controller (class)
+	attributes:
+	    private AnimatorModel model;
+        private IView view;
+        private Timer timer;
+        private int speed;
+        private boolean loopFlag;
+
+	methods:
+		play;
+		pause()/resume();
+		looping();
+		stop();
+		increaseSpeed();
+		decreaseSpeed();
+
