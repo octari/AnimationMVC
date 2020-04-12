@@ -1,6 +1,7 @@
 package cs5004.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,6 @@ import cs5004.model.ReadOnlyModel;
 public class PlaybackView extends JFrame implements IPlayBack {
   private ViewPanel p;
   private ReadOnlyModel m;
-  private JLabel display;
   private JButton pauseButton;
   private JButton resumeButton;
   private JButton restartButton;
@@ -88,7 +88,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
     //Because we want it to use the default FlowLayout
     JPanel subPanel = new JPanel();
 
-    display = new JLabel("Choose a start which is either looping or not looping. " +
+    JLabel display = new JLabel("Choose a start which is either looping or not looping. " +
             "Press button to do what it indicates.");
     display.getHorizontalAlignment();
     subPanel.add(display);
@@ -120,7 +120,7 @@ public class PlaybackView extends JFrame implements IPlayBack {
 
   @Override
   public void outputFile() {
-
+    return;
   }
 
   @Override
