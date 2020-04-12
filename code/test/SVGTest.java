@@ -56,7 +56,7 @@ public class SVGTest {
   @Test
   public void testEmptySVG() {
     IView svg = ViewFactory.makeView("svg", new AnimatorImpl(), "", 20);
-    assertEquals("<svg viewBox=\"0 0 0 0\" width=\"0\" height=\"0\" version=\"1.1\"\n" +
+    assertEquals("<svg width=\"0\" height=\"0\" version=\"1.1\"\n" +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
             "</svg>\n", svg.render());
   }
@@ -64,24 +64,19 @@ public class SVGTest {
   @Test
   public void testSVG() {
     IView svg = ViewFactory.makeView("svg", model, "", 20);
-    assertEquals("<svg viewBox=\"0 0 0 0\" width=\"0\" height=\"0\" version=\"1.1\"\n" +
+    assertEquals("<svg width=\"0\" height=\"0\" version=\"1.1\"\n" +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "  <rect id=\"R\" x=\"250.0\" y=\"270.0\" width=\"10\" height=\"5\" fill=\"" +
-            "rgb(50, 100, 0)\" visibility=\"visible\" >\n" +
-            "    <animate attributeType=\"xml\" begin=\"500ms\" dur=\"2000ms\" " +
-            "attributeName=\"x\" from=\"250\" to=\"390\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"500ms\" dur=\"2000ms\" " +
-            "attributeName=\"y\" from=\"270\" to=\"390\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"3050ms\" dur=\"450ms\" " +
-            "attributeName=\"width\" from=\"10\" to=\"50.0\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"3050ms\" dur=\"450ms\" " +
-            "attributeName=\"height\" from=\"5.0\" to=\"100.0\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"CSS\"  attributeName=\"fill\" from=\" " +
-            "rgb(50, 100, 0)\" to=\"rgb(10, 0, 0)\" begin=\"2500ms\" dur=\"1500ms\" " +
-            "fill=\"freeze\" />\n" +
-            "  </rect>\n" + "\n" +
-            "  <ellipse id=\"O\" cx=\"390.0\" cy=\"390.0\" rx=\"3\" ry=\"4\" " +
-            "fill=\"rgb(60, 30, 0)\" visibility=\"visible\" >\n" +
+            "  <rect id=\"R\" x=\"250.0\" y=\"270.0\" width=\"10\" height=\"5\" fill=\"rgb(50, 100, 0)\" visibility=\"hidden\" >\n" +
+            "    <set attributeType=\"xml\" attributeName=\"visibility\" to=\"visible\" begin=\"50ms\" dur=\"50ms\" fill=\"freeze\" />\n" +
+            "    <animate attributeType=\"xml\" begin=\"500ms\" dur=\"2000ms\" attributeName=\"x\" from=\"250\" to=\"390\" fill=\"freeze\" />\n" +
+            "    <animate attributeType=\"xml\" begin=\"500ms\" dur=\"2000ms\" attributeName=\"y\" from=\"270\" to=\"390\" fill=\"freeze\" />\n" +
+            "    <animate attributeType=\"xml\" begin=\"3050ms\" dur=\"450ms\" attributeName=\"width\" from=\"10\" to=\"50.0\" fill=\"freeze\" />\n" +
+            "    <animate attributeType=\"xml\" begin=\"3050ms\" dur=\"450ms\" attributeName=\"height\" from=\"5.0\" to=\"100.0\" fill=\"freeze\" />\n" +
+            "    <animate attributeType=\"CSS\"  attributeName=\"fill\" from=\" rgb(50, 100, 0)\" to=\"rgb(10, 0, 0)\" begin=\"2500ms\" dur=\"1500ms\" fill=\"freeze\" />\n" +
+            "  </rect>\n" +
+            "\n" +
+            "  <ellipse id=\"O\" cx=\"391.5\" cy=\"392.0\" rx=\"1\" ry=\"2\" fill=\"rgb(60, 30, 0)\" visibility=\"hidden\" >\n" +
+            "    <set attributeType=\"xml\" attributeName=\"visibility\" to=\"visible\" begin=\"300ms\" dur=\"-200ms\" fill=\"freeze\" />\n" +
             "  </ellipse>\n" +
             "\n" +
             "</svg>\n", svg.render());

@@ -32,7 +32,7 @@ public class BuilderTest {
     Builder builder = new Builder();
     builder.declareShape("R", "rectangle");
     Assert.assertTrue(ShapeType.RECTANGLE.toString().equalsIgnoreCase("rectangle"));
-    builder.declareShape("R", "oval");
+    builder.declareShape("O", "ellipse");
     Assert.assertTrue(ShapeType.OVAL.toString().equalsIgnoreCase("oval"));
   }
 
